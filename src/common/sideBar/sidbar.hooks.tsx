@@ -1,24 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface SidbarHooks {
     open: boolean;
-    handleDrawerOpen: () => void;
-    handleDrawerClose: () => void;
+    handleDrawerToggle: () => void;
 }
 
 const sidbarHooks = (): SidbarHooks => {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
 
-    const handleDrawerOpen = () => {
-
-        setOpen(true);
+    const handleDrawerToggle = () => {
+        setOpen(!open); // This toggles the state
     };
 
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
-
-    return { open, handleDrawerOpen, handleDrawerClose }
+    return { open, handleDrawerToggle }
 };
 
 export default sidbarHooks;

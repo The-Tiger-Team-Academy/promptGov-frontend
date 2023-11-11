@@ -1,39 +1,58 @@
-'use client'
-import { Drawer, IconButton } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu'; // Importing Menu icon
-import sidbarHooks from "./sidbar.hooks";
+import { Drawer, List, ListItem, ListItemIcon, ListItemText, IconButton } from "@mui/material";
+import HomeIcon from '@mui/icons-material/Home';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import SettingsIcon from '@mui/icons-material/Settings';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 interface DrawerComponentProps {
     open: boolean;
-    handleDrawerClose: () => void;
+    handleDrawerToggle: () => void;
 }
 
-const DrawerComponent = ({ open, handleDrawerClose }: DrawerComponentProps) => {
+const SideBar = ({ open, handleDrawerToggle }: DrawerComponentProps) => {
     return (
         <Drawer
             variant="persistent"
             anchor="left"
             open={open}
         >
-            {/* Your drawer content */}
-            <IconButton onClick={handleDrawerClose}>
-                <MenuIcon /> {/* Icon for closing the drawer */}
-            </IconButton>
-            drawer
+            <div>
+                <IconButton onClick={handleDrawerToggle}>
+                    {/* Icon to toggle the drawer */}
+                </IconButton>
+                <List>
+                    {/* Home */}
+                    <ListItem button>
+                        <ListItemIcon>
+                            <HomeIcon />
+                        </ListItemIcon>
+                        {open && <ListItemText primary="Home" />}
+                    </ListItem>
+                    {/* Create Document */}
+                    <ListItem button>
+                        <ListItemIcon>
+                            <AddCircleOutlineIcon />
+                        </ListItemIcon>
+                        {open && <ListItemText primary="Create Document" />}
+                    </ListItem>
+                    {/* Settings */}
+                    <ListItem button>
+                        <ListItemIcon>
+                            <SettingsIcon />
+                        </ListItemIcon>
+                        {open && <ListItemText primary="Settings" />}
+                    </ListItem>
+                    {/* Logout */}
+                    <ListItem button>
+                        <ListItemIcon>
+                            <LogoutIcon />
+                        </ListItemIcon>
+                        {open && <ListItemText primary="Logout" />}
+                    </ListItem>
+                </List>
+            </div>
         </Drawer>
     );
 }
 
-const Sidbar = () => {
-    const { open, handleDrawerOpen, handleDrawerClose } = sidbarHooks();
-    return (
-        <div>
-            <IconButton onClick={handleDrawerOpen}>
-                <MenuIcon /> {/* Icon for opening the drawer */}
-            </IconButton>
-            <DrawerComponent open={open} handleDrawerClose={handleDrawerClose} />
-        </div>
-    );
-}
-
-export default Sidbar;
+export default SideBar;
