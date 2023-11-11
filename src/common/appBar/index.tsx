@@ -1,11 +1,9 @@
-'use client'
 import React from 'react';
 import { AppBar, Toolbar, IconButton } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import useSidbarHooks from '../sideBar/sidbar.hooks'; // Make sure to use the hook properly
+import appBarConstants from './appBar.constants';
+import styles from './appbar.style';
 
-const drawerWidth = 220; // Full width of the sidebar
-const minimizedWidth = 0; // Width of the minimized sidebar
 
 interface DrawerComponentProps {
     open: boolean;
@@ -14,16 +12,10 @@ interface DrawerComponentProps {
 
 const AppBarComponent = ({ open, handleDrawerToggle }: DrawerComponentProps) => {
 
-
-    // Styles for the AppBar that depend on the sidebar state
-    const appBarStyle = {
-        marginLeft: open ? drawerWidth : minimizedWidth, // Adjust based on the sidebar state
-        width: open ? `calc(100% - ${drawerWidth}px)` : `calc(100% - ${minimizedWidth}px)`,
-        transition: 'margin 0.3s ease, width 0.3s ease',
-    };
+    const appBarStyle = styles(open);
 
     return (
-        <AppBar position="fixed" style={appBarStyle}>
+        <AppBar position="fixed" style={appBarStyle.appBarStyle}>
             <Toolbar>
                 <IconButton
                     edge="start"
