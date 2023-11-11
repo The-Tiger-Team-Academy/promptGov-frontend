@@ -5,7 +5,7 @@ interface SidbarHooks {
     handleDrawerToggle: () => void;
 }
 
-const sidbarHooks = (): SidbarHooks => {
+const useSidbarHooks = (): SidbarHooks => {
     const [open, setOpen] = useState(true);
 
     const handleDrawerToggle = () => {
@@ -15,4 +15,4 @@ const sidbarHooks = (): SidbarHooks => {
     return { open, handleDrawerToggle }
 };
 
-export default sidbarHooks;
+export default useSidbarHooks;
