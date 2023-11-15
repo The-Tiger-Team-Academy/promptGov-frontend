@@ -4,6 +4,7 @@ import AppBar from '@/common/appBar'
 import useSidbarHooks from '@/common/sideBar/sidbar.hooks';
 import SideBar from '@/common/sideBar';
 
+
 export default function Home() {
   const { open, handleDrawerToggle } = useSidbarHooks();
 

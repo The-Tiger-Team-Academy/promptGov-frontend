@@ -1,9 +1,12 @@
-
+import Button from '@mui/material/Button';
 
 
 const createDocumentPage = () => {
     return (
-        <div>this is createDocument page</div>
+        <div>
+            <h1> สร้างเอกสารของคุณ </h1>
+            <Button variant="contained">สร้างเอกสาร</Button>
+        </div>
     )
 
 }
