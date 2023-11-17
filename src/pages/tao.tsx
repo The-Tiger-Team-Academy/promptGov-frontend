@@ -1,18 +1,19 @@
-import { Container, Grid, Typography, Card } from "@mui/material"
+import { Container, Grid, Typography, Card, Avatar } from "@mui/material"
+
+
 
 const Tao = () => {
     return (
         <Grid container>
             <Grid item xs={6}>
-                <h1>col 1</h1>
                 <Container>
                     <Grid container>
                         <Grid item xs={3}>
-                            <img src="https://picsum.photos/200/300" alt="random" />
+                            <Avatar sx={{ width: 150, height: 150 }} alt="Remy Sharp" src="https://picsum.photos/200/200" />
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={4}>
                             <Container>
-                                ชื่อ นามสกุล
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ratione esse quo tempora nulla magni officiis, assumenda maiores sequi hic placeat odit? Accusantium explicabo quia sit excepturi. Rerum, aut velit!
                             </Container>
                         </Grid>
                     </Grid>
@@ -26,7 +27,7 @@ const Tao = () => {
                     <Typography > Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est ipsum rerum, officiis perferendis sint fugit adipisci harum, dignissimos voluptates magni voluptas commodi temporibus! Fugit qui dolor et alias ipsum deserunt! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi consequatur modi consequuntur non, officia recusandae aut. Architecto eum fuga vero quod, natus sed ex inventore optio, est, minima tempora aliquid. </Typography>
                 </Container>
             </Grid>
-
+            
         </Grid>
     )
 }
