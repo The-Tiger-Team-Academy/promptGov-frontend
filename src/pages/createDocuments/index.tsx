@@ -1,14 +1,39 @@
-import Button from '@mui/material/Button';
+import Image from "next/image";
+import styles from "./paperFlow.module.css";
+import svg from "./icon.png.svg";
 
+const Paper = () => {
+  return (
+    <div className={styles.container}>
+      <main className={styles.main}>
+        <h1 className={styles.title}>PaperFlow</h1>
+        <p className={styles.description}>เลือกประเภทเอกสาร</p>
 
-const createDocumentPage = () => {
-    return (
-        <div>
-            <h1> สร้างเอกสารของคุณ </h1>
-            <Button variant="contained">สร้างเอกสาร</Button>
+        <div className={styles.grid}>
+          <button className={styles.card}>
+            <Image src={svg} alt="logo" width={100} height={100}></Image>
+            <p>บันทึกข้อความ</p>
+          </button>
+
+          <button className={styles.card}>
+            <Image src={svg} alt="logo" width={100} height={100}></Image>
+            <p>ขอความอนุเคราะห์</p>
+          </button>
+
+          <button className={styles.card}>
+            <Image src={svg} alt="logo" width={100} height={100}></Image>
+
+            <p>ใบลา/ใบลากิจ</p>
+          </button>
+
+          <button className={styles.card}>
+            <Image src={svg} alt="logo" width={100} height={100}></Image>
+            <p>จิตอาสา</p>
+          </button>
         </div>
-    )
+      </main>
+    </div>
+  );
+};
 
-}
-
-export default createDocumentPage
+export default Paper;
