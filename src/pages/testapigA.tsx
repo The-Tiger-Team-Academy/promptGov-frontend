@@ -1,100 +1,96 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import Grid from '@mui/material/Grid';
-import { styled } from '@mui/material/styles';
 
-const createDocuments: React.FC = () => {
-    const [inputData, setInputData] = useState('');
-    const [logoFile, setLogoFile] = useState<File | null>(null);
-    const [fileName, setFileName] = useState('Upload Logo');
-    const fileInputRef = useRef<HTMLInputElement>(null);
-    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+const MyComponent: React.FC = () => {
+  const [Nameuniversity, setNameuniversity] = useState('');
+  const [Orgra, setOrgra] = useState('');
+  const [Tel, setTel] = useState('');
+  const [Sal, setSal] = useState('');
+  const [Number, setNumber] = useState('');
+  const [Date, setDate] = useState('');
+  const [Month, setMonth] = useState('');
+  const [Year, setYear] = useState('');
+  const [Story, setStory] = useState('');
+  const [Person, setPerson] = useState('');
+  const [P1, setP1] = useState('');
+  const [P2, setP2] = useState('');
+  const [P3, setP3] = useState('');
+  const [Lastly, setLastly] = useState('');
+  const [Licent, setLicent] = useState('');
+  const [Level, setLevel] = useState('');
+  const [Position, setPosition] = useState('');
+  const [Licent2, setLicent2] = useState('');
+  const [Level2, setLevel2] = useState('');
+  const [Position2, setPosition2] = useState('');
 
-    // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     if (event.target.files) {
-    //         setSelectedFile(event.target.files[0]);
-    //     }
-    // };
+  const handleSend = async () => {
+    try {
+      const response = await axios.post(`http://127.0.0.1:8000/generate_document`, {
+        NAMEUNIVERSITY: Nameuniversity,
+        ORGRA: Orgra,
+        TEL: Tel,
+        SAL: Sal,
+        NUMBER: Number,
+        DATE: Date,
+        MONTH: Month,
+        YEAR: Year,
+        STORY: Story,
+        PERSON: Person,
+        P1: P1,
+        P2: P2,
+        P3: P3,
+        LASTLY: Lastly,
+        LICENT: Licent,
+        LEVEL: Level,
+        POSITION: Position,
+        LICENT2: Licent2,
+        LEVEL2: Level2,
+        POSITION2: Position2
+      }, {
+        responseType: 'blob'
+      });
 
-    // const handleClick = () => {
-    //     fileInputRef.current?.click();
-    // };
+      if (response.status === 200) {
+        const fileUrl = URL.createObjectURL(response.data);
+        const link = document.createElement('a');
+        link.href = fileUrl;
+        link.setAttribute('download', 'generated.docx');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        console.error('Failed to generate document');
+      }
+    } catch (error) {
+      console.error('An error occurred', error);
+    }
+  };
 
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
-
-        const formData = new FormData();
-        if (logoFile) {
-            formData.append('logo', logoFile);
-        }
-        try {
-            // Replace with your API endpoint
-            const url = `http://127.0.0.1:8000/generate-docx?data=${inputData}`;
-            const response = await axios.post(url, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                },
-                responseType: 'blob',
-            });
-
-
-            const fileURL = window.URL.createObjectURL(new Blob([response.data]));
-            const fileLink = document.createElement('a');
-            fileLink.href = fileURL;
-            fileLink.setAttribute('download', 'generated.docx');
-            document.body.appendChild(fileLink);
-
-            fileLink.click();
-
-            fileLink.remove();
-            window.URL.revokeObjectURL(fileURL);
-        } catch (error) {
-            console.error('Error downloading file', error);
-        }
-    };
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files) {
-            setLogoFile(event.target.files[0]);
-        }
-    };
-
-    return (
-        <Grid container spacing={0}>
-            <Grid item xs={12}>
-                <div style={{ display: 'flex', width: '100%', flexDirection: 'row', alignItems: "center", justifyContent: 'center', border: '1px solid black' }}>
-                    <label>
-                        {/* Input Data: */}
-                        <input
-                            type="text"
-                            value={inputData}
-                            onChange={(e) => setInputData(e.target.value)}
-                            style={{ borderRadius: '10px', height: '50px' }}
-                            placeholder='Input data'
-                        />
-                    </label>
-                </div>
-            </Grid>
-            <Grid item xs={12}>
-                <div style={{ display: 'flex', width: '100%', flexDirection: 'row', alignItems: "center", justifyContent: 'center', border: '1px solid black' }}>
-                    <label>
-                        {/* Upload Logo: */}
-                        <input
-                            type="file"
-                            // accept="image/png"
-                            onChange={handleFileChange}
-                        />
-                    </label>
-                    <button type="submit" onClick={handleSubmit} style={{ borderRadius: '5px', height: '35px', backgroundColor: 'pink' }}>SUBMIT</button>
-                </div>
-
-            </Grid>
-            {/* <Grid item xs={12}>
-                <div style={{ display: 'flex', width: '100%', flexDirection: 'row', alignItems: "center", justifyContent: 'center', border: '1px solid black' }}>
-                    <button type="submit" onClick={handleSubmit}>SUBMIT</button>
-                </div>
-            </Grid> */}
-        </Grid>
-    );
+  return (
+    <div>
+      <textarea placeholder='ชื่อมหาลัย' value={Nameuniversity} onChange={(e) => setNameuniversity(e.target.value)} />
+      <textarea placeholder='หน่วยงาน' value={Orgra} onChange={(e) => setOrgra(e.target.value)} />
+      <textarea placeholder='โทรศัพท์' value={Tel} onChange={(e) => setTel(e.target.value)} />
+      <textarea placeholder='โทรสาร' value={Sal} onChange={(e) => setSal(e.target.value)} />
+      <textarea placeholder='ที่' value={Number} onChange={(e) => setNumber(e.target.value)} />
+      <textarea placeholder='วันที่' value={Date} onChange={(e) => setDate(e.target.value)} />
+      <textarea placeholder='เดือน' value={Month} onChange={(e) => setMonth(e.target.value)} />
+      <textarea placeholder='ปี' value={Year} onChange={(e) => setYear(e.target.value)} />
+      <textarea placeholder='เรื่อง' value={Story} onChange={(e) => setStory(e.target.value)} />
+      <textarea placeholder='เรียน' value={Person} onChange={(e) => setPerson(e.target.value)} />
+      <textarea placeholder='ย่อหน้าแรก' value={P1} onChange={(e) => setP1(e.target.value)} />
+      <textarea placeholder='ย่อหน้าสอง' value={P2} onChange={(e) => setP2(e.target.value)} />
+      <textarea placeholder='ย่อหน้าอื่นๆ' value={P3} onChange={(e) => setP3(e.target.value)} />
+      <textarea placeholder='คำลงท้าย' value={Lastly} onChange={(e) => setLastly(e.target.value)} />
+      <textarea placeholder='ลายเซ็นชื่อ' value={Licent} onChange={(e) => setLicent(e.target.value)} />
+      <textarea placeholder='ตำแหน่ง' value={Level} onChange={(e) => setLevel(e.target.value)} />
+      <textarea placeholder='สังกัด' value={Position} onChange={(e) => setPosition(e.target.value)} />
+      <textarea placeholder='ลายเซ็นชื่อคนที่2' value={Licent2} onChange={(e) => setLicent2(e.target.value)} />
+      <textarea placeholder='ตำแหน่งคนที่2' value={Level2} onChange={(e) => setLevel2(e.target.value)} />
+      <textarea placeholder='สังกัดคนที่2' value={Position2} onChange={(e) => setPosition2(e.target.value)} />
+      <button onClick={handleSend}>ส่ง</button>
+    </div>
+  );
 };
 
-export default createDocuments;
+export default MyComponent;
