@@ -1,8 +1,8 @@
-// const LoginPage = () => {
-//   return (
-//       <div>this is login page</div>
-//   )
+const index = () => {
+  return (
+      <div>this is login page</div>
+  )
 
-// }
+}
 
-// export default LoginPage
+export default index
