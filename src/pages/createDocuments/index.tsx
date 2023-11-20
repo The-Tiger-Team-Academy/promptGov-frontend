@@ -1,14 +1,8 @@
-import Button from '@mui/material/Button';
+// const LoginPage = () => {
+//   return (
+//       <div>this is login page</div>
+//   )
 
+// }
 
-const createDocumentPage = () => {
-    return (
-        <div>
-            <h1> สร้างเอกสารของคุณ </h1>
-            <Button variant="contained">สร้างเอกสาร</Button>
-        </div>
-    )
-
-}
-
-export default createDocumentPage
+// export default LoginPage
