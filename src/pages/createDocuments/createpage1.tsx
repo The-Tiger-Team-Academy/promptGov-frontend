@@ -25,7 +25,7 @@ const MyComponent: React.FC = () => {
 
   const handleSend = async () => {
     try {
-      const response = await axios.post(`http://127.0.0.1:8000/generate_document`, {
+      const response = await axios.post(`https://apifirstpage.thetigerteamacademy.net/generate_document`, {
         NAMEUNIVERSITY: Nameuniversity,
         ORGRA: Orgra,
         TEL: Tel,
