@@ -19,10 +19,13 @@ interface DrawerComponentProps {
 }
 
 const SideBar = ({ open, handleDrawerToggle }: DrawerComponentProps) => {
+
   const { data: session } = useSession();
   if (!session) {
     redirect("/login");
   }
+  
+
   return (
     <Drawer variant="persistent" anchor="left" open={open}>
       <div>
