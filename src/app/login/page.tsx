@@ -5,14 +5,10 @@ import Button from "@mui/material/Button";
 import styles from "./login.module.css";
 import { useSession, signIn } from "next-auth/react";
 import { redirect } from "next/navigation";
-import Grid from "@mui/material/Grid";
+// import Grid from "@mui/material/Grid";
+import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 // import styles from '@/common/appBar/appbar.style';
 // import './login.module.css';
-
-// const roboto = Roboto({
-//   weight: ["400", "700"],
-//   subsets: ["latin"],
-// });
 
 export default function LoginPage() {
   const { data: session } = useSession();
@@ -21,28 +17,35 @@ export default function LoginPage() {
   }
 
   return (
-    <Grid container spacing={0}>
-      <Grid item xs={4} style={{border:'1px solid black'}}>
-        <Grid item xs={12}>
-          <Image
-            src="/img/runs_on_paper.jpg"
-            alt="Description of Image"
-            width={500} // กำหนดความกว้าง
-            height={300} // กำหนดความสูง
-          />
-        </Grid>
-
+    <Grid container spacing={0} sx={{ flexGrow: 1 }}>
+      <Grid
+        item
+        xs={4}
+        display="flex"
+        justifyContent="end"
+        alignItems="end"
+        md={12}
+        mdOffset={0}
+      >
         <Grid item xs={12}>
           <Image
             src="/img/Vector.png"
             alt=""
             objectFit="cover"
-            width={62}
-            height={63}
+            width={200}
+            height={200}
           />
         </Grid>
       </Grid>
-      <Grid item xs={4} style={{border:'1px solid black'}}>
+      <Grid
+        item
+        xs={4}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        md={12}
+        mdOffset={0}
+      >
         <Grid item xs={12}>
           <Image src="/img/Vector_logo.png" alt="" width={62} height={63} />
         </Grid>
@@ -61,7 +64,21 @@ export default function LoginPage() {
           </Button>
         </Grid>
       </Grid>
-      <Grid item xs={4} style={{border:'1px solid black'}}></Grid>
+      <Grid
+        display="flex"
+        justifyContent="start"
+        alignItems="end"
+        md={12}
+        mdOffset={0}
+        className={styles.backgroundImage}
+      >
+          {/* <Image
+            src="/img/runs_on_paper.jpg"
+            alt="Description of Image"
+            width={500}
+            height={300} 
+          /> */}
+      </Grid>
     </Grid>
   );
 }
