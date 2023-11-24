@@ -20,6 +20,7 @@
     "next-auth": "^4.24.5",
     "react": "^18",
     "react-dom": "^18",
+    "stripe": "^14.5.0",
     "ts-react-google-login-component": "^1.1.9"
   },
   "devDependencies": {
