@@ -25,7 +25,7 @@ const AppBarComponent = ({ open, handleDrawerToggle }: DrawerComponentProps) => 
                 >
                     <MenuIcon />
                 </IconButton>
-                appBar
+                Prompt Gov
             </Toolbar>
         </AppBar>
     );
