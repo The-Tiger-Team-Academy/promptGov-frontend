@@ -22,6 +22,8 @@ export default function RootLayout({
         href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap"
         rel="stylesheet" />
       <link href="https://fonts.googleapis.com/css2?family=Sniglet&display=swap" rel="stylesheet"></link>
+      <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet"></link>
+      
       <body className={inter.className}>{children}</body>
       
     </html>
