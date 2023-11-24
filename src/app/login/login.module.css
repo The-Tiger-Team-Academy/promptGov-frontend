@@ -1,0 +1,48 @@
+.body {
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+.main_text {
+    color: #344563;
+    font-size: 64px;
+    font-family: cursive;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+}
+
+.text_content {
+    color: #000;
+    font-size: 20px;
+    font-family: cursive;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-bottom: 20px;
+}
+
+.buttonLogin {
+    display: flex;
+    text-align: center;
+    height: 50px;
+    padding: 10px 52px;
+    transform: translate(15%, 0%);
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+    border-radius: 50px;
+    background: var(--brand-colors-google, #4285F4);
+    font-family: 'Roboto';
+    
+}
+.backgroundImage {
+    background-image: url(/public/img/runs_on_paper.jpg); 
+  }
+  
