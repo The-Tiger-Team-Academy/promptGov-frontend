@@ -5,15 +5,18 @@ import RootLayout from '@/app/root';
 import useSidbarHooks from '@/common/sideBar/sidbar.hooks';
 import AppBar from '@/common/appBar';
 import SideBar from '@/common/sideBar';
+import { SessionProvider } from 'next-auth/react';
 
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { open, handleDrawerToggle } = useSidbarHooks();
   return (
     <RootLayout>
-      <AppBar open={open} handleDrawerToggle={handleDrawerToggle} />
-      <SideBar open={open} handleDrawerToggle={handleDrawerToggle} />
-      <Component {...pageProps} />
+      <SessionProvider>
+        <AppBar open={open} handleDrawerToggle={handleDrawerToggle} />
+        <SideBar open={open} handleDrawerToggle={handleDrawerToggle} />
+        <Component {...pageProps} />
+      </SessionProvider>
     </RootLayout>
   );
 }

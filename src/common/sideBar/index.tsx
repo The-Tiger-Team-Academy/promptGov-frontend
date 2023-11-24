@@ -51,7 +51,9 @@ const NavigatToPages = (router: NextRouter, path: string) => {
 
 const SideBar = ({ open, handleDrawerToggle }: DrawerComponentProps) => {
   const router = useRouter()
-  // const { data: session } = useSession();
+  const { data: session } = useSession();
+
+  // TODO: Please router.push('/login')
   // if (!session) {
   //   redirect("/login");
   // }
@@ -61,13 +63,17 @@ const SideBar = ({ open, handleDrawerToggle }: DrawerComponentProps) => {
   const [Img, setImg] = useState("");
   const [Result, setResult] = useState("");
 
-  // useEffect(() => {
-  //   if (session) {
-  //     setName(session.user.name || "name");
-  //     setEmail(session.user.email || "email");
-  //     setImg(session.user.image || "image");
-  //   }
-  // }, [session]);
+  const userName = session?.user?.name || "name";
+  const userEmail = session?.user?.email || "email";
+  const userImage = session?.user?.image || "image";
+
+  useEffect(() => {
+    if (session) {
+      setName(userName);
+      setEmail(userEmail);
+      setImg(userImage);
+    }
+  }, [session]);
 
   useEffect(() => {
     if (Name && Email && Img) {
@@ -137,9 +143,9 @@ const SideBar = ({ open, handleDrawerToggle }: DrawerComponentProps) => {
           </ListItem>
         </List>
       </div>
-      {/* <a href="#">{session.user?.name || "name"}</a>
-      <a href="#">{session.user?.email || "email"}</a>
-      <img  src={session.user?.image || "image"} alt="User Profile" /> */}
+      <a href="#">{session?.user?.name || "name"}</a>
+      <a href="#">{session?.user?.email || "email"}</a>
+      <img src={session?.user?.image || "image"} alt="User Profile" />
     </Drawer>
   );
 };
