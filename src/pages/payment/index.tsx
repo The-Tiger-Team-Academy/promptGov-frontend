@@ -1,6 +1,6 @@
 import { Box, Button, Container, Grid, Paper, ThemeProvider, Toolbar, Typography, createTheme } from "@mui/material"
 import Image from 'next/image'
-import PaymentHook from "./hooks/payments.hook";
+import PaymentHook from "../../module/payment/hooks/payments.hook";
 
 // Create a theme instance.
 const theme = createTheme({
