@@ -1,6 +1,11 @@
+import MyComponent from "./createpage1"
+
 const index = () => {
   return (
-      <div>this is login page</div>
+      <div>this is login page
+
+        <MyComponent></MyComponent>
+      </div>
   )
 
 }
