@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const RootLayout = ({ children } : any) => {
@@ -12,6 +11,7 @@ const RootLayout = ({ children } : any) => {
       <footer>
         {/* Footer content goes here */}
         <p>© 2023 My Application</p>
+        console.log(process.env)
       </footer>
     </div>
   );

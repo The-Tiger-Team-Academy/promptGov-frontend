@@ -6,28 +6,33 @@ import { redirect } from "next/navigation";
 import Image from "next/image";
 import Button from "@mui/material/Button";
 import { Container } from "@mui/material";
-import { NextRouter, useRouter } from "next/router";
 import { LocaleRouteNormalizer } from "next/dist/server/future/normalizers/locale-route-normalizer";
 import signInWithGoogle from "@/module/payment/services/signInWithGoogle";
+import { NextRouter, useRouter } from "next/router";
+
 
 const roboto = Roboto({
   weight: ["400", "700"],
   subsets: ["latin"],
 });
 
-const login = async () => {
-  const result = await signInWithGoogle();
-  console.log(result);
-  
-}
 
 export default function LoginPage() {
-  const router = useRouter();
-
-  const { data: session } = useSession();
-  if (session) {
-    router.push("/login");
-  }
+  const router = useRouter()
+  const login = async () => {
+    try {
+      const result = await signInWithGoogle();
+      if (result && result.user) {
+        console.log(result.user.email);
+        router.push('./payment')
+        alert("Login success") 
+      } else {
+        console.log("No user data available");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
 
   return (
     <div>

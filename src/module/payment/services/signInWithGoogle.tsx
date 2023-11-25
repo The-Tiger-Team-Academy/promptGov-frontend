@@ -1,7 +1,6 @@
 import { Auth, GoogleAuthProvider, UserCredential, signInWithPopup } from "firebase/auth";
 import firebaseAuth from "./auth";
 
-
 const signInWithGoogle = async () => {
     try {
         const auth : Auth = firebaseAuth;

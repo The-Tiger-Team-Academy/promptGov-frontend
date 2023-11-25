@@ -13,11 +13,11 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { redirect } from "next/navigation";
-import { useSession, signOut } from "next-auth/react";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Image from 'next/image'
 import { NextRouter, useRouter } from "next/router";
+import signOut from "@/module/payment/services/signOut";
 
 interface DrawerComponentProps {
   open: boolean;
@@ -51,7 +51,13 @@ const NavigatToPages = (router: NextRouter, path: string) => {
 
 const SideBar = ({ open, handleDrawerToggle }: DrawerComponentProps) => {
   const router = useRouter()
-  const { data: session } = useSession();
+
+  const signOutuser = () => {
+    signOut();
+    router.push('/')
+    alert("Logout success")
+  }
+  // const { data: session } = useSession();
 
   // TODO: Please router.push('/login')
   // if (!session) {
@@ -63,23 +69,23 @@ const SideBar = ({ open, handleDrawerToggle }: DrawerComponentProps) => {
   const [Img, setImg] = useState("");
   const [Result, setResult] = useState("");
 
-  const userName = session?.user?.name || "name";
-  const userEmail = session?.user?.email || "email";
-  const userImage = session?.user?.image || "image";
+  // const userName = session?.user?.name || "name";
+  // const userEmail = session?.user?.email || "email";
+  // const userImage = session?.user?.image || "image";
 
-  useEffect(() => {
-    if (session) {
-      setName(userName);
-      setEmail(userEmail);
-      setImg(userImage);
-    }
-  }, [session]);
+  // useEffect(() => {
+  //   if (session) {
+  //     setName(userName);
+  //     setEmail(userEmail);
+  //     setImg(userImage);
+  //   }
+  // }, [session]);
 
-  useEffect(() => {
-    if (Name && Email && Img) {
-      handlePostRequest();
-    }
-  }, [Name, Email, Img]);
+  // useEffect(() => {
+  //   if (Name && Email && Img) {
+  //     handlePostRequest();
+  //   }
+  // }, [Name, Email, Img]);
 
   const handlePostRequest = async () => {
     const url = "http://localhost:8000/votes/";
@@ -135,7 +141,7 @@ const SideBar = ({ open, handleDrawerToggle }: DrawerComponentProps) => {
             {open && <ListItemText primary="login" />}
           </ListItem>
           {/* Logout */}
-          <ListItem button onClick={() => signOut()}>
+          <ListItem button onClick={signOutuser}>
             <ListItemIcon>
               <LogoutIcon />
             </ListItemIcon>
@@ -143,9 +149,9 @@ const SideBar = ({ open, handleDrawerToggle }: DrawerComponentProps) => {
           </ListItem>
         </List>
       </div>
-      <a href="#">{session?.user?.name || "name"}</a>
+      {/* <a href="#">{session?.user?.name || "name"}</a>
       <a href="#">{session?.user?.email || "email"}</a>
-      <img src={session?.user?.image || "image"} alt="User Profile" />
+      <img src={session?.user?.image || "image"} alt="User Profile" /> */}
     </Drawer>
   );
 };
