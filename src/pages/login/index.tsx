@@ -6,6 +6,8 @@ import { redirect } from "next/navigation";
 import Image from "next/image";
 import Button from "@mui/material/Button";
 import { Container } from "@mui/material";
+import { NextRouter, useRouter } from "next/router";
+import { LocaleRouteNormalizer } from "next/dist/server/future/normalizers/locale-route-normalizer";
 
 const roboto = Roboto({
   weight: ["400", "700"],
@@ -13,9 +15,11 @@ const roboto = Roboto({
 });
 
 export default function LoginPage() {
+  const router = useRouter();
+
   const { data: session } = useSession();
   if (session) {
-    redirect("/");
+    router.push("/login");
   }
 
   return (
@@ -65,15 +69,10 @@ export default function LoginPage() {
       </div>
 
       <div>
-        <main ></main>
+        <main></main>
         <div>Welcome!</div>
-        <div>
-          Lorem ipsum dolor sit amet consectetur.
-        </div>
-        <Button
-          variant="contained"
-          onClick={() => signIn("google")}
-        >
+        <div>Lorem ipsum dolor sit amet consectetur.</div>
+        <Button variant="contained" onClick={() => signIn("google")}>
           Sign in with Google
         </Button>
       </div>
