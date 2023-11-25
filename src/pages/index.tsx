@@ -1,11 +1,12 @@
-import { Container, Typography } from "@mui/material"
+import { Container, Dialog, Typography } from "@mui/material"
+import LoginPage from "./login"
 
 
 const Home = () => {
     return (
-        <Container>
-            <Typography>Home</Typography>
-        </Container>
+        <Dialog open={true}>
+            <LoginPage></LoginPage>
+        </Dialog>
     )
 }
 
