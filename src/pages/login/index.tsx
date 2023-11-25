@@ -8,11 +8,18 @@ import Button from "@mui/material/Button";
 import { Container } from "@mui/material";
 import { NextRouter, useRouter } from "next/router";
 import { LocaleRouteNormalizer } from "next/dist/server/future/normalizers/locale-route-normalizer";
+import signInWithGoogle from "@/module/payment/services/signInWithGoogle";
 
 const roboto = Roboto({
   weight: ["400", "700"],
   subsets: ["latin"],
 });
+
+const login = async () => {
+  const result = await signInWithGoogle();
+  console.log(result);
+  
+}
 
 export default function LoginPage() {
   const router = useRouter();
@@ -72,7 +79,7 @@ export default function LoginPage() {
         <main></main>
         <div>Welcome!</div>
         <div>Lorem ipsum dolor sit amet consectetur.</div>
-        <Button variant="contained" onClick={() => signIn("google")}>
+        <Button variant="contained" onClick={() => login()}>
           Sign in with Google
         </Button>
       </div>
