@@ -55,14 +55,8 @@ const SideBar = ({ open, handleDrawerToggle }: DrawerComponentProps) => {
   const signOutuser = () => {
     signOut();
     router.push('/')
-    alert("Logout success")
+    alert("Do you want to logout")
   }
-  // const { data: session } = useSession();
-
-  // TODO: Please router.push('/login')
-  // if (!session) {
-  //   redirect("/login");
-  // }
 
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
