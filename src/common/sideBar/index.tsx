@@ -33,7 +33,7 @@ const NavigatToPages = (router: NextRouter, path: string) => {
       router.push('/payment')
       break;
     case 'createDocuments':
-      router.push('/createDocuments')
+      router.push('/createDocuments/paperflow')
       break;
     case 'settings':
       router.push('/settings')
