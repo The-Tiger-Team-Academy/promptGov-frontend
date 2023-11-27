@@ -1,11 +1,10 @@
-
-import { Container, Dialog, Typography } from "@mui/material"
 import LoginPage from "./login"
-
+import Dialog from '@mui/material/Dialog';
+import React from "react";
 
 const Home = () => {
     return (
-        <Dialog open={true}>
+        <Dialog open={true} fullScreen>
             <LoginPage></LoginPage>
         </Dialog>
     )

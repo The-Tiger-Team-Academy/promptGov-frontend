@@ -1,31 +1,42 @@
 "use client";
 import { Roboto } from "next/font/google";
 // import styles from "./login.module.css";
-import { useSession, signIn } from "next-auth/react";
-import { redirect } from "next/navigation";
 import Image from "next/image";
 import Button from "@mui/material/Button";
-import { Container } from "@mui/material";
-import { LocaleRouteNormalizer } from "next/dist/server/future/normalizers/locale-route-normalizer";
 import signInWithGoogle from "@/module/payment/services/signInWithGoogle";
 import { NextRouter, useRouter } from "next/router";
-
-
-const roboto = Roboto({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-});
-
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 
 export default function LoginPage() {
-  const router = useRouter()
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [img, setImage] = useState<string>('');
+
+  const router = useRouter();
+
+  const postData = async () => {
+    try {
+      const response = await axios.post('https://fastapigoogle.thetigerteamacademy.net/votes', {
+        name,
+        email,
+        img
+      });
+      console.log(response.data);
+      router.push('./createDocuments/paperflow');
+    } catch (error) {
+      console.error('There was an error!', error);
+    }
+  };
+
   const login = async () => {
     try {
       const result = await signInWithGoogle();
-      if (result && result.user) {
-        console.log(result.user.email);
-        router.push('./payment')
-        alert("Login success") 
+      if (result) {
+        // const user: IUser = result.user;
+        setName(result.user.displayName);
+        setEmail(result.user.email);
+        setImage(result.user.photoURL);
       } else {
         console.log("No user data available");
       }
@@ -33,6 +44,12 @@ export default function LoginPage() {
       console.error("Login failed:", error);
     }
   };
+
+  useEffect(() => {
+    if (name && email && img) {
+      postData();
+    }
+  }, [name, email, img]);
 
   return (
     <div>
@@ -66,7 +83,6 @@ export default function LoginPage() {
       >
         <Image src="/img/Vector.png" alt="" layout="fill" objectFit="cover" />
       </div>
-
       <div
         style={{
           zIndex: -1,
