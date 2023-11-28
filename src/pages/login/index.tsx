@@ -5,15 +5,11 @@ import { LocaleRouteNormalizer } from "next/dist/server/future/normalizers/local
 import signInWithGoogle from "@/module/payment/services/signInWithGoogle";
 import { NextRouter, useRouter } from "next/router";
 import { makeStyles } from '@mui/styles'
-import { useState } from "react";
 import axios from "axios";
 import { Box, Grid, Paper, TextField, Button, styled,useMediaQuery } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import { useTheme } from '@mui/system';
-
-
-
-
+import React, { useState, useEffect } from "react";
 
 const useStyles = makeStyles((theme: any) => ({
   root: {
@@ -52,9 +48,6 @@ const useStyles = makeStyles((theme: any) => ({
   },
 }));
 
-
-
-
 export default function LoginPage() {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -87,14 +80,14 @@ export default function LoginPage() {
       console.error('There was an error!', error);
     }
   };
-
   const login = async () => {
     try {
       const result = await signInWithGoogle();
-      if (result && result.user) {
-        console.log(result.user.email);
-        router.push('./payment')
-        alert("Login success")
+      if (result) {
+        // const user: IUser = result.user;
+        setName(result.user.displayName);
+        setEmail(result.user.email);
+        setImage(result.user.photoURL);
       } else {
         console.log("No user data available");
       }
@@ -102,6 +95,12 @@ export default function LoginPage() {
       console.error("Login failed:", error);
     }
   };
+
+  useEffect(() => {
+    if (name && email && img) {
+      postData();
+    }
+  }, [name, email, img]);
 
 
 
