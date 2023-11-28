@@ -1,31 +1,76 @@
 "use client";
-import { Roboto } from "next/font/google";
 // import styles from "./login.module.css";
-import Image from "next/image";
-import Button from "@mui/material/Button";
-import { Container, Typography } from "@mui/material";
+import { CardContent, Container, Typography } from "@mui/material";
 import { LocaleRouteNormalizer } from "next/dist/server/future/normalizers/locale-route-normalizer";
 import signInWithGoogle from "@/module/payment/services/signInWithGoogle";
 import { NextRouter, useRouter } from "next/router";
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
+import { makeStyles } from '@mui/styles'
+import { useState } from "react";
+import axios from "axios";
+import { Box, Grid, Paper, TextField, Button, styled,useMediaQuery } from '@mui/material';
+import GoogleIcon from '@mui/icons-material/Google';
+import { useTheme } from '@mui/system';
 
 
 
 
-const roboto = Roboto({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-});
 
-const defaultTheme = createTheme();
+const useStyles = makeStyles((theme: any) => ({
+  root: {
+    minHeight: '100vh',
+    position: 'relative',
+  },
+  lowerLeftImage: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    width: '40%',
+    zIndex: -1,
+  },
+  topRightImage: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    width: '40%',
+    zIndex: -1,
+  },
+  loginForm: {
+    padding: '20px'
+  },
+  googleButton: {
+    backgroundColor: '#4285F4',
+    borderRadius: 25,
+    width: '16rem',
+    height: '3rem',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: '#c1351a',
+    },
+  },
+  kanitFont: {
+    fontFamily: 'Kanit, sans-serif',
+  },
+}));
+
+
+
 
 export default function LoginPage() {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [img, setImage] = useState<string>('');
+  const classes = useStyles();
+  const theme = useTheme();
+
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const imageStyles = {
+    width: isSmallScreen ? '80vw' : '392px',
+    height: isSmallScreen ? 'auto' : '367px',
+    // transform: isSmallScreen ? 'rotate(0)' : 'rotate(20.666deg)',
+    flexShrink: 0,
+  };
+  
 
   const router = useRouter();
 
@@ -61,31 +106,81 @@ export default function LoginPage() {
 
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Grid container component="main" sx={{ height: '100vh', backgroundColor: '#fefefe' }}>
-        <CssBaseline />
-        <Grid
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage: 'url(https://i.postimg.cc/8cBYYj79/runs-on-paper.jpg)',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: '85%',
-            backgroundPosition: '-50% 100%',
-          }}
-        />
-        <Grid
-          xs={12}
-          sm={8}
-          md={5}
-          sx={{
-            backgroundImage: 'url(https://i.postimg.cc/50dT7rBk/Vector.png)',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: '60%',
-            backgroundPosition: '125% -20%',
-          }} />
-      </Grid>
-    </ThemeProvider>
+    <Box
+      sx={{
+        backgroundImage: 'url(https://i.postimg.cc/rsvTfqNR/runs-on-paper-a.png)',
+        backgroundPosition: 'bottom left',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: isSmallScreen ? 'cover' : 'auto',
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'relative',
+        
+      }}
+    >
+      <Container maxWidth="sm">
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <Box
+              sx={{
+                backgroundImage: 'url(https://i.postimg.cc/mkTCtGHM/Vector.png)',
+                backgroundPosition: 'top right',
+                backgroundSize: isSmallScreen ? 'cover' : 'auto',
+                ...imageStyles,
+                backgroundRepeat: 'no-repeat',
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                zIndex: 1,
+                
+              }}
+            />
+            <Box
+              sx={{
+                backgroundColor: '#fff',
+                padding: 4,
+                borderRadius: 8,
+                boxShadow: 4,
+                zIndex: 2,
+                mt: isSmallScreen ? 2 : 0,
+              }}
+            >
+
+              <Paper elevation={0} className={classes.loginForm}>
+                <Grid container direction="column" alignItems="center" spacing={2}>
+                  <Grid item>
+                    <Typography variant="h4" className={classes.kanitFont}>LOGO</Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="h3" className={classes.kanitFont} sx={{color:'#344563'}}>PromptGov</Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography variant='inherit' className={classes.kanitFont} sx={{ textAlign: 'center' }}>เว็บที่ช่วยให้คุณสร้างเอกสารราชการได้ง่ายๆ เพียงไม่กี่คลิก
+                      ประหยัดเวลาและเอกสารของคุณจะดูเป็นมืออาชีพมากขึ้น!</Typography>
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <Button
+                      variant="contained"
+                      className={classes.googleButton}
+                      startIcon={<GoogleIcon />}
+                      onClick={login}
+                      fullWidth
+                    >
+                      Login with Google
+                    </Button>
+                  </Grid>
+                </Grid>
+              </Paper>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+
+
+
   );
 }
