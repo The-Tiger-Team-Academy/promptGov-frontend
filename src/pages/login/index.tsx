@@ -1,13 +1,16 @@
 "use client";
-import { Box, Button, CardContent, Container, Grid, Paper, Typography, useMediaQuery } from "@mui/material";
-import signInWithGoogle from "@/module/auth/services/signInWithGoogle";
-import { useRouter } from "next/router";
+// import styles from "./login.module.css";
+import {  Container, Typography } from "@mui/material";
+import { LocaleRouteNormalizer } from "next/dist/server/future/normalizers/locale-route-normalizer";
+import signInWithGoogle from "@/module/payment/services/signInWithGoogle";
+import { NextRouter, useRouter } from "next/router";
+import { makeStyles } from '@mui/styles'
 import axios from "axios";
+import { Box, Grid, Paper,  Button,  useMediaQuery } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import { useTheme } from '@mui/system';
-import { useState, useEffect } from "react";
-
-
+import { useEffect, useState } from "react";
+import 'animate.css';
 
 
 
@@ -81,14 +84,14 @@ export default function LoginPage() {
       console.error('There was an error!', error);
     }
   };
+
   const login = async () => {
     try {
       const result = await signInWithGoogle();
-      if (result) {
-        // const user: IUser = result.user;
-        setName(result.user.displayName || ''); // Use conditional operator to handle null value
-        setEmail(result.user.email || ''); // Use conditional operator to handle null value
-        setImage(result.user.photoURL || ''); // Use conditional operator to handle null value
+      if (result && result.user) {
+        console.log(result.user.email);
+        router.push('./payment')
+        alert("Login success")
       } else {
         console.log("No user data available");
       }
@@ -149,13 +152,11 @@ export default function LoginPage() {
               }}
             >
 
-              <Paper elevation={0} className={classes.loginForm}>
+              <Paper elevation={0} className={classes.loginForm} >  
                 <Grid container direction="column" alignItems="center" spacing={2} >
                   <Grid item >
                     <Box
                       className="animate__animated animate__fadeInRight"
-
-
                       sx={{
                         backgroundImage: 'url(https://i.postimg.cc/k41vFCpP/Logo-Prompt-Gov.png)',
                         backgroundPosition: 'center',
@@ -169,9 +170,6 @@ export default function LoginPage() {
                       }} />
 
                   </Grid>
-                  {/* <Grid item>
-                    <Typography variant="h3" className={classes.kanitFont} sx={{color:'#344563'}}>PromptGov</Typography>
-                  </Grid> */}
                   <Grid item>
                     <Typography variant='inherit' className={classes.kanitFont} sx={{ textAlign: 'center', marginTop: '-0.5rem' }}>เว็บที่ช่วยให้คุณสร้างเอกสารราชการได้ง่ายๆ เพียงไม่กี่คลิก
                       ประหยัดเวลาและเอกสารของคุณจะดูเป็นมืออาชีพมากขึ้น!✨</Typography>
