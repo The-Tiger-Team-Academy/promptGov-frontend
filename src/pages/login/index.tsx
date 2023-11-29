@@ -2,7 +2,7 @@
 // import styles from "./login.module.css";
 import {  Container, Typography } from "@mui/material";
 import { LocaleRouteNormalizer } from "next/dist/server/future/normalizers/locale-route-normalizer";
-import signInWithGoogle from "@/module/payment/services/signInWithGoogle";
+import signInWithGoogle from "@/module/auth/services/signInWithGoogle";
 import { NextRouter, useRouter } from "next/router";
 import { makeStyles } from '@mui/styles'
 import axios from "axios";
@@ -15,7 +15,7 @@ import 'animate.css';
 
 
 //TODO : should be move to a separate file
-const useStyles = () => ({
+const useStyles = makeStyles((theme: any) => ({
   root: {
     minHeight: '100vh',
     position: 'relative',
@@ -50,7 +50,7 @@ const useStyles = () => ({
   kanitFont: {
     fontFamily: 'Kanit, sans-serif',
   },
-});
+}));
 
 export default function LoginPage() {
   const [name, setName] = useState<string>('');
@@ -178,7 +178,7 @@ export default function LoginPage() {
                   <Grid item xs={12}>
                     <Button
                       variant="contained"
-                      style={classes.googleButton}
+                      className={classes.googleButton}
                       startIcon={<GoogleIcon />}
                       onClick={login}
                       fullWidth
