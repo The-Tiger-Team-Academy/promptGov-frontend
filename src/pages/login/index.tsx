@@ -1,16 +1,12 @@
 "use client";
-// import styles from "./login.module.css";
-import {  Container, Typography } from "@mui/material";
-import { LocaleRouteNormalizer } from "next/dist/server/future/normalizers/locale-route-normalizer";
-import signInWithGoogle from "@/module/auth/services/signInWithGoogle";
-import { NextRouter, useRouter } from "next/router";
+
+import { Container, Typography } from "@mui/material";
 import { makeStyles } from '@mui/styles'
-import axios from "axios";
-import { Box, Grid, Paper,  Button,  useMediaQuery } from '@mui/material';
+import { Box, Grid, Paper, Button, useMediaQuery } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import { useTheme } from '@mui/system';
-import { useEffect, useState } from "react";
 import 'animate.css';
+import loginHook from './้hook/login.hook';
 
 //TODO : should be move to a separate file
 const useStyles = makeStyles((theme: any) => ({
@@ -51,9 +47,9 @@ const useStyles = makeStyles((theme: any) => ({
 }));
 
 export default function LoginPage() {
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [img, setImage] = useState<string>('');
+
+  const { login } = loginHook();
+
   const classes = useStyles();
   const theme = useTheme();
 
@@ -64,47 +60,6 @@ export default function LoginPage() {
     height: isSmallScreen ? 'auto' : '367px',
     flexShrink: 0,
   };
-
-
-
-  const router = useRouter();
-
-  const postData = async () => {
-    try {
-      const response = await axios.post('https://fastapigoogle.thetigerteamacademy.net/votes', {
-        name,
-        email,
-        img
-      });
-      console.log(response.data);
-      router.push('./createDocuments/paperflow');
-    } catch (error) {
-      console.error('There was an error!', error);
-    }
-  };
-
-  const login = async () => {
-    try {
-      const result = await signInWithGoogle();
-      if (result && result.user) {
-        console.log(result.user.email);
-        router.push('./payment')
-        alert("Login success")
-      } else {
-        console.log("No user data available");
-      }
-    } catch (error) {
-      console.error("Login failed:", error);
-    }
-  };
-
-  useEffect(() => {
-    if (name && email && img) {
-      postData();
-    }
-  }, [name, email, img]);
-
-
   //TODO : should be move syles to a separate file
   return (
     <Box
@@ -118,8 +73,6 @@ export default function LoginPage() {
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
-
-
       }}
     >
       <Container maxWidth="sm">
@@ -149,8 +102,7 @@ export default function LoginPage() {
                 marginBottom: '15rem'
               }}
             >
-
-              <Paper elevation={0} className={classes.loginForm} >  
+              <Paper elevation={0} className={classes.loginForm} >
                 <Grid container direction="column" alignItems="center" spacing={2} >
                   <Grid item >
                     <Box
@@ -192,8 +144,5 @@ export default function LoginPage() {
         </Grid>
       </Container>
     </Box>
-
-
-
   );
 }

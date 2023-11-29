@@ -1,71 +1,18 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+"use client";
+import React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Image from 'next/image';
 import TextField from '@mui/material/TextField';
+import useMessageRecord from '../hook/useMessageRecord';
+import generateChat from '../hook/useGenerate';
 
+const CreatePages = () => {
+  const { Nameuniversity, Orgra, Tel, Sal, Number, Date, Month, Year, Story, Person, P1, P2, P3, Lastly, Licent, Level, Position, setNameuniversity, setOrgra, setTel, setSal, setNumber, setDate, setMonth, setYear, setStory, setPerson, setP1, setP2, setP3, setLastly, setLicent, setLevel, setPosition, handleSend } = useMessageRecord();
+  const  { responsechat, setChat, chat, generateDocument }  = generateChat();
 
-const CreatePages: React.FC = () => {
-  const [Nameuniversity, setNameuniversity] = useState('');
-  const [Orgra, setOrgra] = useState('');
-  const [Tel, setTel] = useState('');
-  const [Sal, setSal] = useState('');
-  const [Number, setNumber] = useState('');
-  const [Date, setDate] = useState('');
-  const [Month, setMonth] = useState('');
-  const [Year, setYear] = useState('');
-  const [Story, setStory] = useState('');
-  const [Person, setPerson] = useState('');
-  const [P1, setP1] = useState('');
-  const [P2, setP2] = useState('');
-  const [P3, setP3] = useState('');
-  const [Lastly, setLastly] = useState('จึงเรียนมาเพื่อทราบ');
-  const [Licent, setLicent] = useState('');
-  const [Level, setLevel] = useState('');
-  const [Position, setPosition] = useState('');
-
-  const handleSend = async () => {
-    try {
-      const response = await axios.post(`https://apifirstpage.thetigerteamacademy.net/generate_document`, {
-        NAMEUNIVERSITY: Nameuniversity,
-        ORGRA: Orgra,
-        TEL: Tel,
-        SAL: Sal,
-        NUMBER: Number,
-        DATE: Date,
-        MONTH: Month,
-        YEAR: Year,
-        STORY: Story,
-        PERSON: Person,
-        P1: P1,
-        P2: P2,
-        P3: P3,
-        LASTLY: Lastly,
-        LICENT: Licent,
-        LEVEL: Level,
-        POSITION: Position
-      }, {
-        responseType: 'blob'
-      });
-
-      if (response.status === 200) {
-        const fileUrl = URL.createObjectURL(response.data);
-        const link = document.createElement('a');
-        link.href = fileUrl;
-        link.setAttribute('download', 'generated.docx');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      } else {
-        console.error('Failed to generate document');
-      }
-    } catch (error) {
-      console.error('An error occurred', error);
-    }
-  };
 
   return (
     <React.Fragment>
@@ -326,21 +273,8 @@ const CreatePages: React.FC = () => {
                 alignItems="center">
 
               </Grid>
-              {/* <Grid xs={12}
-                sx={{ marginTop: '10px', marginRight: '20px' }}
-                container
-                direction="column"
-                justifyContent="center"
-                alignItems="end">
-                <TextField
-                  label=""
-                  id="outlined-size-small"
-                  defaultValue="ขอแสดงความนับถือ"
-                  size="small"
-                />
-              </Grid> */}
               <Grid xs={12}
-              sx={{ marginTop: '10px', marginRight: '5px' }}
+                sx={{ marginTop: '10px', marginRight: '5px' }}
                 container
                 direction="column"
                 justifyContent="center"
@@ -384,36 +318,22 @@ const CreatePages: React.FC = () => {
                   size="small"
                   value={Position} onChange={(e) => setPosition(e.target.value)}
                 />
+                <TextField
+                  label="Generated Chat"
+                  id="outlined-size-small"
+                  defaultValue=""
+                  size="small"
+                  value={chat} onChange={(e) => setChat(e.target.value)}
+                />
               </Grid>
+              <p>{JSON.stringify(responsechat)}</p>
             </Grid>
           </Box>
         </Box>
         <button onClick={handleSend}>Dowload</button>
+        <button onClick={generateDocument}>useGenerate</button>
       </Container>
     </React.Fragment >
-    // <div>
-    //   <textarea placeholder='ชื่อมหาลัย' value={Nameuniversity} onChange={(e) => setNameuniversity(e.target.value)} />
-    //   <textarea placeholder='หน่วยงาน' value={Orgra} onChange={(e) => setOrgra(e.target.value)} />
-    //   <textarea placeholder='โทรศัพท์' value={Tel} onChange={(e) => setTel(e.target.value)} />
-    //   <textarea placeholder='โทรสาร' value={Sal} onChange={(e) => setSal(e.target.value)} />
-    //   <textarea placeholder='ที่' value={Number} onChange={(e) => setNumber(e.target.value)} />
-    //   <textarea placeholder='วันที่' value={Date} onChange={(e) => setDate(e.target.value)} />
-    //   <textarea placeholder='เดือน' value={Month} onChange={(e) => setMonth(e.target.value)} />
-    //   <textarea placeholder='ปี' value={Year} onChange={(e) => setYear(e.target.value)} />
-    //   <textarea placeholder='เรื่อง' value={Story} onChange={(e) => setStory(e.target.value)} />
-    //   <textarea placeholder='เรียน' value={Person} onChange={(e) => setPerson(e.target.value)} />
-    //   <textarea placeholder='ย่อหน้าแรก' value={P1} onChange={(e) => setP1(e.target.value)} />
-    //   <textarea placeholder='ย่อหน้าสอง' value={P2} onChange={(e) => setP2(e.target.value)} />
-    //   <textarea placeholder='ย่อหน้าอื่นๆ' value={P3} onChange={(e) => setP3(e.target.value)} />
-    //   <textarea placeholder='คำลงท้าย' value={Lastly} onChange={(e) => setLastly(e.target.value)} />
-    //   <textarea placeholder='ลายเซ็นชื่อ' value={Licent} onChange={(e) => setLicent(e.target.value)} />
-    //   <textarea placeholder='ตำแหน่ง' value={Level} onChange={(e) => setLevel(e.target.value)} />
-    //   <textarea placeholder='สังกัด' value={Position} onChange={(e) => setPosition(e.target.value)} />
-    //   <textarea placeholder='ลายเซ็นชื่อคนที่2' value={Licent2} onChange={(e) => setLicent2(e.target.value)} />
-    //   <textarea placeholder='ตำแหน่งคนที่2' value={Level2} onChange={(e) => setLevel2(e.target.value)} />
-    //   <textarea placeholder='สังกัดคนที่2' value={Position2} onChange={(e) => setPosition2(e.target.value)} />
-    //   <button onClick={handleSend}>ส่ง</button>
-    // </div>
   );
 };
 
