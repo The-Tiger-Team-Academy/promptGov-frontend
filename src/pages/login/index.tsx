@@ -5,7 +5,11 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import GoogleIcon from '@mui/icons-material/Google';
 import { useTheme } from '@mui/system';
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+
+
+
+
 
 //TODO : should be move to a separate file
 const useStyles = () => ({
@@ -61,6 +65,7 @@ export default function LoginPage() {
   };
 
 
+
   const router = useRouter();
 
   const postData = async () => {
@@ -113,6 +118,7 @@ export default function LoginPage() {
         alignItems: 'center',
         position: 'relative',
 
+
       }}
     >
       <Container maxWidth="sm">
@@ -129,31 +135,46 @@ export default function LoginPage() {
                 top: 0,
                 right: 0,
                 zIndex: 1,
-
               }}
             />
             <Box
               sx={{
                 backgroundColor: '#fff',
-                padding: 4,
+                padding: 0,
                 borderRadius: 8,
-                boxShadow: 4,
+                boxShadow: 0,
                 zIndex: 2,
                 mt: isSmallScreen ? 2 : 0,
+                marginBottom: '15rem'
               }}
             >
 
-              <Paper elevation={0} style={classes.loginForm}>
-                <Grid container direction="column" alignItems="center" spacing={2}>
-                  <Grid item>
-                    <Typography variant="h4" style={classes.kanitFont}>LOGO</Typography>
+              <Paper elevation={0} className={classes.loginForm}>
+                <Grid container direction="column" alignItems="center" spacing={2} >
+                  <Grid item >
+                    <Box
+                      className="animate__animated animate__fadeInRight"
+
+
+                      sx={{
+                        backgroundImage: 'url(https://i.postimg.cc/k41vFCpP/Logo-Prompt-Gov.png)',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                        position: 'relative',
+                        width: '23rem',
+                        height: '5rem',
+                        zIndex: 1,
+                        backgroundSize: '85%',
+
+                      }} />
+
                   </Grid>
+                  {/* <Grid item>
+                    <Typography variant="h3" className={classes.kanitFont} sx={{color:'#344563'}}>PromptGov</Typography>
+                  </Grid> */}
                   <Grid item>
-                    <Typography variant="h3" style={classes.kanitFont} sx={{ color: '#344563' }}>PromptGov</Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography variant='inherit' style={classes.kanitFont} sx={{ textAlign: 'center' }}>เว็บที่ช่วยให้คุณสร้างเอกสารราชการได้ง่ายๆ เพียงไม่กี่คลิก
-                      ประหยัดเวลาและเอกสารของคุณจะดูเป็นมืออาชีพมากขึ้น!</Typography>
+                    <Typography variant='inherit' className={classes.kanitFont} sx={{ textAlign: 'center', marginTop: '-0.5rem' }}>เว็บที่ช่วยให้คุณสร้างเอกสารราชการได้ง่ายๆ เพียงไม่กี่คลิก
+                      ประหยัดเวลาและเอกสารของคุณจะดูเป็นมืออาชีพมากขึ้น!✨</Typography>
                   </Grid>
 
                   <Grid item xs={12}>
@@ -163,6 +184,7 @@ export default function LoginPage() {
                       startIcon={<GoogleIcon />}
                       onClick={login}
                       fullWidth
+                      sx={{ marginTop: '0.5rem' }}
                     >
                       Login with Google
                     </Button>
