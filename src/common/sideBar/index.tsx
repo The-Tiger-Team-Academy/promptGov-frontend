@@ -7,23 +7,20 @@ import {
   IconButton,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
-import LoginIcon from '@mui/icons-material/Login';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { redirect } from "next/navigation";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Image from 'next/image'
+import React from "react";
 import { NextRouter, useRouter } from "next/router";
-import signOut from "@/module/payment/services/signOut";
+import signOut from "@/module/auth/services/signOut";
 
 interface DrawerComponentProps {
   open: boolean;
   handleDrawerToggle: () => void;
 }
 
+// TODO: This function should be moved to a separate file
 const NavigatToPages = (router: NextRouter, path: string) => {
   switch (path) {
     case 'home':
@@ -57,41 +54,6 @@ const SideBar = ({ open, handleDrawerToggle }: DrawerComponentProps) => {
     router.push('/')
     alert("Do you want to logout")
   }
-
-  const [Name, setName] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Img, setImg] = useState("");
-  const [Result, setResult] = useState("");
-
-  // const userName = session?.user?.name || "name";
-  // const userEmail = session?.user?.email || "email";
-  // const userImage = session?.user?.image || "image";
-
-  // useEffect(() => {
-  //   if (session) {
-  //     setName(userName);
-  //     setEmail(userEmail);
-  //     setImg(userImage);
-  //   }
-  // }, [session]);
-
-  // useEffect(() => {
-  //   if (Name && Email && Img) {
-  //     handlePostRequest();
-  //   }
-  // }, [Name, Email, Img]);
-
-  const handlePostRequest = async () => {
-    const url = "http://localhost:8000/votes/";
-    const data = { name: Name, email: Email, img: Img };
-
-    try {
-      const result = await axios.post(url, data);
-      setResult(result.data);
-    } catch (error) {
-      console.error("There was an error making the POST request:", error);
-    }
-  };
 
   return (
     <Drawer variant="persistent" anchor="left" open={open}>
@@ -127,14 +89,6 @@ const SideBar = ({ open, handleDrawerToggle }: DrawerComponentProps) => {
             </ListItemIcon>
             {open && <ListItemText primary="Settings" />}
           </ListItem>
-          {/* Login */}
-          {/* <ListItem button onClick={() => NavigatToPages(router, "login")}>
-            <ListItemIcon>
-              <LoginIcon />
-            </ListItemIcon>
-            {open && <ListItemText primary="login" />}
-          </ListItem> */}
-          {/* Logout */}
           <ListItem button onClick={signOutuser}>
             <ListItemIcon>
               <LogoutIcon />
@@ -143,9 +97,6 @@ const SideBar = ({ open, handleDrawerToggle }: DrawerComponentProps) => {
           </ListItem>
         </List>
       </div>
-      {/* <a href="#">{session?.user?.name || "name"}</a>
-      <a href="#">{session?.user?.email || "email"}</a>
-      <img src={session?.user?.image || "image"} alt="User Profile" /> */}
     </Drawer>
   );
 };

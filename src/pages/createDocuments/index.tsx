@@ -1,11 +1,12 @@
-import MyComponent from "./createpage1"
+import { Container } from "@mui/material"
+import CreatePages from "./pages/createpage1"
 
 const index = () => {
   return (
-      <div>this is login page
+      <Container>
 
-        <MyComponent></MyComponent>
-      </div>
+        <CreatePages></CreatePages>
+      </Container>
   )
 
 }

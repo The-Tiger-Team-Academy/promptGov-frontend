@@ -1,7 +1,6 @@
 import React from 'react';
 import { AppBar, Toolbar, IconButton } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import appBarConstants from './appBar.constants';
 import styles from './appbar.style';
 
 

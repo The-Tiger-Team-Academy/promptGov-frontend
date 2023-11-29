@@ -6,7 +6,6 @@ import RootLayout from '@/app/root';
 import useSidbarHooks from '@/common/sideBar/sidbar.hooks';
 import AppBar from '@/common/appBar';
 import SideBar from '@/common/sideBar';
-import Login from '@/pages/login'
 import { SessionProvider } from 'next-auth/react';
 
 
