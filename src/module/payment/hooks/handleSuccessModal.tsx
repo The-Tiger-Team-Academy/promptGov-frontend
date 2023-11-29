@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const handleSuccessModal = () => {
+const HandleSuccessModal = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -8,4 +8,4 @@ const handleSuccessModal = () => {
     return { open, handleOpen, handleClose }
 };
 
-export default handleSuccessModal;
+export default HandleSuccessModal;

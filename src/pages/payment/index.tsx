@@ -3,8 +3,9 @@ import Image from 'next/image'
 import PaymentHook from "../../module/payment/hooks/payments.hook";
 import SuccessModel from "./components/successModal";
 import CancelModal from "./components/cancelModal";
-import handleSuccessModal from "@/module/payment/hooks/handleSuccessModal";
-import handleCancelModal from "@/module/payment/hooks/handleCancelModal";
+import HandleSuccessModal from "@/module/payment/hooks/handleSuccessModal";
+import HandleCancelModal from "@/module/payment/hooks/handleCancelModal";
+
 
 // TODO : should be move to a separate file
 const theme = createTheme({
@@ -19,8 +20,8 @@ const theme = createTheme({
 // TODO : should be move to a separate file
 const PaymentPage = () => {
     const { handlePrizeClick } = PaymentHook();
-    const susscesMoadal= handleSuccessModal();
-    const cancelModal= handleCancelModal();
+    const susscesMoadal = HandleSuccessModal(); 
+    const cancelModal = HandleCancelModal();
     return (
         <div>this is payment page
             <SuccessModel open={susscesMoadal.open} handleClose={susscesMoadal.handleClose}></SuccessModel>
