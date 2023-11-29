@@ -128,12 +128,12 @@ const SideBar = ({ open, handleDrawerToggle }: DrawerComponentProps) => {
             {open && <ListItemText primary="Settings" />}
           </ListItem>
           {/* Login */}
-          <ListItem button onClick={() => NavigatToPages(router, "login")}>
+          {/* <ListItem button onClick={() => NavigatToPages(router, "login")}>
             <ListItemIcon>
               <LoginIcon />
             </ListItemIcon>
             {open && <ListItemText primary="login" />}
-          </ListItem>
+          </ListItem> */}
           {/* Logout */}
           <ListItem button onClick={signOutuser}>
             <ListItemIcon>

@@ -26,7 +26,7 @@ const Paper = () => {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <h1 className={styles.title}>PaperFlow</h1>
+        {/* <h1 className={styles.title}>PaperFlow</h1> */}
         <p className={styles.description}>เลือกประเภทเอกสาร</p>
 
         <div className={styles.grid}>
