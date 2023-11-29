@@ -1,17 +1,15 @@
 "use client";
 // import styles from "./login.module.css";
-import { CardContent, Container, Typography } from "@mui/material";
-import { LocaleRouteNormalizer } from "next/dist/server/future/normalizers/locale-route-normalizer";
-import signInWithGoogle from "@/module/payment/services/signInWithGoogle";
-import { NextRouter, useRouter } from "next/router";
-import { makeStyles } from '@mui/styles'
+import { Box, Button, CardContent, Container, Grid, Paper, Typography, useMediaQuery } from "@mui/material";
+import signInWithGoogle from "@/module/auth/services/signInWithGoogle";
+import { useRouter } from "next/router";
 import axios from "axios";
-import { Box, Grid, Paper, TextField, Button, styled,useMediaQuery } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import { useTheme } from '@mui/system';
 import React, { useState, useEffect } from "react";
 
-const useStyles = makeStyles((theme: any) => ({
+//TODO : should be move to a separate file
+const useStyles = () => ({
   root: {
     minHeight: '100vh',
     position: 'relative',
@@ -46,7 +44,7 @@ const useStyles = makeStyles((theme: any) => ({
   kanitFont: {
     fontFamily: 'Kanit, sans-serif',
   },
-}));
+});
 
 export default function LoginPage() {
   const [name, setName] = useState<string>('');
@@ -63,7 +61,7 @@ export default function LoginPage() {
     // transform: isSmallScreen ? 'rotate(0)' : 'rotate(20.666deg)',
     flexShrink: 0,
   };
-  
+
 
   const router = useRouter();
 
@@ -85,9 +83,9 @@ export default function LoginPage() {
       const result = await signInWithGoogle();
       if (result) {
         // const user: IUser = result.user;
-        setName(result.user.displayName);
-        setEmail(result.user.email);
-        setImage(result.user.photoURL);
+        setName(result.user.displayName || ''); // Use conditional operator to handle null value
+        setEmail(result.user.email || ''); // Use conditional operator to handle null value
+        setImage(result.user.photoURL || ''); // Use conditional operator to handle null value
       } else {
         console.log("No user data available");
       }
@@ -103,7 +101,7 @@ export default function LoginPage() {
   }, [name, email, img]);
 
 
-
+  //TODO : should be move syles to a separate file
   return (
     <Box
       sx={{
@@ -116,7 +114,7 @@ export default function LoginPage() {
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
-        
+
       }}
     >
       <Container maxWidth="sm">
@@ -133,7 +131,7 @@ export default function LoginPage() {
                 top: 0,
                 right: 0,
                 zIndex: 1,
-                
+
               }}
             />
             <Box
@@ -147,23 +145,23 @@ export default function LoginPage() {
               }}
             >
 
-              <Paper elevation={0} className={classes.loginForm}>
+              <Paper elevation={0} style={classes.loginForm}>
                 <Grid container direction="column" alignItems="center" spacing={2}>
                   <Grid item>
-                    <Typography variant="h4" className={classes.kanitFont}>LOGO</Typography>
+                    <Typography variant="h4" style={classes.kanitFont}>LOGO</Typography>
                   </Grid>
                   <Grid item>
-                    <Typography variant="h3" className={classes.kanitFont} sx={{color:'#344563'}}>PromptGov</Typography>
+                    <Typography variant="h3" style={classes.kanitFont} sx={{ color: '#344563' }}>PromptGov</Typography>
                   </Grid>
                   <Grid item>
-                    <Typography variant='inherit' className={classes.kanitFont} sx={{ textAlign: 'center' }}>เว็บที่ช่วยให้คุณสร้างเอกสารราชการได้ง่ายๆ เพียงไม่กี่คลิก
+                    <Typography variant='inherit' style={classes.kanitFont} sx={{ textAlign: 'center' }}>เว็บที่ช่วยให้คุณสร้างเอกสารราชการได้ง่ายๆ เพียงไม่กี่คลิก
                       ประหยัดเวลาและเอกสารของคุณจะดูเป็นมืออาชีพมากขึ้น!</Typography>
                   </Grid>
 
                   <Grid item xs={12}>
                     <Button
                       variant="contained"
-                      className={classes.googleButton}
+                      style={classes.googleButton}
                       startIcon={<GoogleIcon />}
                       onClick={login}
                       fullWidth

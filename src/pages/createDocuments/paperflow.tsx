@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./paperFlow.module.css";
 import { NextRouter, useRouter } from "next/router";
 
+// TODO : This function should be moved to a separate file
 const NavigatToPages = (router: NextRouter, path: string) => {
   switch (path) {
     case 'record':
@@ -21,6 +22,7 @@ const NavigatToPages = (router: NextRouter, path: string) => {
   }
 }
 
+//TODO : should be use MUI component
 const Paper = () => {
   const router = useRouter();
   return (

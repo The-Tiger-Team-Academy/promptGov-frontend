@@ -1,5 +1,4 @@
 import router from "next/router";
-import { useState } from "react";
 import checkout from "../services/payments";
 
 

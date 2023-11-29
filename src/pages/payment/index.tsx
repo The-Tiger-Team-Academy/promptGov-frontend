@@ -1,19 +1,18 @@
-import { Box, Button, Container, Grid, Paper, ThemeProvider, Toolbar, Typography, createTheme } from "@mui/material"
+import { Box, Button, Container, Grid, Paper, ThemeProvider, Typography, createTheme } from "@mui/material"
 import Image from 'next/image'
 import PaymentHook from "../../module/payment/hooks/payments.hook";
 
-// Create a theme instance.
+// TODO : should be move to a separate file
 const theme = createTheme({
     palette: {
         primary: {
             main: '#556cd6',
         },
-        // ... You can customize the theme as per your design
     },
 });
 
 
-
+// TODO : should be move to a separate file
 const PaymentPage = () => {
     const { handlePrizeClick } = PaymentHook();
     return (
@@ -32,7 +31,7 @@ const PaymentPage = () => {
                             <Typography variant="h4" component="h1" gutterBottom>
                                 ตัวอย่างเอกสาร
                             </Typography>
-                            <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
+                            <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}> 
                                 {/* Your document content here */}
                                 <Typography>
                                     <Image
