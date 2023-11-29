@@ -12,8 +12,6 @@ import { useTheme } from '@mui/system';
 import { useEffect, useState } from "react";
 import 'animate.css';
 
-
-
 //TODO : should be move to a separate file
 const useStyles = makeStyles((theme: any) => ({
   root: {
