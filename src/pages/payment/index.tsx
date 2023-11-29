@@ -32,7 +32,6 @@ const PaymentPage = () => {
                                 ตัวอย่างเอกสาร
                             </Typography>
                             <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}> 
-                                {/* Your document content here */}
                                 <Typography>
                                     <Image
                                         src="/img/test.webp"
@@ -58,7 +57,6 @@ const PaymentPage = () => {
                             <Typography variant="subtitle1" align="center" color="text.secondary" component="p">
                                 หากคุณอยากขายสินค้า ดำเนินงานต่อ
                             </Typography>
-                            {/* Social media icons */}
                         </Container>
                     </Box>
                 </ThemeProvider>

@@ -8,7 +8,7 @@ import Image from 'next/image';
 import TextField from '@mui/material/TextField';
 
 
-const MyComponent: React.FC = () => {
+const CreatePages: React.FC = () => {
   const [Nameuniversity, setNameuniversity] = useState('');
   const [Orgra, setOrgra] = useState('');
   const [Tel, setTel] = useState('');
@@ -417,4 +417,4 @@ const MyComponent: React.FC = () => {
   );
 };
 
-export default MyComponent;
+export default CreatePages;

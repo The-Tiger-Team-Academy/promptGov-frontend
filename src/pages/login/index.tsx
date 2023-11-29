@@ -1,5 +1,4 @@
 "use client";
-// import styles from "./login.module.css";
 import { Box, Button, CardContent, Container, Grid, Paper, Typography, useMediaQuery } from "@mui/material";
 import signInWithGoogle from "@/module/auth/services/signInWithGoogle";
 import { useRouter } from "next/router";
@@ -58,7 +57,6 @@ export default function LoginPage() {
   const imageStyles = {
     width: isSmallScreen ? '80vw' : '392px',
     height: isSmallScreen ? 'auto' : '367px',
-    // transform: isSmallScreen ? 'rotate(0)' : 'rotate(20.666deg)',
     flexShrink: 0,
   };
 
