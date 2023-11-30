@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState } from 'react';
-
 const useMessageRecord = () => {
     const [Nameuniversity, setNameuniversity] = useState('');
     const [Orgra, setOrgra] = useState('');
@@ -22,7 +21,7 @@ const useMessageRecord = () => {
 
         const handleSend = async () => {
             try {
-                const response = await axios.post(`https://apifirstpage.thetigerteamacademy.net/generate_document`, {
+                const response = await axios.post(`http://127.0.0.1:8000/generate_document`, {
                     NAMEUNIVERSITY: Nameuniversity,
                     ORGRA: Orgra,
                     TEL: Tel,
@@ -34,8 +33,6 @@ const useMessageRecord = () => {
                     STORY: Story,
                     PERSON: Person,
                     P1: P1,
-                    P2: P2,
-                    P3: P3,
                     LASTLY: Lastly,
                     LICENT: Licent,
                     LEVEL: Level,

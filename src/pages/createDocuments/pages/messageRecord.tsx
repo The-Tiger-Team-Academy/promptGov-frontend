@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { useEffect } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -10,9 +10,17 @@ import useMessageRecord from '../hook/useMessageRecord';
 import generateChat from '../hook/useGenerate';
 
 const CreatePages = () => {
-  const { Nameuniversity, Orgra, Tel, Sal, Number, Date, Month, Year, Story, Person, P1, P2, P3, Lastly, Licent, Level, Position, setNameuniversity, setOrgra, setTel, setSal, setNumber, setDate, setMonth, setYear, setStory, setPerson, setP1, setP2, setP3, setLastly, setLicent, setLevel, setPosition, handleSend } = useMessageRecord();
-  const  { responsechat, setChat, chat, generateDocument }  = generateChat();
+  const { Nameuniversity, Orgra, Tel, Sal, Number, Date, Month, Year, Story, Person, P1, Lastly, Licent, Level, Position, setNameuniversity, setOrgra, setTel, setSal, setNumber, setDate, setMonth, setYear, setStory, setPerson, setP1, setP2, setP3, setLastly, setLicent, setLevel, setPosition, handleSend } = useMessageRecord();
+  const { responsechat, generateDocument, chat, setChat } = generateChat();
 
+  const gettwoSet = (e: { target: { value: React.SetStateAction<string>; }; }) => {
+    setStory(e.target.value);
+    setChat(e.target.value);
+  };
+
+  useEffect(() => { 
+    setP1(responsechat);
+  },[responsechat]);
 
   return (
     <React.Fragment>
@@ -170,8 +178,8 @@ const CreatePages = () => {
                   defaultValue=""
                   fullWidth
                   size='small'
-                  value={Story} onChange={(e) => setStory(e.target.value)}
-                />
+                  value={chat}
+                  onChange={gettwoSet} />
               </Grid>
               <Grid xs={12}
                 sx={{ marginTop: '10px', backgroundColor: 'black', width: '100%', height: "1px" }}
@@ -202,17 +210,18 @@ const CreatePages = () => {
                 justifyContent="center"
                 alignItems="center">
                 <TextField
-                  label="ย่อหน้าที่1"
+                  label="เนื้อหา"
                   id="outlined-size-small"
                   defaultValue=""
                   fullWidth
                   size='small'
                   multiline
-                  rows={1.5}
+                  rows={5}
                   value={P1} onChange={(e) => setP1(e.target.value)}
                 />
               </Grid>
-              <Grid xs={12}
+              {/* เก็บไว้เดี๋ยวมาทำเพิ่ม อีก2 paragraph*/}
+              {/* <Grid xs={12}
                 sx={{ marginTop: '10px' }}
                 container
                 direction="column"
@@ -245,7 +254,7 @@ const CreatePages = () => {
                   rows={1.5}
                   value={P3} onChange={(e) => setP3(e.target.value)}
                 />
-              </Grid>
+              </Grid> */}
               <Grid xs={4}
                 container
                 direction="column"
@@ -318,15 +327,7 @@ const CreatePages = () => {
                   size="small"
                   value={Position} onChange={(e) => setPosition(e.target.value)}
                 />
-                <TextField
-                  label="Generated Chat"
-                  id="outlined-size-small"
-                  defaultValue=""
-                  size="small"
-                  value={chat} onChange={(e) => setChat(e.target.value)}
-                />
               </Grid>
-              <p>{JSON.stringify(responsechat)}</p>
             </Grid>
           </Box>
         </Box>
