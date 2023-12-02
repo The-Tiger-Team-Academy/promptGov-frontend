@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -8,19 +8,31 @@ import Image from 'next/image';
 import TextField from '@mui/material/TextField';
 import useMessageRecord from '../hook/useMessageRecord';
 import generateChat from '../hook/useGenerate';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const CreatePages = () => {
   const { Nameuniversity, Orgra, Tel, Sal, Number, Date, Month, Year, Story, Person, P1, Lastly, Licent, Level, Position, setNameuniversity, setOrgra, setTel, setSal, setNumber, setDate, setMonth, setYear, setStory, setPerson, setP1, setP2, setP3, setLastly, setLicent, setLevel, setPosition, handleSend } = useMessageRecord();
   const { responsechat, generateDocument, chat, setChat } = generateChat();
+  const [isLoading, setIsLoading] = useState(false);
 
+  const geneRate = () => {
+    generateDocument();
+    setIsLoading(true);
+  }
+
+  useEffect(() => {
+    if (responsechat) {
+      setIsLoading(false);
+    }
+  }, [responsechat]);
   const gettwoSet = (e: { target: { value: React.SetStateAction<string>; }; }) => {
     setStory(e.target.value);
     setChat(e.target.value);
   };
 
-  useEffect(() => { 
+  useEffect(() => {
     setP1(responsechat);
-  },[responsechat]);
+  }, [responsechat]);
 
   return (
     <React.Fragment>
@@ -332,7 +344,10 @@ const CreatePages = () => {
           </Box>
         </Box>
         <button onClick={handleSend}>Dowload</button>
-        <button onClick={generateDocument}>useGenerate</button>
+        <div>
+          <button onClick={geneRate}>Generate Content</button>
+          {isLoading && <CircularProgress />}
+        </div>
       </Container>
     </React.Fragment >
   );
