@@ -1,5 +1,5 @@
 import { Container } from "@mui/material"
-import CreatePages from "./pages/createpage1"
+import CreatePages from "./pages/messageRecord"
 
 const index = () => {
   return (
