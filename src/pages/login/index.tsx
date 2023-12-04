@@ -1,130 +1,51 @@
 "use client";
 
 import { Container, Typography } from "@mui/material";
-import { makeStyles } from '@mui/styles'
 import { Box, Grid, Paper, Button, useMediaQuery } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import { useTheme } from '@mui/system';
 import 'animate.css';
 import loginHook from './้hook/login.hook';
+import {
+  useStyles,
+  boxContainerStyles,
+  gridItemStyles,
+  innerBoxStyles,
+  logoBoxStyles,
+  typographyStyles,
+  buttonStyles
+} from './login.style'
 
-//TODO : should be move to a separate file
-const useStyles = makeStyles((theme: any) => ({
-  root: {
-    minHeight: '100vh',
-    position: 'relative',
-  },
-  lowerLeftImage: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    width: '40%',
-    zIndex: -1,
-  },
-  topRightImage: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    width: '40%',
-    zIndex: -1,
-  },
-  loginForm: {
-    padding: '20px'
-  },
-  googleButton: {
-    backgroundColor: '#4285F4',
-    borderRadius: 25,
-    width: '16rem',
-    height: '3rem',
-    color: 'white',
-    '&:hover': {
-      backgroundColor: '#c1351a',
-    },
-  },
-  kanitFont: {
-    fontFamily: 'Kanit, sans-serif',
-  },
-}));
 
 export default function LoginPage() {
-
   const { login } = loginHook();
-
   const classes = useStyles();
   const theme = useTheme();
-
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
   const imageStyles = {
     width: isSmallScreen ? '80vw' : '392px',
     height: isSmallScreen ? 'auto' : '367px',
     flexShrink: 0,
   };
-  //TODO : should be move syles to a separate file
+
   return (
-    <Box
-      sx={{
-        backgroundImage: 'url(https://i.postimg.cc/rsvTfqNR/runs-on-paper-a.png)',
-        backgroundPosition: 'bottom left',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: isSmallScreen ? 'cover' : 'auto',
-        minHeight: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'relative',
-      }}
-    >
+    <Box sx={boxContainerStyles(isSmallScreen)}>
       <Container maxWidth="sm">
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Box
-              sx={{
-                backgroundImage: 'url(https://i.postimg.cc/mkTCtGHM/Vector.png)',
-                backgroundPosition: 'top right',
-                backgroundSize: isSmallScreen ? 'cover' : 'auto',
-                ...imageStyles,
-                backgroundRepeat: 'no-repeat',
-                position: 'absolute',
-                top: 0,
-                right: 0,
-                zIndex: 1,
-              }}
-            />
-            <Box
-              sx={{
-                backgroundColor: '#fff',
-                padding: 0,
-                borderRadius: 8,
-                boxShadow: 0,
-                zIndex: 2,
-                mt: isSmallScreen ? 2 : 0,
-                marginBottom: '15rem'
-              }}
-            >
+            <Box sx={gridItemStyles(isSmallScreen, imageStyles)} />
+            <Box sx={innerBoxStyles}>
               <Paper elevation={0} className={classes.loginForm} >
                 <Grid container direction="column" alignItems="center" spacing={2} >
                   <Grid item >
                     <Box
                       className="animate__animated animate__fadeInRight"
-                      sx={{
-                        backgroundImage: 'url(https://i.postimg.cc/k41vFCpP/Logo-Prompt-Gov.png)',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat',
-                        position: 'relative',
-                        width: '23rem',
-                        height: '5rem',
-                        zIndex: 1,
-                        backgroundSize: '85%',
-
-                      }} />
-
+                      sx={logoBoxStyles} />
                   </Grid>
                   <Grid item>
-                    <Typography variant='inherit' className={classes.kanitFont} sx={{ textAlign: 'center', marginTop: '-0.5rem' }}>เว็บที่ช่วยให้คุณสร้างเอกสารราชการได้ง่ายๆ เพียงไม่กี่คลิก
+                    <Typography variant='inherit' sx={typographyStyles}>เว็บที่ช่วยให้คุณสร้างเอกสารราชการได้ง่ายๆ เพียงไม่กี่คลิก
                       ประหยัดเวลาและเอกสารของคุณจะดูเป็นมืออาชีพมากขึ้น!✨</Typography>
                   </Grid>
-
                   <Grid item xs={12}>
                     <Button
                       variant="contained"
@@ -132,7 +53,7 @@ export default function LoginPage() {
                       startIcon={<GoogleIcon />}
                       onClick={login}
                       fullWidth
-                      sx={{ marginTop: '0.5rem' }}
+                      sx={buttonStyles}
                     >
                       Login with Google
                     </Button>
