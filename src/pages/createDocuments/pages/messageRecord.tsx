@@ -6,12 +6,12 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Image from 'next/image';
 import TextField from '@mui/material/TextField';
-import useMessageRecord from '../hook/useMessageRecord';
-import generateChat from '../hook/useGenerate';
+import useMessageRecord from '../../../module/createDocument/hook/useMessageRecord.hook';
+import generateChat from '../../../module/createDocument/hook/useGenerate.hook';
 import CircularProgress from '@mui/material/CircularProgress';
 
 const CreatePages = () => {
-  const { Nameuniversity, Orgra, Tel, Sal, Number, Date, Month, Year, Story, Person, P1, Lastly, Licent, Level, Position, setNameuniversity, setOrgra, setTel, setSal, setNumber, setDate, setMonth, setYear, setStory, setPerson, setP1, setP2, setP3, setLastly, setLicent, setLevel, setPosition, handleSend } = useMessageRecord();
+  const { Nameuniversity, Orgra, Tel, Sal, Number, Date, Month, Year, Person, P1, Lastly, Licent, Level, Position, setNameuniversity, setOrgra, setTel, setSal, setNumber, setDate, setMonth, setYear, setStory, setPerson, setP1, setLastly, setLicent, setLevel, setPosition, handleSend } = useMessageRecord();
   const { responsechat, generateDocument, chat, setChat } = generateChat();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -25,13 +25,16 @@ const CreatePages = () => {
       setIsLoading(false);
     }
   }, [responsechat]);
+
   const gettwoSet = (e: { target: { value: React.SetStateAction<string>; }; }) => {
     setStory(e.target.value);
     setChat(e.target.value);
   };
 
   useEffect(() => {
-    setP1(responsechat);
+    if (responsechat) {
+      setP1(responsechat);
+    }
   }, [responsechat]);
 
   return (

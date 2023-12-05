@@ -3,16 +3,18 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import signInWithGoogle from "@/module/auth/services/signInWithGoogle";
 
+
+
+
 const useCustomHook = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [img, setImage] = useState<string>('');
-
   const router = useRouter();
 
   const postData = async () => {
     try {
-      const response = await axios.post('https://fastapigoogle.thetigerteamacademy.net/votes', {
+      const response = await axios.post(process.env.NEXT_PUBLIC_API_FASTAPI ?? '', {
         name: name,
         email: email,
         img: img
@@ -20,7 +22,7 @@ const useCustomHook = () => {
       console.log(response.data);
       router.push('./createDocuments/paperflow');
     } catch (error) {
-      console.error('There was an error!', error);
+      console.error('Error while posting data:', error);
     }
   };
 
@@ -28,12 +30,12 @@ const useCustomHook = () => {
     try {
       const result = await signInWithGoogle();
       if (result && result.user) {
-        router.push('./payment')
-        setName(result.user.displayName || "")
-        setEmail(result.user.email || "")
-        setImage(result.user.photoURL || "")
-        console.log(result)
-        alert("Login success")
+        router.push('./payment');
+        setName(result.user.displayName || "");
+        setEmail(result.user.email || "");
+        setImage(result.user.photoURL || "");
+        console.log(result);
+        alert("Login success");
       } else {
         console.log("No user data available");
       }
@@ -43,12 +45,18 @@ const useCustomHook = () => {
   };
 
   useEffect(() => {
-    if (name && email && img) {
-      postData();
-    }
-  }, [name, email, img]);
+    const postDataEffect = async () => {
+      if (name && email && img) {
+        await postData();
+      }
+    };
 
-  // Return what you need from the hook, for example:
+    postDataEffect();
+
+    return () => {
+    };
+  }, [name, email, img, postData]);
+
   return { login, name, email, img };
 };
 

@@ -5,9 +5,8 @@ import { Box, Grid, Paper, Button, useMediaQuery } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import { useTheme } from '@mui/system';
 import 'animate.css';
-import loginHook from './้hook/login.hook';
+import loginHook from './hook/login.hook';
 import {
-  useStyles,
   boxContainerStyles,
   gridItemStyles,
   innerBoxStyles,
@@ -16,10 +15,8 @@ import {
   buttonStyles
 } from './login.style'
 
-
 export default function LoginPage() {
   const { login } = loginHook();
-  const classes = useStyles();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const imageStyles = {
@@ -35,7 +32,7 @@ export default function LoginPage() {
           <Grid item xs={12}>
             <Box sx={gridItemStyles(isSmallScreen, imageStyles)} />
             <Box sx={innerBoxStyles}>
-              <Paper elevation={0} className={classes.loginForm} >
+              <Paper elevation={0}  >
                 <Grid container direction="column" alignItems="center" spacing={2} >
                   <Grid item >
                     <Box
@@ -49,7 +46,6 @@ export default function LoginPage() {
                   <Grid item xs={12}>
                     <Button
                       variant="contained"
-                      className={classes.googleButton}
                       startIcon={<GoogleIcon />}
                       onClick={login}
                       fullWidth
