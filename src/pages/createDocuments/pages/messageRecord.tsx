@@ -23,6 +23,7 @@ const CreatePages = () => {
   useEffect(() => {
     if (responsechat) {
       setIsLoading(false);
+      setP1(responsechat);
     }
   }, [responsechat]);
 
@@ -30,12 +31,6 @@ const CreatePages = () => {
     setStory(e.target.value);
     setChat(e.target.value);
   };
-
-  useEffect(() => {
-    if (responsechat) {
-      setP1(responsechat);
-    }
-  }, [responsechat]);
 
   return (
     <React.Fragment>
