@@ -65,7 +65,7 @@ export const buttonStyles: SxProps = {
 
 };
 
-export const useStyles = (() => ({
+export const useStyles = () => ({
     root: {
         minHeight: '100vh',
         position: 'relative',
@@ -100,4 +100,4 @@ export const useStyles = (() => ({
     kanitFont: {
         fontFamily: 'Kanit, sans-serif',
     },
-}));
+});

@@ -4,7 +4,7 @@ import { Container, Typography } from "@mui/material";
 import { Box, Grid, Paper, Button, useMediaQuery } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import { useTheme } from '@mui/system';
-import loginHook from './้hook/login.hook';
+import loginHook from '../../module/login/้hook/login.hook';
 import {
   useStyles,
   boxContainerStyles,
@@ -13,7 +13,7 @@ import {
   logoBoxStyles,
   typographyStyles,
   buttonStyles
-} from './login.style'
+} from '../../components/login/login.style'
 
 
 export default function LoginPage() {
