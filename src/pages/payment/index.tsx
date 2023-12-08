@@ -1,6 +1,11 @@
 import { Box, Button, Container, Grid, Paper, ThemeProvider, Typography, createTheme } from "@mui/material"
 import Image from 'next/image'
 import PaymentHook from "../../module/payment/hooks/payments.hook";
+import SuccessModel from "./components/successModal";
+import CancelModal from "./components/cancelModal";
+import HandleSuccessModal from "@/module/payment/hooks/handleSuccessModal";
+import HandleCancelModal from "@/module/payment/hooks/handleCancelModal";
+
 
 // TODO : should be move to a separate file
 const theme = createTheme({
@@ -15,8 +20,12 @@ const theme = createTheme({
 // TODO : should be move to a separate file
 const PaymentPage = () => {
     const { handlePrizeClick } = PaymentHook();
+    const susscesMoadal = HandleSuccessModal(); 
+    const cancelModal = HandleCancelModal();
     return (
         <div>this is payment page
+            <SuccessModel open={susscesMoadal.open} handleClose={susscesMoadal.handleClose}></SuccessModel>
+            <CancelModal open={cancelModal.open} handleClose={cancelModal.handleClose}></CancelModal>
             <Container>
                 <button
                     onClick={() =>
@@ -48,6 +57,8 @@ const PaymentPage = () => {
                                         handlePrizeClick("price_1OEtulAom1IgIvKKthyQ8DJV")
                                     }>ดาวน์โหลด</Button>
                                     <Button variant="contained" color="secondary">แก้ไข</Button>
+                                    <Button variant="contained" color="secondary" onClick={() => susscesMoadal.handleOpen()}> Check success</Button>
+                                    <Button variant="contained" color="secondary" onClick={() => cancelModal.handleOpen()}> Check cancel</Button>
                                 </Grid>
                             </Grid>
                         </Box>
