@@ -1,8 +1,6 @@
 import { SxProps } from '@mui/system';
 
-const LoginStylePage = () => {};
-
-export const boxContainerStyles = (isSmallScreen: boolean): SxProps => ({
+const boxContainerStyles = (isSmallScreen: boolean): SxProps => ({
   backgroundImage: 'url(https://i.postimg.cc/rsvTfqNR/runs-on-paper-a.png)',
   backgroundPosition: 'bottom left',
   backgroundRepeat: 'no-repeat',
@@ -14,7 +12,7 @@ export const boxContainerStyles = (isSmallScreen: boolean): SxProps => ({
   position: 'relative',
 });
 
-export const gridItemStyles = (isSmallScreen: boolean, imageStyles: any): SxProps => ({
+const gridItemStyles = (isSmallScreen: boolean, imageStyles: any): SxProps => ({
   backgroundImage: 'url(https://i.postimg.cc/mkTCtGHM/Vector.png)',
   backgroundPosition: 'top right',
   backgroundSize: isSmallScreen ? 'cover' : 'auto',
@@ -26,7 +24,7 @@ export const gridItemStyles = (isSmallScreen: boolean, imageStyles: any): SxProp
   zIndex: 1,
 });
 
-export const innerBoxStyles: SxProps = {
+const innerBoxStyles: SxProps = {
   backgroundColor: '#fff',
   padding: 0,
   borderRadius: 8,
@@ -36,7 +34,7 @@ export const innerBoxStyles: SxProps = {
   marginBottom: '15rem',
 };
 
-export const logoBoxStyles: SxProps = {
+const logoBoxStyles: SxProps = {
   backgroundImage: 'url(https://i.postimg.cc/k41vFCpP/Logo-Prompt-Gov.png)',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
@@ -47,13 +45,13 @@ export const logoBoxStyles: SxProps = {
   backgroundSize: '85%',
 };
 
-export const typographyStyles: SxProps = {
+const typographyStyles: SxProps = {
   fontFamily: 'Kanit, sans-serif',
   textAlign: 'center',
   marginTop: '-0.5rem',
 };
 
-export const buttonStyles: SxProps = {
+const buttonStyles: SxProps = {
   backgroundColor: '#4285F4',
   borderRadius: 25,
   width: '16rem',
@@ -63,5 +61,14 @@ export const buttonStyles: SxProps = {
     backgroundColor: '#c1351a',
   },
 };
+
+const LoginStylePage = {
+  boxContainerStyles,
+  gridItemStyles,
+  innerBoxStyles,
+  logoBoxStyles,
+  typographyStyles,
+  buttonStyles,
+}
 
 export default LoginStylePage;

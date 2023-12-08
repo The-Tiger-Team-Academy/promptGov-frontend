@@ -6,13 +6,13 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Image from 'next/image';
 import TextField from '@mui/material/TextField';
-import useMessageRecord from '../../../module/createDocuments/hook/useMessageRecord';
-import generateChat from '../../../module/createDocuments/hook/useGenerate';
 import CircularProgress from '@mui/material/CircularProgress';
+import useGenerate from '@/module/createDocument/hook/useGenerate.hook';
+import useMessageRecord from '@/module/createDocument/hook/useMessageRecord.hook';
 
 const CreatePages = () => {
-  const { Nameuniversity, Orgra, Tel, Sal, Number, Date, Month, Year, Person, P1, Lastly, Licent, Level, Position, setNameuniversity, setOrgra, setTel, setSal, setNumber, setDate, setMonth, setYear, setStory, setPerson, setP1, setLastly, setLicent, setLevel, setPosition, handleSend } = useMessageRecord();
-  const { responsechat, generateDocument, chat, setChat } = generateChat();
+  const hook = useMessageRecord();
+  const { responsechat, generateDocument, chat, setChat } = useGenerate();
   const [isLoading, setIsLoading] = useState(false);
 
   const geneRate = () => {
@@ -23,13 +23,14 @@ const CreatePages = () => {
   useEffect(() => {
     if (responsechat) {
       setIsLoading(false);
-      setP1(responsechat);
+      hook.setP1(responsechat);
     }
   }, [responsechat]);
 
   const gettwoSet = (e: { target: { value: React.SetStateAction<string>; }; }) => {
-    setStory(e.target.value);
-    setChat(e.target.value);
+    // TODO: เดี๋ยวมาแก้
+    // hook.setStory(e.target.value as string);
+    // setChat(e.target.value);
   };
 
   return (
@@ -53,7 +54,7 @@ const CreatePages = () => {
                   id="outlined-size-small"
                   defaultValue="มหาวิทยาลัยเทคโนโลยีสุรนารี"
                   size="small"
-                  value={Nameuniversity} onChange={(e) => setNameuniversity(e.target.value)}
+                  value={hook.Nameuniversity} onChange={(e) => hook.setNameuniversity(e.target.value)}
                 />
               </Grid>
               <Grid xs={4}
@@ -74,7 +75,7 @@ const CreatePages = () => {
                   id="outlined-size-small"
                   defaultValue=""
                   size="small"
-                  value={Orgra} onChange={(e) => setOrgra(e.target.value)}
+                  value={hook.Orgra} onChange={(e) => hook.setOrgra(e.target.value)}
                 />
               </Grid>
               <Grid xs={3}
@@ -88,7 +89,7 @@ const CreatePages = () => {
                   id="outlined-size-small"
                   defaultValue=""
                   size="small"
-                  value={Tel} onChange={(e) => setTel(e.target.value)}
+                  value={hook.Tel} onChange={(e) => hook.setTel(e.target.value)}
                 />
               </Grid>
               <Grid xs={3}
@@ -102,7 +103,7 @@ const CreatePages = () => {
                   id="outlined-size-small"
                   defaultValue=""
                   size="small"
-                  value={Sal} onChange={(e) => setSal(e.target.value)}
+                  value={hook.Sal} onChange={(e) => hook.setSal(e.target.value)}
                 />
               </Grid>
               <Grid xs={4}
@@ -116,7 +117,7 @@ const CreatePages = () => {
                   id="outlined-size-small"
                   defaultValue=""
                   size="small"
-                  value={Number} onChange={(e) => setNumber(e.target.value)}
+                  value={Number} onChange={(e) => hook.setNumber(e.target.value)}
                 />
               </Grid>
               <Grid xs={1}
@@ -144,7 +145,7 @@ const CreatePages = () => {
                     defaultValue="12"
                     fullWidth
                     size='small'
-                    value={Date} onChange={(e) => setDate(e.target.value)}
+                    value={Date} onChange={(e) => hook.setDate(e.target.value)}
                   />
                 </Grid>
                 <Grid xs={4}
@@ -158,7 +159,7 @@ const CreatePages = () => {
                     defaultValue="ธันวาคม"
                     fullWidth
                     size='small'
-                    value={Month} onChange={(e) => setMonth(e.target.value)}
+                    value={hook.Month} onChange={(e) => hook.setMonth(e.target.value)}
                   />
                 </Grid>
                 <Grid xs={4}
@@ -172,7 +173,7 @@ const CreatePages = () => {
                     defaultValue="2566"
                     fullWidth
                     size='small'
-                    value={Year} onChange={(e) => setYear(e.target.value)}
+                    value={hook.Year} onChange={(e) => hook.setYear(e.target.value)}
                   />
                 </Grid>
               </Grid>
@@ -210,7 +211,7 @@ const CreatePages = () => {
                   defaultValue=""
                   fullWidth
                   size='small'
-                  value={Person} onChange={(e) => setPerson(e.target.value)}
+                  value={hook.Person} onChange={(e) => hook.setPerson(e.target.value)}
                 />
               </Grid>
               <Grid xs={12}
@@ -227,7 +228,7 @@ const CreatePages = () => {
                   size='small'
                   multiline
                   rows={5}
-                  value={P1} onChange={(e) => setP1(e.target.value)}
+                  value={hook.P1} onChange={(e) => hook.setP1(e.target.value)}
                 />
               </Grid>
               {/* เก็บไว้เดี๋ยวมาทำเพิ่ม อีก2 paragraph*/}
@@ -282,7 +283,7 @@ const CreatePages = () => {
                   id="outlined-size-small"
                   defaultValue=""
                   size="small"
-                  value={Lastly} onChange={(e) => setLastly(e.target.value)}
+                  value={hook.Lastly} onChange={(e) => hook.setLastly(e.target.value)}
                 />
               </Grid>
               <Grid xs={4}
@@ -304,7 +305,7 @@ const CreatePages = () => {
                     id="outlined-size-small"
                     defaultValue=""
                     size="small"
-                    value={Licent} onChange={(e) => setLicent(e.target.value)}
+                    value={hook.Licent} onChange={(e) => hook.setLicent(e.target.value)}
                   />
                 </Box>
               </Grid>
@@ -320,7 +321,7 @@ const CreatePages = () => {
                     id="outlined-size-small"
                     defaultValue=""
                     size="small"
-                    value={Level} onChange={(e) => setLevel(e.target.value)}
+                    value={hook.Level} onChange={(e) => hook.setLevel(e.target.value)}
                   />
                 </Box>
               </Grid>
@@ -335,13 +336,13 @@ const CreatePages = () => {
                   id="outlined-size-small"
                   defaultValue=""
                   size="small"
-                  value={Position} onChange={(e) => setPosition(e.target.value)}
+                  value={hook.Position} onChange={(e) => hook.setPosition(e.target.value)}
                 />
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <button onClick={handleSend}>Dowload</button>
+        <button onClick={hook.handleSend}>Dowload</button>
         <div>
           <button onClick={geneRate}>Generate Content</button>
           {isLoading && <CircularProgress />}
