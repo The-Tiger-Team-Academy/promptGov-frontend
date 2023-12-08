@@ -3,6 +3,9 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import signInWithGoogle from "@/module/auth/services/signInWithGoogle";
 
+
+
+
 const useCustomHook = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -32,6 +35,7 @@ const useCustomHook = () => {
         setEmail(result.user.email || "");
         setImage(result.user.photoURL || "");
         console.log(result);
+        alert("Login success");
       } else {
         console.log("No user data available");
       }

@@ -1,4 +1,4 @@
-import LoginPage from "../module/login/login"
+import LoginPage from "./login"
 import Dialog from '@mui/material/Dialog';
 import React from "react";
 

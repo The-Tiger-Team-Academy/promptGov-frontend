@@ -20,8 +20,9 @@ export const useCustomHook = () => {
   }, [responsechat]);
 
   const gettwoSet = (e: { target: { value: React.SetStateAction<string>; }; }) => {
-    setStory(e.target.value);
-    setChat(e.target.value);
+    // TODO เดี๋ยวมาแก้
+    // setStory(e.target.value);
+    // setChat(e.target.value);
   };
 
   useEffect(() => {
