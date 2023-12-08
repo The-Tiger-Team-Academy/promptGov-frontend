@@ -1,59 +1,46 @@
 "use client";
 
 import { Container, Typography } from "@mui/material";
-import { Box, Grid, Paper, Button, useMediaQuery } from '@mui/material';
+import { Box, Grid, Paper, Button } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
-import { useTheme } from '@mui/system';
 import 'animate.css';
 import loginHook from './้hook/login.hook';
-import {
-  useStyles,
-  boxContainerStyles,
-  gridItemStyles,
-  innerBoxStyles,
-  logoBoxStyles,
-  typographyStyles,
-  buttonStyles
-} from './login.style'
+import { loginStylePage, } from './login.style'
+import useLoginStyles from "./login.style"
+
 
 
 export default function LoginPage() {
   const { login } = loginHook();
-  const classes = useStyles();
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const imageStyles = {
-    width: isSmallScreen ? '80vw' : '392px',
-    height: isSmallScreen ? 'auto' : '367px',
-    flexShrink: 0,
-  };
+  const imageStylePage = useLoginStyles();
+  const { boxContainer, gridItem, imageStyles, isSmallScreen } = imageStylePage;
+
 
   return (
-    <Box sx={boxContainerStyles(isSmallScreen)}>
+    <Box sx={boxContainer(isSmallScreen)}>
       <Container maxWidth="sm">
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Box sx={gridItemStyles(isSmallScreen, imageStyles)} />
-            <Box sx={innerBoxStyles}>
-              <Paper elevation={0} className={classes.loginForm} >
+            <Box sx={gridItem(isSmallScreen, imageStyles)} />
+            <Box sx={loginStylePage.innerBox}>
+              <Paper elevation={0} sx={loginStylePage.loginForm}  >
                 <Grid container direction="column" alignItems="center" spacing={2} >
                   <Grid item >
                     <Box
                       className="animate__animated animate__fadeInRight"
-                      sx={logoBoxStyles} />
+                      sx={loginStylePage.logoBox} />
                   </Grid>
                   <Grid item>
-                    <Typography variant='inherit' sx={typographyStyles}>เว็บที่ช่วยให้คุณสร้างเอกสารราชการได้ง่ายๆ เพียงไม่กี่คลิก
+                    <Typography variant='inherit' sx={loginStylePage.typography}>เว็บที่ช่วยให้คุณสร้างเอกสารราชการได้ง่ายๆ เพียงไม่กี่คลิก
                       ประหยัดเวลาและเอกสารของคุณจะดูเป็นมืออาชีพมากขึ้น!✨</Typography>
                   </Grid>
                   <Grid item xs={12}>
                     <Button
                       variant="contained"
-                      className={classes.googleButton}
                       startIcon={<GoogleIcon />}
                       onClick={login}
                       fullWidth
-                      sx={buttonStyles}
+                      sx={loginStylePage.button}
                     >
                       Login with Google
                     </Button>
