@@ -6,8 +6,8 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Image from 'next/image';
 import TextField from '@mui/material/TextField';
-import useMessageRecord from '../hook/useMessageRecord';
-import generateChat from '../hook/useGenerate';
+import useMessageRecord from '../../../module/createDocuments/hook/useMessageRecord';
+import generateChat from '../../../module/createDocuments/hook/useGenerate';
 import CircularProgress from '@mui/material/CircularProgress';
 
 const CreatePages = () => {
