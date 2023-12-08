@@ -11,7 +11,7 @@ import generateChat from '../../../module/createDocuments/hook/useGenerate';
 import CircularProgress from '@mui/material/CircularProgress';
 
 const CreatePages = () => {
-  const { Nameuniversity, Orgra, Tel, Sal, Number, Date, Month, Year, Story, Person, P1, Lastly, Licent, Level, Position, setNameuniversity, setOrgra, setTel, setSal, setNumber, setDate, setMonth, setYear, setStory, setPerson, setP1, setP2, setP3, setLastly, setLicent, setLevel, setPosition, handleSend } = useMessageRecord();
+  const { Nameuniversity, Orgra, Tel, Sal, Number, Date, Month, Year, Person, P1, Lastly, Licent, Level, Position, setNameuniversity, setOrgra, setTel, setSal, setNumber, setDate, setMonth, setYear, setStory, setPerson, setP1, setLastly, setLicent, setLevel, setPosition, handleSend } = useMessageRecord();
   const { responsechat, generateDocument, chat, setChat } = generateChat();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,16 +23,14 @@ const CreatePages = () => {
   useEffect(() => {
     if (responsechat) {
       setIsLoading(false);
+      setP1(responsechat);
     }
   }, [responsechat]);
+
   const gettwoSet = (e: { target: { value: React.SetStateAction<string>; }; }) => {
     setStory(e.target.value);
     setChat(e.target.value);
   };
-
-  useEffect(() => {
-    setP1(responsechat);
-  }, [responsechat]);
 
   return (
     <React.Fragment>

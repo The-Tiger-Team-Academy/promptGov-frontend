@@ -2,6 +2,7 @@ import { SxProps } from '@mui/system';
 import { useTheme } from '@mui/material';
 import { useMediaQuery } from '@mui/material';
 
+const LoginStylePage = () => {};
 
 const boxContainerStyles = (isSmallScreen: boolean): SxProps => ({
     backgroundImage: 'url(https://i.postimg.cc/rsvTfqNR/runs-on-paper-a.png)',
