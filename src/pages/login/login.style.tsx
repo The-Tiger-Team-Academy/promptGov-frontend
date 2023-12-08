@@ -1,4 +1,3 @@
-import { makeStyles } from '@mui/styles';
 import { SxProps } from '@mui/system';
 
 
@@ -66,7 +65,7 @@ export const buttonStyles: SxProps = {
 
 };
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = (() => ({
     root: {
         minHeight: '100vh',
         position: 'relative',
