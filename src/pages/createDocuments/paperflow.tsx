@@ -1,58 +1,50 @@
 import Image from "next/image";
-import styles from "./paperFlow.module.css";
-import { NextRouter, useRouter } from "next/router";
-// TODO : This function should be moved to a separate file
-const NavigatToPages = (router: NextRouter, path: string) => {
-  switch (path) {
-    case 'record':
-      router.push('/createDocuments/pages/messageRecord')
-      break;
-    case 'please':
-      router.push('')
-      break;
-    case 'bye':
-      router.push('')
-      break;
-    case 'good':
-      router.push('')
-      break;
-    default:
-      break;
-  }
-}
+import { Container, Typography, Grid, Button } from "@mui/material";
+import { container, btn} from "../../styles/paperflow.style"
 
-//TODO : should be use MUI component
+
 const Paper = () => {
-  const router = useRouter();
+
+
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        {/* <h1 className={styles.title}>PaperFlow</h1> */}
-        <p className={styles.description}>เลือกประเภทเอกสาร</p>
+    <Container sx={container}>
+      <main>
+        <Typography variant="h2" align="center" color="#014B7C" gutterBottom>
+          เลือกประเภทเอกสาร
+        </Typography>
 
-        <div className={styles.grid}>
-          <button className={styles.card} onClick={() => NavigatToPages(router, "record")}>
-            <Image src="/icon.png.svg" alt="logo" width={150} height={150}></Image>
-            <p>บันทึกข้อความ</p>
-          </button>
+        <Grid container spacing={4} justifyContent="center" >
 
-          <button className={styles.card}>
-            <Image src="/icon.png.svg" alt="logo" width={150} height={150}></Image>
-            <p>ขอความอนุเคราะห์</p>
-          </button>
+          <Grid item>
+            <Button variant="outlined" sx={btn}>
+              <Image src="/docimg/icon.svg" alt="logo1" width={100} height={100} />
+              <Typography variant="body1">บันทึกข้อความ</Typography>
+            </Button>
+          </Grid>
 
-          <button className={styles.card}>
-            <Image src="/icon.png.svg" alt="logo" width={150} height={150}></Image>
-            <p>ใบลา/ใบลากิจ</p>
-          </button>
+          <Grid item>
+            <Button variant="outlined" sx={btn}>
+              <Image src="/docimg/icon.svg" alt="logo2" width={100} height={100} />
+              <Typography variant="body1">ขอความอนุเคราะห์</Typography>
+            </Button>
+          </Grid>
 
-          <button className={styles.card}>
-            <Image src="/icon.png.svg" alt="logo" width={150} height={150}></Image>
-            <p>จิตอาสา</p>
-          </button>
-        </div>
+          <Grid item>
+            <Button variant="outlined" sx={btn}>
+              <Image src="/docimg/icon.svg" alt="logo3" width={100} height={100} />
+              <Typography variant="body1">ใบลา/ใบลากิจ</Typography>
+            </Button>
+          </Grid>
+
+          <Grid item>
+            <Button variant="outlined" sx={btn}>
+              <Image src="/docimg/icon.svg" alt="logo4" width={100} height={100} />
+              <Typography variant="body1">จิตอาสา</Typography>
+            </Button>
+          </Grid>
+        </Grid>
       </main>
-    </div>
+    </Container>
   );
 };
 

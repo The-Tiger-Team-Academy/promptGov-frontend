@@ -1,4 +1,4 @@
-import { makeStyles } from '@mui/styles';
+
 import { SxProps } from '@mui/system';
 
 
@@ -66,39 +66,3 @@ export const buttonStyles: SxProps = {
 
 };
 
-export const useStyles = makeStyles(() => ({
-    root: {
-        minHeight: '100vh',
-        position: 'relative',
-    },
-    lowerLeftImage: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        width: '40%',
-        zIndex: -1,
-    },
-    topRightImage: {
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        width: '40%',
-        zIndex: -1,
-    },
-    loginForm: {
-        padding: '20px'
-    },
-    googleButton: {
-        backgroundColor: '#4285F4',
-        borderRadius: 25,
-        width: '16rem',
-        height: '3rem',
-        color: 'white',
-        '&:hover': {
-            backgroundColor: '#c1351a',
-        },
-    },
-    kanitFont: {
-        fontFamily: 'Kanit, sans-serif',
-    },
-}));
