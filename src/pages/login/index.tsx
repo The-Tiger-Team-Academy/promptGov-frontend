@@ -1,33 +1,30 @@
 "use client";
 
 import { Container, Typography } from "@mui/material";
-import { Box, Grid, Paper, Button, useMediaQuery } from '@mui/material';
+import { Box, Grid, Paper, Button } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
-import { useTheme } from '@mui/system';
 import 'animate.css';
-import loginHook from '../../module/login/hook/login.hook';
-import LoginStylePage from "../../module/login/login.style";
+import loginHook from '@/module/login/hook/login.hook';
+import useLoginStyles from "./login.style";
+import LoginStylePage from "@/module/login/login.style";
+
 
 
 export default function LoginPage() {
   const style = LoginStylePage
   const { login } = loginHook();
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const imageStyles = {
-    width: isSmallScreen ? '80vw' : '392px',
-    height: isSmallScreen ? 'auto' : '367px',
-    flexShrink: 0,
-  };
+  const imageStylePage = useLoginStyles();
+  const { boxContainer, gridItem, imageStyles, isSmallScreen } = imageStylePage;
+
 
   return (
-    <Box sx={style.boxContainerStyles(isSmallScreen)}>
+    <Box sx={boxContainer(isSmallScreen)}>
       <Container maxWidth="sm">
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Box sx={style.gridItemStyles(isSmallScreen, imageStyles)} />
+            <Box sx={gridItem(isSmallScreen, imageStyles)} />
             <Box sx={style.innerBoxStyles}>
-              <Paper elevation={0}  >
+              <Paper elevation={0} sx={style.loginFormStyles}  >
                 <Grid container direction="column" alignItems="center" spacing={2} >
                   <Grid item >
                     <Box

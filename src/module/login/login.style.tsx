@@ -1,4 +1,7 @@
 import { SxProps } from '@mui/system';
+import { useTheme } from '@mui/material';
+import { useMediaQuery } from '@mui/material';
+
 
 const boxContainerStyles = (isSmallScreen: boolean): SxProps => ({
   backgroundImage: 'url(https://i.postimg.cc/rsvTfqNR/runs-on-paper-a.png)',
@@ -23,6 +26,14 @@ const gridItemStyles = (isSmallScreen: boolean, imageStyles: any): SxProps => ({
   right: 0,
   zIndex: 1,
 });
+
+
+const imageStyles = (isSmallScreen: boolean, imageStyles: any): SxProps => ({
+  width: isSmallScreen ? '80vw' : '392px',
+  height: isSmallScreen ? 'auto' : '367px',
+  flexShrink: 0,
+});
+
 
 const innerBoxStyles: SxProps = {
   backgroundColor: '#fff',
@@ -62,13 +73,20 @@ const buttonStyles: SxProps = {
   },
 };
 
+const loginFormStyles: SxProps = {
+  padding: '20px',
+  backgroundColor: 'transparent',
+};
+
 const LoginStylePage = {
   boxContainerStyles,
   gridItemStyles,
+  imageStyles,
   innerBoxStyles,
   logoBoxStyles,
   typographyStyles,
   buttonStyles,
+  loginFormStyles,
 }
 
 export default LoginStylePage;
