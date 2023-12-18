@@ -19,6 +19,7 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { MenuItem } from '@mui/material';
 
 
 
@@ -58,10 +59,10 @@ interface CustomButtonProps {
 
 const CustomButton: React.FC<CustomButtonProps> = ({ onClick, icon, label }) => {
     return (
-        <Button color="inherit" onClick={onClick}>
+        <MenuItem color="inherit" onClick={onClick}>
             {icon}
             <Typography style={{ marginLeft: '8px', color: 'black', fontSize: '14px' }}>{label}</Typography>
-        </Button>
+        </MenuItem>
     );
 };
 
