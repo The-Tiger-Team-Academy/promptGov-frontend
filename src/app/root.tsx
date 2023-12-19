@@ -17,7 +17,7 @@ const RootLayout = ({ children }: any) => {
               <p>Terms & Conditions</p>
             </div>
           </Grid>
-        </Grid>
+        </Grid>src/app/root.tsx
       {/* Add any additional footer content here */}
       </footer>
     </div>
