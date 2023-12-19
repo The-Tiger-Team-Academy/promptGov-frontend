@@ -1,13 +1,14 @@
-import Image from 'next/image';
 import React from 'react';
-import { CssBaseline, Box, Grid, Container, TextField } from "@mui/material";
+import { CssBaseline, Box, Grid, Container, TextField, Button, Stack } from "@mui/material";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { inside, main, pattern, marginTop } from '../../../styles/approval.style';
-
+import { IMAGE_APPROVAL } from './constans'
 
 const Approvalrequest = () => {
+  const { path, width, height } = IMAGE_APPROVAL.APPROVAL;
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -25,14 +26,13 @@ const Approvalrequest = () => {
               </Grid>
 
               <Grid xs={4} sx={pattern} container>
-                <Image src={'/doc_img/emblem.svg'} alt={''} width={60} height={70} />
+              <img src={path} alt="Logo" width={width} height={height} />
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     label={'วัน/เดือน/ปี'}
                     views={['year', 'month', 'day']}
                   />
                 </LocalizationProvider>
-
               </Grid>
 
               <Grid xs={4} container>
@@ -186,10 +186,10 @@ const Approvalrequest = () => {
             </Grid>
           </Box>
         </Box>
-        <button>Dowload</button>
-        <div>
-          <button>Generate Content</button>
-        </div>
+        <Stack direction="row" spacing={2}>
+          <Button variant="contained" color="success">Dowload</Button>
+          <Button variant='contained'>Generate Content</Button>
+        </Stack>
       </Container>
     </React.Fragment>
   );

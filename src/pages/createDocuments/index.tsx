@@ -5,7 +5,6 @@ import Approvalrequest from "./pages/approvalrequest"
 const index = () => {
   return (
       <Container>
-
         <CreatePages></CreatePages>
         <Approvalrequest></Approvalrequest>
       </Container>

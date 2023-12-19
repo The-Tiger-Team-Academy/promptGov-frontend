@@ -1,11 +1,9 @@
-import Image from "next/image";
 import { Container, Typography, Grid, Button } from "@mui/material";
 import { btn, container } from "@/styles/paperflow.style";
-
-
+import { IMAGE_PAPER } from "./paper.constans";
 
 const Paper = () => {
-
+  const { path, width, height } = IMAGE_PAPER.LOGO;
 
   return (
     <Container sx={container}>
@@ -14,32 +12,31 @@ const Paper = () => {
           เลือกประเภทเอกสาร
         </Typography>
 
-        <Grid container spacing={4} justifyContent="center" >
-
+        <Grid container spacing={4} justifyContent="center">
           <Grid item>
             <Button variant="outlined" sx={btn}>
-              <Image src="/doc_img/icon.svg" alt="logo1" width={100} height={100} />
+              <img src={path} alt="Logo1" width={width} height={height} />
               <Typography variant="body1">บันทึกข้อความ</Typography>
             </Button>
           </Grid>
 
           <Grid item>
             <Button variant="outlined" sx={btn}>
-              <Image src="/doc_img/icon.svg" alt="logo2" width={100} height={100} />
+              <img src={path} alt="Logo2" width={width} height={height} />
               <Typography variant="body1">ขอความอนุเคราะห์</Typography>
             </Button>
           </Grid>
 
           <Grid item>
             <Button variant="outlined" sx={btn}>
-              <Image src="/doc_img/icon.svg" alt="logo3" width={100} height={100} />
+              <img src={path} alt="Logo3" width={width} height={height} />
               <Typography variant="body1">ใบลา/ใบลากิจ</Typography>
             </Button>
           </Grid>
 
           <Grid item>
             <Button variant="outlined" sx={btn}>
-              <Image src="/doc_img/icon.svg" alt="logo4" width={100} height={100} />
+              <img src={path} alt="Logo4" width={width} height={height} />
               <Typography variant="body1">จิตอาสา</Typography>
             </Button>
           </Grid>

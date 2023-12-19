@@ -1,6 +1,9 @@
 import React from "react";
-import { CssBaseline, Box, Grid, Container, TextField } from "@mui/material";
-import {  inside,  main,  marginTop,  pattern,  pattern2,  sincerely,} from "../../../styles/approval.style";
+import { CssBaseline, Box, Grid, Container, TextField, Stack, Button } from "@mui/material";
+import { inside, main, marginTop, pattern, pattern2, sincerely } from "../../../styles/approval.style";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const Leaverequest = () => {
   return (
@@ -21,12 +24,12 @@ const Leaverequest = () => {
 
               <Grid xs={6}></Grid>
               <Grid xs={6} sx={marginTop} container>
-                <TextField
-                  label="วันที่"
-                  id="outlined2"
-                  defaultValue="วันที่"
-                  size="small"
-                />
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    label={'วัน/เดือน/ปี'}
+                    views={['year', 'month', 'day']}
+                  />
+                </LocalizationProvider>
               </Grid>
 
               <Grid xs={6} sx={marginTop} container>
@@ -77,7 +80,7 @@ const Leaverequest = () => {
                   size="small"
                 />
               </Grid>
-           
+
               <Grid xs={12} container sx={sincerely}>
                 <Box>
                   <TextField
@@ -111,10 +114,10 @@ const Leaverequest = () => {
             </Grid>
           </Box>
         </Box>
-        <button>Dowload</button>
-        <div>
-          <button>Generate Content</button>
-        </div>
+        <Stack direction="row" spacing={2}>
+          <Button variant="contained" color="success">Dowload</Button>
+          <Button variant='contained'>Generate Content</Button>
+        </Stack>
       </Container>
     </React.Fragment>
   );

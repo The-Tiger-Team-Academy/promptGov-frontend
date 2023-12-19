@@ -1,5 +1,5 @@
 import { inside, main, margin, marginTop, pattern } from "@/styles/approval.style";
-import { Box, CssBaseline, Container, Grid, TextField, Typography, } from "@mui/material";
+import { Box, CssBaseline, Container, Grid, TextField, Typography, Stack, Button, } from "@mui/material";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, } from "@mui/material";
 import React from "react";
 
@@ -126,6 +126,10 @@ const Volunteer = () => {
             </Grid>
           </Box>
         </Box>
+        <Stack direction="row" spacing={2}>
+          <Button variant="contained" color="success">Dowload</Button>
+          <Button variant='contained'>Generate Content</Button>
+        </Stack>
       </Container>
     </React.Fragment>
   );

@@ -1,10 +1,14 @@
-"use client";
 import React from "react";
-import { CssBaseline, Box, Grid, Container, TextField } from "@mui/material";
-import Image from "next/image";
-import {  inside,  main,  marginTop,  pattern2,  sincerely, } from "@/styles/approval.style";
+import { CssBaseline, Box, Grid, Container, TextField, Stack, Button, } from "@mui/material";
+import { inside, main, marginTop, pattern2, sincerely, } from "@/styles/approval.style";
+import { IMAGE_APPROVAL } from "./constans";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 const CreatePages = () => {
+  const { path, width, height } = IMAGE_APPROVAL.MESSAGE;
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -13,7 +17,7 @@ const CreatePages = () => {
           <Box sx={inside}>
             <Grid container>
               <Grid xs={4}>
-                <Image src="/img/image 7.png" alt={""} width={60} height={70} />
+                <img src={path} alt="message" width={width} height={height} />
               </Grid>
               <Grid xs={4} container>
                 <p>บันทึกข้อความ</p>
@@ -29,7 +33,7 @@ const CreatePages = () => {
                 <TextField
                   label="หน่วยงาน"
                   id="outlined-size-small"
-                  defaultValue=""
+                  defaultValue="หน่วยงาน"
                   size="small"
                 />
               </Grid>
@@ -37,7 +41,7 @@ const CreatePages = () => {
                 <TextField
                   label="โทร"
                   id="outlined-size-small"
-                  defaultValue=""
+                  defaultValue="โทร"
                   size="small"
                 />
               </Grid>
@@ -45,7 +49,7 @@ const CreatePages = () => {
                 <TextField
                   label="โทรสาร"
                   id="outlined-size-small"
-                  defaultValue=""
+                  defaultValue="โทรสาร"
                   size="small"
                 />
               </Grid>
@@ -53,39 +57,18 @@ const CreatePages = () => {
                 <TextField
                   label="ที่"
                   id="outlined-size-small"
-                  defaultValue=""
+                  defaultValue="ที่"
                   size="small"
                 />
               </Grid>
               <Grid xs={1} sx={marginTop} container></Grid>
               <Grid xs={7} sx={marginTop} container>
-                <Grid xs={4} container>
-                  <TextField
-                    label="วัน"
-                    id="outlined-size-small"
-                    defaultValue="12"
-                    fullWidth
-                    size="small"
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    label={"วัน/เดือน/ปี"}
+                    views={["year", "month", "day"]}
                   />
-                </Grid>
-                <Grid xs={4} container>
-                  <TextField
-                    label="เดือน"
-                    id="outlined-size-small"
-                    defaultValue="ธันวาคม"
-                    fullWidth
-                    size="small"
-                  />
-                </Grid>
-                <Grid xs={4} container>
-                  <TextField
-                    label="ปี"
-                    id="outlined-size-small"
-                    defaultValue="2566"
-                    fullWidth
-                    size="small"
-                  />
-                </Grid>
+                </LocalizationProvider>
               </Grid>
               <Grid xs={12} sx={marginTop} container>
                 <TextField
@@ -110,7 +93,7 @@ const CreatePages = () => {
                 <TextField
                   label="เรียน"
                   id="outlined-size-small"
-                  defaultValue=""
+                  defaultValue="เรียน"
                   fullWidth
                   size="small"
                 />
@@ -152,7 +135,7 @@ const CreatePages = () => {
                   <TextField
                     label="ตำแหน่ง"
                     id="outlined-size-small"
-                    defaultValue=""
+                    defaultValue="ตำแหน่ง"
                     size="small"
                   />
                 </Box>
@@ -161,17 +144,19 @@ const CreatePages = () => {
                 <TextField
                   label="หน่วยงาน"
                   id="outlined-size-small"
-                  defaultValue=""
+                  defaultValue="หน่วยงาน"
                   size="small"
                 />
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <button>Dowload</button>
-        <div>
-          <button>Generate Content</button>
-        </div>
+        <Stack direction="row" spacing={2}>
+          <Button variant="contained" color="success">
+            Dowload
+          </Button>
+          <Button variant="contained">Generate Content</Button>
+        </Stack>
       </Container>
     </React.Fragment>
   );
