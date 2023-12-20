@@ -6,7 +6,8 @@ import GoogleIcon from '@mui/icons-material/Google';
 import 'animate.css';
 import loginHook from '../../module/login/hook/login.hook';
 import LoginStylePage from "../../module/login/login.style";
-import useLoginStyles from "@/module/login/login.constants";
+import useLoginStyles from "../../module/login/login.constants";
+
 
 
 
