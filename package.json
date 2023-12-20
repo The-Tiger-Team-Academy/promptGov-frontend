@@ -32,4 +32,9 @@
     "eslint-config-next": "14.0.2",
     "typescript": "^5"
   }
+  "scripts": {
+  "install": "your-install-script-here",
+  "other-script": "command-for-other-script"
+  }
+
 }
