@@ -1,6 +1,4 @@
 import { SxProps } from '@mui/system';
-import { useTheme } from '@mui/material';
-import { useMediaQuery } from '@mui/material';
 
 
 const boxContainerStyles = (isSmallScreen: boolean): SxProps => ({
@@ -13,6 +11,7 @@ const boxContainerStyles = (isSmallScreen: boolean): SxProps => ({
   justifyContent: 'center',
   alignItems: 'center',
   position: 'relative',
+  
 });
 
 const gridItemStyles = (isSmallScreen: boolean, imageStyles: any): SxProps => ({
