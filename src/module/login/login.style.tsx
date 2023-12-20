@@ -1,6 +1,4 @@
 import { SxProps } from '@mui/system';
-import { useTheme } from '@mui/material';
-import { useMediaQuery } from '@mui/material';
 
 const LoginStylePage = () => {};
 

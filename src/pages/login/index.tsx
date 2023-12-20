@@ -1,6 +1,6 @@
 "use client";
 
-import { Container, Typography } from "@mui/material";
+import { Container, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Box, Grid, Paper, Button } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import 'animate.css';
@@ -10,10 +10,12 @@ import  LoginStylePage from './login.style';
 
 
 export default function LoginPage() {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const style = LoginStylePage
   const { login } = loginHook();
   const imageStylePage = useLoginStyles();
-  const { boxContainer, gridItem, imageStyles, isSmallScreen } = imageStylePage;
+  const { boxContainer, gridItem, imageStyles} = imageStylePage;
 
 
 
