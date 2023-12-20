@@ -31,10 +31,10 @@ export default function LoginPage() {
                   <Grid item >
                     <Box
                       className="animate__animated animate__fadeInRight"
-                      sx={style.logoBoxStyles} />
+                      />
                   </Grid>
                   <Grid item>
-                    <Typography variant='inherit' sx={style.typographyStyles}>เว็บที่ช่วยให้คุณสร้างเอกสารราชการได้ง่ายๆ เพียงไม่กี่คลิก
+                    <Typography variant='inherit'>เว็บที่ช่วยให้คุณสร้างเอกสารราชการได้ง่ายๆ เพียงไม่กี่คลิก
                       ประหยัดเวลาและเอกสารของคุณจะดูเป็นมืออาชีพมากขึ้น!✨</Typography>
                   </Grid>
                   <Grid item xs={12}>
@@ -43,7 +43,6 @@ export default function LoginPage() {
                       startIcon={<GoogleIcon />}
                       onClick={login}
                       fullWidth
-                      sx={style.buttonStyles}
                     >
                       Login with Google
                     </Button>
