@@ -9,6 +9,12 @@ import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 import useGenerate from '@/module/createDocument/hook/useGenerate.hook';
 import useMessageRecord from '@/module/createDocument/hook/useMessageRecord.hook';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+
+
 
 const CreatePages = () => {
   const hook = useMessageRecord();
@@ -128,55 +134,11 @@ const CreatePages = () => {
                 alignItems="center">
 
               </Grid>
-              <Grid xs={7}
-                sx={{ marginTop: '10px' }}
-                container
-                direction="row"
-                justifyContent="center"
-                alignItems="center">
-                <Grid xs={4}
-                  container
-                  direction="column"
-                  justifyContent="center"
-                  alignItems="center">
-                  <TextField
-                    label="วัน"
-                    id="outlined-size-small"
-                    defaultValue="12"
-                    fullWidth
-                    size='small'
-                    value={Date} onChange={(e) => hook.setDate(e.target.value)}
-                  />
-                </Grid>
-                <Grid xs={4}
-                  container
-                  direction="column"
-                  justifyContent="center"
-                  alignItems="center">
-                  <TextField
-                    label="เดือน"
-                    id="outlined-size-small"
-                    defaultValue="ธันวาคม"
-                    fullWidth
-                    size='small'
-                    value={hook.Month} onChange={(e) => hook.setMonth(e.target.value)}
-                  />
-                </Grid>
-                <Grid xs={4}
-                  container
-                  direction="column"
-                  justifyContent="center"
-                  alignItems="center">
-                  <TextField
-                    label="ปี"
-                    id="outlined-size-small"
-                    defaultValue="2566"
-                    fullWidth
-                    size='small'
-                    value={hook.Year} onChange={(e) => hook.setYear(e.target.value)}
-                  />
-                </Grid>
-              </Grid>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DemoContainer components={['DatePicker']}>
+                <DatePicker label="วัน/เดือน/ปี" />
+                </DemoContainer>
+              </LocalizationProvider>
               <Grid xs={12}
                 sx={{ marginTop: '10px' }}
                 container
