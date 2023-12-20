@@ -1,9 +1,5 @@
 import { SxProps } from '@mui/system';
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d4ed1a8 (restruce and refactor style)
 const boxContainerStyles = (isSmallScreen: boolean): SxProps => ({
   backgroundImage: 'url(https://i.postimg.cc/rsvTfqNR/runs-on-paper-a.png)',
   backgroundPosition: 'bottom left',
@@ -14,10 +10,7 @@ const boxContainerStyles = (isSmallScreen: boolean): SxProps => ({
   justifyContent: 'center',
   alignItems: 'center',
   position: 'relative',
-<<<<<<< HEAD
   
-=======
->>>>>>> d4ed1a8 (restruce and refactor style)
 });
 
 const gridItemStyles = (isSmallScreen: boolean, imageStyles: any): SxProps => ({
@@ -32,7 +25,6 @@ const gridItemStyles = (isSmallScreen: boolean, imageStyles: any): SxProps => ({
   zIndex: 1,
 });
 
-<<<<<<< HEAD
 
 const imageStyles = (isSmallScreen: boolean, imageStyles: any): SxProps => ({
   width: isSmallScreen ? '80vw' : '392px',
@@ -41,8 +33,6 @@ const imageStyles = (isSmallScreen: boolean, imageStyles: any): SxProps => ({
 });
 
 
-=======
->>>>>>> d4ed1a8 (restruce and refactor style)
 const innerBoxStyles: SxProps = {
   backgroundColor: '#fff',
   padding: 0,
@@ -81,7 +71,6 @@ const buttonStyles: SxProps = {
   },
 };
 
-<<<<<<< HEAD
 const loginFormStyles: SxProps = {
   padding: '20px',
   backgroundColor: 'transparent',
@@ -91,22 +80,11 @@ const LoginStylePage = {
   boxContainerStyles,
   gridItemStyles,
   imageStyles,
-=======
-const LoginStylePage = {
-  boxContainerStyles,
-  gridItemStyles,
->>>>>>> d4ed1a8 (restruce and refactor style)
   innerBoxStyles,
   logoBoxStyles,
   typographyStyles,
   buttonStyles,
-<<<<<<< HEAD
   loginFormStyles,
 }
 
 export default LoginStylePage;
-=======
-}
-
-export default LoginStylePage;
->>>>>>> d4ed1a8 (restruce and refactor style)
