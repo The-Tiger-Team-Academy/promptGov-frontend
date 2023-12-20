@@ -4,10 +4,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { inside, main, pattern, marginTop } from '../../../styles/approval.style';
-import { IMAGE_APPROVAL } from './constans'
+import approvalConst from '../../../module/createDocument/constans';
 
 const Approvalrequest = () => {
-  const { path, width, height } = IMAGE_APPROVAL.APPROVAL;
 
   return (
     <React.Fragment>
@@ -16,7 +15,7 @@ const Approvalrequest = () => {
         <Box sx={main} >
           <Box sx={inside}>
             <Grid container >
-              <Grid xs={4} sx={pattern} container >
+              <Grid  sx={pattern} container >
                 <TextField
                   label="ที่"
                   id="outlined1"
@@ -25,8 +24,8 @@ const Approvalrequest = () => {
                 />
               </Grid>
 
-              <Grid xs={4} sx={pattern} container>
-              <img src={path} alt="Logo" width={width} height={height} />
+              <Grid  sx={pattern} container>
+              <img src={approvalConst.emblemLogo} alt="Logo" width={approvalConst.sutLogoWidth} height={approvalConst.sutLogohight} />
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     label={'วัน/เดือน/ปี'}
@@ -35,7 +34,7 @@ const Approvalrequest = () => {
                 </LocalizationProvider>
               </Grid>
 
-              <Grid xs={4} container>
+              <Grid  container>
                 <TextField
                   id="outlined3"
                   label="ที่อยู่"
@@ -45,7 +44,7 @@ const Approvalrequest = () => {
                 />
               </Grid>
 
-              <Grid xs={6} container sx={marginTop} >
+              <Grid  container sx={marginTop} >
                 <TextField
                   label="เรียน"
                   id="outlined4"
@@ -54,8 +53,8 @@ const Approvalrequest = () => {
                 />
               </Grid>
 
-              <Grid xs={6} ></Grid>
-              <Grid xs={6} sx={marginTop} container>
+              <Grid  ></Grid>
+              <Grid  sx={marginTop} container>
                 <TextField
                   label="เรื่อง"
                   id="outlined5"
@@ -64,7 +63,7 @@ const Approvalrequest = () => {
                 />
               </Grid>
 
-              <Grid xs={12} sx={marginTop} container>
+              <Grid  sx={marginTop} container>
                 <TextField
                   label="ย่อหน้าที่1"
                   id="outlined6"
@@ -75,7 +74,7 @@ const Approvalrequest = () => {
                 />
               </Grid>
 
-              <Grid xs={12} sx={marginTop} container>
+              <Grid sx={marginTop} container>
                 <TextField
                   label="สรุป"
                   id="outlined8"
@@ -87,8 +86,8 @@ const Approvalrequest = () => {
                 />
               </Grid>
 
-              <Grid xs={3}></Grid>
-              <Grid xs={6} sx={marginTop} container>
+              <Grid ></Grid>
+              <Grid  sx={marginTop} container>
                 <TextField margin="normal"
                   label="จึงเรียนมาเพื่อโปรดทราบ"
                   id="outlined9"
@@ -98,7 +97,7 @@ const Approvalrequest = () => {
                 />
               </Grid>
 
-              <Grid xs={4}>
+              <Grid >
                 <TextField
                   label="หน่วยงาน"
                   id="outlined1.2"
@@ -106,9 +105,9 @@ const Approvalrequest = () => {
                   size="small"
                 />
               </Grid>
-              <Grid xs={8}></Grid>
+              <Grid ></Grid>
 
-              <Grid xs={4}>
+              <Grid >
                 <TextField
                   label="โทร"
                   id="outlined-size-small"
@@ -116,8 +115,8 @@ const Approvalrequest = () => {
                   size="small"
                 />
               </Grid>
-              <Grid xs={2}></Grid>
-              <Grid xs={6} container
+              <Grid ></Grid>
+              <Grid  container
               >
                 <TextField
                   label="ขอแสดงความนับถือ"
@@ -127,7 +126,7 @@ const Approvalrequest = () => {
                 />
               </Grid>
 
-              <Grid xs={4}>
+              <Grid >
                 <TextField
                   label="โทรสาร"
                   id="outlined1.3"
@@ -136,9 +135,9 @@ const Approvalrequest = () => {
 
                 />
               </Grid>
-              <Grid xs={6}></Grid>
+              <Grid ></Grid>
 
-              <Grid xs={4}>
+              <Grid >
                 <TextField
                   label="ประสานงาน"
                   id="outlined1.4"
@@ -146,8 +145,8 @@ const Approvalrequest = () => {
                   size="small"
                 />
               </Grid>
-              <Grid xs={3}></Grid>
-              <Grid xs={5} container>
+              <Grid ></Grid>
+              <Grid  container>
                 <TextField
                   label="ชื่อ-นามสกุล"
                   id="outlined-size-small"
@@ -156,7 +155,7 @@ const Approvalrequest = () => {
                 />
               </Grid>
 
-              <Grid xs={4}>
+              <Grid >
                 <TextField
                   label="โทรศัพท์มือถือ"
                   id="outlined1.5"
@@ -164,8 +163,8 @@ const Approvalrequest = () => {
                   size="small"
                 />
               </Grid>
-              <Grid xs={3}></Grid>
-              <Grid xs={5} container>
+              <Grid ></Grid>
+              <Grid  container>
                 <TextField
                   label="ตำแหน่ง"
                   id="outlined1.7"
@@ -174,8 +173,8 @@ const Approvalrequest = () => {
                 />
               </Grid>
 
-              <Grid xs={7}></Grid>
-              <Grid xs={5} container>
+              <Grid ></Grid>
+              <Grid  container>
                 <TextField
                   label="หน่วยงาน"
                   id="outlined1.7"

@@ -1,14 +1,26 @@
 import React from "react";
-import { CssBaseline, Box, Grid, Container, TextField, Stack, Button, } from "@mui/material";
-import { inside, main, marginTop, pattern2, sincerely, } from "@/styles/approval.style";
-import { IMAGE_APPROVAL } from "./constans";
+import {
+  CssBaseline,
+  Box,
+  Grid,
+  Container,
+  TextField,
+  Stack,
+  Button,
+} from "@mui/material";
+import {
+  inside,
+  main,
+  marginTop,
+  pattern2,
+  sincerely,
+} from "@/styles/approval.style";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import approvalConst from "../../../module/createDocument/constans";
 
 const CreatePages = () => {
-  const { path, width, height } = IMAGE_APPROVAL.MESSAGE;
-
   return (
     <React.Fragment>
       <CssBaseline />
@@ -17,7 +29,12 @@ const CreatePages = () => {
           <Box sx={inside}>
             <Grid container>
               <Grid xs={4}>
-                <img src={path} alt="message" width={width} height={height} />
+                <img
+                  src={approvalConst.sutLogo}
+                  alt="message"
+                  width={approvalConst.sutLogoWidth}
+                  height={approvalConst.sutLogoWidth}
+                />
               </Grid>
               <Grid xs={4} container>
                 <p>บันทึกข้อความ</p>
