@@ -10,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import { NextRouter, useRouter } from "next/router";
 import signOut from "@/module/auth/services/signOut";
@@ -170,7 +169,6 @@ const AppBarComponent = ({ open }: AppBarComponentProps) => {
                     </Typography>
                     <Box sx={appBarStyle.Box_md}>
                         {/* Home */}
-
                         {/* Payment */}
                         <CustomButton
                             onClick={() => NavigatToPages(router, 'payment')}
