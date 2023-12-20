@@ -13,7 +13,7 @@ import {
   import LogoutIcon from "@mui/icons-material/Logout";
   import React from "react";
   import { NextRouter, useRouter } from "next/router";
-  import signOut from "@/module/auth/services/signOut";
+  import signOut from "../../module/auth/services/signOut";
   
   interface DrawerComponentProps {
     open: boolean;
