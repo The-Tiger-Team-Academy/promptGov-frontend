@@ -15,10 +15,9 @@ export default function LoginPage() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const style = LoginStylePage
-  const { login } = loginHook();
+  const { login,img } = loginHook();
   const imageStylePage = useLoginStyles();
   const { boxContainer, gridItem, imageStyles} = imageStylePage;
-
 
   return (
     <Box sx={boxContainer(isSmallScreen)}>

@@ -11,7 +11,7 @@ const useGenerate = () => {
           const message = chat;
     
           const response = await axios.post(
-            'http://127.0.0.1:8000/stream_chat/',// อันเป็น api ทดสอบของผมนะครับ เดี๋ยวผมมาเปลี่ยนให้ทีหลัง หลังจากที่ backend ได้ merge กับของผมแล้ว
+            process.env.NEXT_PUBLIC_API_GENERATE ?? '',
             { content: message },
             {
               headers: {

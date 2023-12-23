@@ -60,7 +60,7 @@ const useMessageRecord = (): messageRecord => {
 
     const handleSend = async () => {
         try {
-            const response = await axios.post(`http://127.0.0.1:8000/generate_document`, {
+            const response = await axios.post(process.env.NEXT_PUBLIC_API_CREATE_DOC ?? '', {
                 NAMEUNIVERSITY: Nameuniversity,
                 ORGRA: Orgra,
                 TEL: Tel,
