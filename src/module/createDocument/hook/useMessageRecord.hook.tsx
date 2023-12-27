@@ -36,7 +36,6 @@ interface messageRecord {
     setLevel: (Level: string) => void;
     setPosition: (Position: string) => void;
     handleSend: () => void;
-
 }
 
 const useMessageRecord = (): messageRecord => {
@@ -60,7 +59,9 @@ const useMessageRecord = (): messageRecord => {
 
     const handleSend = async () => {
         try {
-            const response = await axios.post(process.env.NEXT_PUBLIC_API_CREATE_DOC ?? '', {
+            // const response = await axios.post(process.env.NEXT_PUBLIC_API_CREATE_DOC_MESSAGERECORD ?? '', {
+            // เก็บไว้สำหรับการทดสอบอีกครั้ง
+            const response = await axios.post("http://127.0.0.1:8000/create_doc/messageRecord/", {
                 NAMEUNIVERSITY: Nameuniversity,
                 ORGRA: Orgra,
                 TEL: Tel,
@@ -72,10 +73,10 @@ const useMessageRecord = (): messageRecord => {
                 STORY: Story,
                 PERSON: Person,
                 P1: P1,
-                LASTLY: Lastly,
+                LASTLY:Lastly,
                 LICENT: Licent,
                 LEVEL: Level,
-                POSITION: Position
+                POSITION: Position,
             }, {
                 responseType: 'blob'
             });

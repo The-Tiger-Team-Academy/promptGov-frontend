@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const useGenerate = () => {
     const [chat, setChat] = useState('');
-    const [responsechat, setResponsechat] = useState(null);
+    const [responsechat, setResponsechat] = useState("");
 
 
     const generateDocument = async () => {
@@ -31,7 +31,7 @@ const useGenerate = () => {
             if (currentIndex === responseData.length) {
               clearInterval(intervalId);
             }
-          }, 50);
+          }, 100);
         } catch (error) {
           console.error("Axios error:", error);
         }

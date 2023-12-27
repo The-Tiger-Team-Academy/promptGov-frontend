@@ -54,7 +54,6 @@ const useCustomHook = () => {
       if (name && email && img) {
         await postData();
         console.log(name, email, img);
-        alert("เข้าสู่ระบบสำเร็จ: " + name);
       }
     };
 

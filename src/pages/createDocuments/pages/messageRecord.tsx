@@ -158,7 +158,7 @@ const CreatePages = () => {
                   id="outlined-size-small"
                   defaultValue=""
                   size="small"
-                  value={Number}
+                  value={hook.Number}
                   onChange={(e) => hook.setNumber(e.target.value)}
                 />
               </Grid>
@@ -191,7 +191,7 @@ const CreatePages = () => {
                     defaultValue="12"
                     fullWidth
                     size="small"
-                    value={Date}
+                    value={hook.Date}
                     onChange={(e) => hook.setDate(e.target.value)}
                   />
                 </Grid>
@@ -341,7 +341,7 @@ const CreatePages = () => {
                 justifyContent="center"
                 alignItems="center"
               ></Grid>
-              <Grid
+              {/* <Grid
                 xs={4}
                 sx={{ marginTop: "10px" }}
                 container
@@ -357,7 +357,7 @@ const CreatePages = () => {
                   value={hook.Lastly}
                   onChange={(e) => hook.setLastly(e.target.value)}
                 />
-              </Grid>
+              </Grid> */}
               <Grid
                 xs={4}
                 container
