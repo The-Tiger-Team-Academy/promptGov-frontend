@@ -21,7 +21,6 @@ const useGenerate = () => {
         }
       );
       setResponsechat(response.data.message.content);
-      console.log(response.data.message.content);
     } catch (error) {
       console.error("Axios error:", error);
     }
