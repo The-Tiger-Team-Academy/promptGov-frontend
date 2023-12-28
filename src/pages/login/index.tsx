@@ -19,7 +19,6 @@ export default function LoginPage() {
   const imageStylePage = useLoginStyles();
   const { boxContainer, gridItem, imageStyles} = imageStylePage;
 
-
   return (
     <Box sx={boxContainer(isSmallScreen)}>
       <Container maxWidth="sm">
