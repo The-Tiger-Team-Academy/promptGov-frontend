@@ -13,7 +13,7 @@ const useCustomHook = () => {
     try {
       const response = await axios.post(
         // "http://127.0.0.1:8000/Users", //เส้นทดสอบ
-        process.env.NEXT_PUBLIC_GET_USER ?? "",
+        `${process.env.NEXT_PUBLIC_BASEURL}/Users`?? "",
         {
           name: name,
           email: email,
