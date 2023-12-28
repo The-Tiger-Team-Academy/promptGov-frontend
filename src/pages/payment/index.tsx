@@ -7,7 +7,7 @@ import CancelModal from "./components/cancelModal";
 import HandleSuccessModal from "@/module/payment/hooks/handleSuccessModal";
 import HandleCancelModal from "@/module/payment/hooks/handleCancelModal";
 import EditIcon from '@mui/icons-material/Edit';
-import styles from '@/pages/payment/payment.style'
+import PaymentStyle from '@/pages/payment/payment.style'
 
 
 
@@ -27,37 +27,38 @@ interface PaymentComponentProps {
 
 // TODO : should be move to a separate file
 const PaymentPage = ({ open }: PaymentComponentProps) => {
-    const payment = styles(open)
+    const styles = PaymentStyle
     const { handlePrizeClick } = PaymentHook();
     const susscesMoadal = HandleSuccessModal();
     const cancelModal = HandleCancelModal();
     return (
+        
         <div style={{ backgroundColor: '#FAFAFA' }}>
             <ThemeProvider theme={theme} >
                 <Container >
-                    <Box sx={payment.BoxHeadtext}>
-                        <Typography gutterBottom sx={payment.TextOrderlist}>
+                    <Box sx={styles.BoxHeadtext}>
+                        <Typography gutterBottom sx={styles.TextOrderlist}>
                             รายการสั่งซื้อ
                         </Typography>
-                        <Box sx={payment.BoxHeadButton}>
+                        <Box sx={styles.BoxHeadButton}>
                             <Button variant="outlined">ยกเลิก</Button>
                             <Button variant="contained" startIcon={<EditIcon />}>แก้ไข</Button>
                         </Box>
                     </Box>
-                    <Box my={1} sx={payment.BoxCenter}>
-                        <Grid container justifyContent="space-between" alignItems="center" sx={payment.Gridcontainer}>
+                    <Box my={1} sx={styles.BoxCenter}>
+                        <Grid container justifyContent="space-between" alignItems="center" sx={styles.Gridcontainer}>
                             <Grid item xs={12} sm={6} md={8}>
 
                             </Grid>
-                            <Grid item xs={12} sm={6} md={4} sx={payment.Griditem}>
-                                <Button variant="contained" sx={payment.ButtonPay}>
+                            <Grid item xs={12} sm={6} md={4} sx={styles.Griditem}>
+                                <Button variant="contained" sx={styles.ButtonPay}>
                                     PAY ฿30
                                 </Button>
                             </Grid>
                         </Grid>
-                        <Container maxWidth="sm" sx={payment.ImageContainer}>
-                            <Box sx={payment.ImageBox}>
-                                <Box sx={payment.ImageBorder}>
+                        <Container maxWidth="sm" sx={styles.ImageContainer}>
+                            <Box sx={styles.ImageBox}>
+                                <Box sx={styles.ImageBorder}>
                                     <Image
                                         src="/img/test.webp"
                                         width={500}
