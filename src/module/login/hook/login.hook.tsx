@@ -20,6 +20,7 @@ const useCustomHook = () => {
           img: img,
         }
       );
+      console.log(response.data)
       router.push("./createDocuments/paperflow");
     } catch (error) {
       console.error("Error while posting data:", error);
@@ -35,7 +36,6 @@ const useCustomHook = () => {
         setEmail(result.user.email || "");
         setImage(result.user.photoURL || "");
         console.log(result);
-        alert("Login success");
       } else {
         console.log("No user data available");
       }
