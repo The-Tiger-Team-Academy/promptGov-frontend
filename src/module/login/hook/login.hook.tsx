@@ -22,8 +22,6 @@ const useCustomHook = () => {
           img: img,
         }
       );
-      console.log(response.data)
-      router.push("./createDocuments/paperflow");
     } catch (error) {
       console.error("Error while posting data:", error);
     }
