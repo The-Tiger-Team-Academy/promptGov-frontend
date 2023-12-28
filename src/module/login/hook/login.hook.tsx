@@ -13,13 +13,14 @@ const useCustomHook = () => {
     try {
       const response = await axios.post(
         // "http://127.0.0.1:8000/Users", //เส้นทดสอบ
-        process.env.NEXT_PUBLIC_GET_USER ?? "",
+        `${process.env.NEXT_PUBLIC_BASEURL}/Users`?? "",
         {
           name: name,
           email: email,
           img: img,
         }
       );
+      console.log(response.data)
       router.push("./createDocuments/paperflow");
     } catch (error) {
       console.error("Error while posting data:", error);
@@ -35,7 +36,6 @@ const useCustomHook = () => {
         setEmail(result.user.email || "");
         setImage(result.user.photoURL || "");
         console.log(result);
-        alert("Login success");
       } else {
         console.log("No user data available");
       }

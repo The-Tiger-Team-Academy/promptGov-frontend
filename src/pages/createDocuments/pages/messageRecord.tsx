@@ -351,7 +351,7 @@ const CreatePages = () => {
                 alignItems="end"
               >
                 <Box
-                  sx={{ bgcolor: "white", width: "15vh", marginRight: "70px" }}
+                  sx={{ bgcolor: "white", width: "150px", marginRight: "70px" }}
                 >
                   <TextField
                     label="ชื่อ-นามสกุล"
@@ -372,7 +372,7 @@ const CreatePages = () => {
                 alignItems="end"
               >
                 <Box
-                  sx={{ bgcolor: "white", width: "20vh", marginRight: "32px" }}
+                  sx={{ bgcolor: "white", width: "197px", marginRight: "32px" }}
                 >
                   <TextField
                     label="ตำแหน่ง"
@@ -386,7 +386,7 @@ const CreatePages = () => {
               </Grid>
               <Grid
                 xs={12}
-                sx={{ marginTop: "0px", marginRight: "20px" }}
+                sx={{ marginTop: "0px", marginRight: "40px" }}
                 container
                 direction="column"
                 justifyContent="center"
