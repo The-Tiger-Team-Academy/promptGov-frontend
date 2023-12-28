@@ -98,8 +98,8 @@ const AppBarComponent = ({ open }: AppBarComponentProps) => {
 
 
     return (
-        <AppBar position="fixed" style={appBarStyle.appBarStyle}>
-            <Container maxWidth="xl">
+        <AppBar position="fixed" style={appBarStyle.appBarStyle} >
+            <Container maxWidth="xl"  >
                 <Toolbar disableGutters >
                     <Box
                         component="img"

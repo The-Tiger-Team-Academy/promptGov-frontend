@@ -15,6 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
  <RootLayout>
       <SessionProvider>
       <AppBar open={open} router={router} />
+     
         <Component {...pageProps} />
       </SessionProvider>
     </RootLayout>
