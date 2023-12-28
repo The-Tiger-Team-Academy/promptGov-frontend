@@ -135,5 +135,4 @@ const useMessageRecord = (): messageRecord => {
     }
     return messageRecord;
 }
-
 export default useMessageRecord;

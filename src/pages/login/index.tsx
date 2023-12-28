@@ -1,13 +1,13 @@
 "use client";
-
 import React from "react";
 import { Container, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Box, Grid, Paper, Button } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import 'animate.css';
 import loginHook from '../../module/login/hook/login.hook';
-import useLoginStyles from "../../module/login/login.constants";
 import LoginStylePage from "../../module/login/login.style";
+import useLoginStyles from "../../module/login/login.constants";
+
 
 
 
@@ -45,6 +45,7 @@ export default function LoginPage() {
                       onClick={login}
                       fullWidth
                       sx={style.buttonStyles}
+
                     >
                       Login with Google
                     </Button>
