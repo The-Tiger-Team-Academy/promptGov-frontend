@@ -1,4 +1,5 @@
 import { SxProps } from '@mui/system';
+
 const boxContainerStyles = (isSmallScreen: boolean): SxProps => ({
   backgroundImage: 'url(https://i.postimg.cc/rsvTfqNR/runs-on-paper-a.png)',
   backgroundPosition: 'bottom left',
