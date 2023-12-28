@@ -169,8 +169,6 @@ const AppBarComponent = ({ open }: AppBarComponentProps) => {
                     </Typography>
                     <Box sx={appBarStyle.Box_md}>
                         {/* Home */}
-                        <CustomButton onClick={() => NavigatToPages(router, 'home')} icon={false} label="Home" />
-
                         {/* Payment */}
                         <CustomButton
                             onClick={() => NavigatToPages(router, 'payment')}
