@@ -1,43 +1,33 @@
-import { useState } from 'react';
-import axios from 'axios';
+import { useState } from "react";
+import axios from "axios";
 
 const useGenerate = () => {
-    const [chat, setChat] = useState('');
-    const [responsechat, setResponsechat] = useState(null);
+  const [chat, setChat] = useState("");
+  const [responsechat, setResponsechat] = useState("");
 
+  const generateDocument = async () => {
+    try {
+      const messageChar = chat;
 
-    const generateDocument = async () => {
-        try {
-          const message = chat;
-    
-          const response = await axios.post(
-            'http://127.0.0.1:8000/stream_chat/',// อันเป็น api ทดสอบของผมนะครับ เดี๋ยวผมมาเปลี่ยนให้ทีหลัง หลังจากที่ backend ได้ merge กับของผมแล้ว
-            { content: message },
-            {
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-              },
-            }
-          );
-    
-          const responseData = response.data;
-    
-          let currentIndex = 0;
-          const intervalId = setInterval(() => {
-            setResponsechat((prevResponse) => prevResponse + responseData[currentIndex]);
-            currentIndex++;
-    
-            if (currentIndex === responseData.length) {
-              clearInterval(intervalId);
-            }
-          }, 50);
-        } catch (error) {
-          console.error("Axios error:", error);
+      const response = await axios.post(
+        // "http://127.0.0.1:8000/gennrate_message_record",//เส้นทดสอบ
+         process.env.NEXT_PUBLIC_GENERATE_CONTENT || "",
+        { content: messageChar },
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
         }
-      };
+      );
+      setResponsechat(response.data.message.content);
+      console.log(response.data.message.content);
+    } catch (error) {
+      console.error("Axios error:", error);
+    }
+  };
 
-    return { chat, setChat, responsechat, generateDocument };
-}
+  return { chat, setChat, responsechat, generateDocument };
+};
 
 export default useGenerate;
