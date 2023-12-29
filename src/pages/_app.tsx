@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const open = true;
   return (
-    <RootLayout>
+ <RootLayout>
       <SessionProvider>
         <AppBar open={open} router={router} />
         <Component {...pageProps} />
@@ -21,5 +21,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     </RootLayout>
   );
 }
+
 
 export default MyApp;

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useRouter } from "next/router";
 import { useState } from "react";
 interface messageRecord {
   Nameuniversity: string;
@@ -36,9 +37,11 @@ interface messageRecord {
   setLevel: (Level: string) => void;
   setPosition: (Position: string) => void;
   handleSend: () => void;
+  goToPaymentPage: () => void;
 }
 
 const useMessageRecord = (): messageRecord => {
+  const router = useRouter();
   const [Nameuniversity, setNameuniversity] = useState("");
   const [Orgra, setOrgra] = useState("");
   const [Tel, setTel] = useState("");
@@ -86,12 +89,7 @@ const useMessageRecord = (): messageRecord => {
 
       if (response.status === 200) {
         const fileUrl = URL.createObjectURL(response.data);
-        const link = document.createElement("a");
-        link.href = fileUrl;
-        link.setAttribute("download", "generated.docx");
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        localStorage.setItem("messageRecord", fileUrl);
       } else {
         console.error("Failed to generate document");
       }
@@ -99,6 +97,11 @@ const useMessageRecord = (): messageRecord => {
       console.error("An error occurred", error);
     }
   };
+
+  const goToPaymentPage = () => {
+    handleSend();
+    router.push("/payment");
+  }
 
   const messageRecord = {
     Nameuniversity,
@@ -136,6 +139,7 @@ const useMessageRecord = (): messageRecord => {
     setLevel,
     setPosition,
     handleSend,
+    goToPaymentPage,
   };
   return messageRecord;
 };

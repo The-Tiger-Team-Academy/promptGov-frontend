@@ -1,24 +1,27 @@
-import React, { useState, useEffect } from 'react';// import { AppBar, Toolbar, IconButton } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import styles from "./appbar.style";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Tooltip from "@mui/material/Tooltip";
+import React, { useEffect, useState } from 'react';
+// import { AppBar, Toolbar, IconButton } from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
+import styles from './appbar.style';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
 import { NextRouter, useRouter } from "next/router";
-import signOut from "@/module/auth/services/signOut";
+import signOut from "../../module/auth/services/signOut";
 import HomeIcon from "@mui/icons-material/Home";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { MenuItem } from "@mui/material";
-import { set } from 'firebase/database';
+import { MenuItem, Tooltip } from '@mui/material';
+
+
+
+
 
 const NavigatToPages = (router: NextRouter, path: string) => {
   switch (path) {
@@ -162,11 +165,11 @@ const AppBarComponent = ({ open }: AppBarComponentProps) => {
               />
 
               {/* Payment */}
-              <CustomButton
+              {/* <CustomButton
                 onClick={() => NavigatToPages(router, "payment")}
                 icon={<AttachMoneyIcon />}
                 label="Payment"
-              />
+              /> */}
 
               {/* Create Document */}
               <CustomButton
@@ -190,13 +193,11 @@ const AppBarComponent = ({ open }: AppBarComponentProps) => {
             />
           </Typography>
           <Box sx={appBarStyle.Box_md}>
-            {/* Home */}
-            {/* Payment */}
-            <CustomButton
+            {/* <CustomButton
               onClick={() => NavigatToPages(router, "payment")}
               icon={false}
               label="Payment"
-            />
+            /> */}
 
             {/* Create Document */}
             <CustomButton

@@ -1,78 +1,73 @@
+import React from "react";
 import { Box, Button, Container, Grid, Paper, ThemeProvider, Typography, createTheme } from "@mui/material"
-import Image from 'next/image'
 import PaymentHook from "../../module/payment/hooks/payments.hook";
-import SuccessModel from "./components/successModal";
-import CancelModal from "./components/cancelModal";
-import HandleSuccessModal from "@/module/payment/hooks/handleSuccessModal";
-import HandleCancelModal from "@/module/payment/hooks/handleCancelModal";
+import EditIcon from '@mui/icons-material/Edit';
+import styles from '@/module/payment/payment.style'
+
 
 
 // TODO : should be move to a separate file
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#556cd6',
+            main: '#014D81',
         },
     },
 });
 
+interface PaymentComponentProps {
+    open: boolean;
+
+}
 
 // TODO : should be move to a separate file
-const PaymentPage = () => {
+const PaymentPage = ({ open }: PaymentComponentProps) => {
+    const payment = styles(open)
     const { handlePrizeClick } = PaymentHook();
-    const susscesMoadal = HandleSuccessModal(); 
-    const cancelModal = HandleCancelModal();
     return (
-        <div>this is payment page
-            <SuccessModel open={susscesMoadal.open} handleClose={susscesMoadal.handleClose}></SuccessModel>
-            <CancelModal open={cancelModal.open} handleClose={cancelModal.handleClose}></CancelModal>
-            <Container>
-                <button
-                    onClick={() =>
-                        handlePrizeClick("price_1OEtulAom1IgIvKKthyQ8DJV")
-                    }
-                >
-                    จ่ายเงิน
-                </button>
-                <ThemeProvider theme={theme}>
-                    <Container maxWidth="sm">
-                        <Box my={4} display="flex" flexDirection="column" alignItems="center">
-                            <Typography variant="h4" component="h1" gutterBottom>
-                                ตัวอย่างเอกสาร
-                            </Typography>
-                            <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}> 
-                                <Typography>
+        <div style={{ backgroundColor: '#FAFAFA' }}>
+            <ThemeProvider theme={theme} >
+                <Container >
+                    <Box sx={payment.BoxHeadtext}>
+                        <Typography gutterBottom sx={payment.TextOrderlist}>
+                            รายการสั่งซื้อ
+                        </Typography>
+                        <Box sx={payment.BoxHeadButton}>
+                            <Button variant="outlined">ยกเลิก</Button>
+                            <Button variant="contained" startIcon={<EditIcon />}>แก้ไข</Button>
+                        </Box>
+                    </Box>
+                    <Box my={1} sx={payment.BoxCenter}>
+                        <Grid container justifyContent="space-between" alignItems="center" sx={payment.Gridcontainer}>
+                            <Grid item xs={12} sm={6} md={8}>
+
+                            </Grid>
+                            <Grid item xs={12} sm={6} md={4} sx={payment.Griditem}>
+                            </Grid>
+                        </Grid>
+                        <Container maxWidth="sm" sx={payment.ImageContainer}>
+                            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                                <Button onClick={() => handlePrizeClick('price_1OSXziAom1IgIvKKJz0U4vbQ')} component="button" variant="contained" sx={payment.ButtonPay}>
+                                    PAY ฿30
+                                </Button>
+                            </Box>
+                            {/* <Box sx={payment.ImageBox}>
+                                <Box sx={payment.ImageBorder}>
                                     <Image
                                         src="/img/test.webp"
                                         width={500}
                                         height={500}
                                         alt="Picture of the author"
+                                        layout="intrinsic"
                                     />
-                                </Typography>
-                            </Paper>
-                            <Grid container spacing={2} style={{ marginTop: '20px' }}>
-                                <Grid item xs={12}>
-                                    {/* Buttons or other controls */}
-                                    <Button variant="contained" color="primary" onClick={() =>
-                                        handlePrizeClick("price_1OEtulAom1IgIvKKthyQ8DJV")
-                                    }>ดาวน์โหลด</Button>
-                                    <Button variant="contained" color="secondary">แก้ไข</Button>
-                                    <Button variant="contained" color="secondary" onClick={() => susscesMoadal.handleOpen()}> Check success</Button>
-                                    <Button variant="contained" color="secondary" onClick={() => cancelModal.handleOpen()}> Check cancel</Button>
-                                </Grid>
-                            </Grid>
-                        </Box>
-                    </Container>
-                    <Box component="footer" sx={{ bgcolor: 'background.paper', py: 6 }}>
-                        <Container maxWidth="lg">
-                            <Typography variant="subtitle1" align="center" color="text.secondary" component="p">
-                                หากคุณอยากขายสินค้า ดำเนินงานต่อ
-                            </Typography>
+                                </Box>
+                            </Box> */}
+                            {/* <Typography align="center">เอกสารขอความอนุเคราะห์ขอยืมฟูกนอน</Typography>
+                            <Typography align="center">กิจกรรม The Tiger Team Academy Camp 2023</Typography> */}
                         </Container>
                     </Box>
-                </ThemeProvider>
-            </Container>
-
+                </Container>
+            </ThemeProvider>
         </div>
     )
 
