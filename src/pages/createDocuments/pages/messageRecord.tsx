@@ -9,6 +9,15 @@ import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 import useGenerate from '@/module/createDocument/hook/useGenerate.hook';
 import useMessageRecord from '@/module/createDocument/hook/useMessageRecord.hook';
+import { Select, MenuItem } from '@mui/material';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
+
 
 const CreatePages = () => {
   const hook = useMessageRecord();
@@ -32,6 +41,13 @@ const CreatePages = () => {
     // hook.setStory(e.target.value as string);
     // setChat(e.target.value);
   };
+
+  const [หน่วยงาน, setAge] = React.useState('');
+  const [หน่วยงาน2, setAge2] = useState('');
+
+  const handleChange = (value: string, setState: { (value: React.SetStateAction<string>): void; (value: React.SetStateAction<string>): void; (arg0: any): void; }) => {
+    setState(value); 
+  }
 
   return (
     <React.Fragment>
@@ -70,13 +86,27 @@ const CreatePages = () => {
                 direction="column"
                 justifyContent="start"
                 alignItems="start">
-                <TextField
-                  label="หน่วยงาน"
-                  id="outlined-size-small"
-                  defaultValue=""
-                  size="small"
-                  value={hook.Orgra} onChange={(e) => hook.setOrgra(e.target.value)}
-                />
+
+                <FormControl 
+                size='small' 
+                style={{width: '200px'}}>
+                  <InputLabel id="demo-simple-select-label">หน่วยงาน</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={หน่วยงาน}
+                    label="หน่วยงาน"
+                    onChange={e => handleChange(e.target.value, setAge)}
+                  >
+                    <MenuItem value="ศูนย์กิจการนานาชาติ">ศูนย์กิจการนานาชาติ</MenuItem>
+                    <MenuItem value="ศูนย์คอมพิวเตอร์">ศูนย์คอมพิวเตอร์</MenuItem>
+                    <MenuItem value="ศูนย์เครื่องมือวิทยาศาสตร์และเทคโนโลยี">ศูนย์เครื่องมือวิทยาศาสตร์และเทคโนโลยี</MenuItem>
+                    <MenuItem value="ศูนย์บริการการศึกษา">ศูนย์บริการการศึกษา</MenuItem>
+                    <MenuItem value="ศูนย์บรรณสารและสื่อการศึกษา">ศูนย์บรรณสารและสื่อการศึกษา</MenuItem>
+                    <MenuItem value="ศูนย์นวัตกรรมและเทคโนโลยีการศึกษา">ศูนย์นวัตกรรมและเทคโนโลยีการศึกษา</MenuItem>
+                    <MenuItem value="ศูนย์สหกิจศึกษาและพัฒนาอาชีพ">ศูนย์สหกิจศึกษาและพัฒนาอาชีพ</MenuItem>
+                  </Select>
+                </FormControl>
               </Grid>
               <Grid xs={3}
                 sx={{ marginTop: '10px' }}
@@ -120,63 +150,20 @@ const CreatePages = () => {
                   value={Number} onChange={(e) => hook.setNumber(e.target.value)}
                 />
               </Grid>
-              <Grid xs={1}
+              <Grid xs={8}
                 sx={{ marginTop: '10px' }}
                 container
                 direction="column"
                 justifyContent="center"
                 alignItems="center">
+                         
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DemoContainer components={['DatePicker']}>
+                <DatePicker label="วัน/เดือน/ปี" />
+                </DemoContainer>
+              </LocalizationProvider>
+              </Grid>
 
-              </Grid>
-              <Grid xs={7}
-                sx={{ marginTop: '10px' }}
-                container
-                direction="row"
-                justifyContent="center"
-                alignItems="center">
-                <Grid xs={4}
-                  container
-                  direction="column"
-                  justifyContent="center"
-                  alignItems="center">
-                  <TextField
-                    label="วัน"
-                    id="outlined-size-small"
-                    defaultValue="12"
-                    fullWidth
-                    size='small'
-                    value={Date} onChange={(e) => hook.setDate(e.target.value)}
-                  />
-                </Grid>
-                <Grid xs={4}
-                  container
-                  direction="column"
-                  justifyContent="center"
-                  alignItems="center">
-                  <TextField
-                    label="เดือน"
-                    id="outlined-size-small"
-                    defaultValue="ธันวาคม"
-                    fullWidth
-                    size='small'
-                    value={hook.Month} onChange={(e) => hook.setMonth(e.target.value)}
-                  />
-                </Grid>
-                <Grid xs={4}
-                  container
-                  direction="column"
-                  justifyContent="center"
-                  alignItems="center">
-                  <TextField
-                    label="ปี"
-                    id="outlined-size-small"
-                    defaultValue="2566"
-                    fullWidth
-                    size='small'
-                    value={hook.Year} onChange={(e) => hook.setYear(e.target.value)}
-                  />
-                </Grid>
-              </Grid>
               <Grid xs={12}
                 sx={{ marginTop: '10px' }}
                 container
@@ -326,18 +313,31 @@ const CreatePages = () => {
                 </Box>
               </Grid>
               <Grid xs={12}
-                sx={{ marginTop: '0px', marginRight: '20px' }}
+                sx={{ marginTop: '0px', marginRight: '20px',paddingTop: '5px' }}
                 container
                 direction="column"
                 justifyContent="center"
                 alignItems="end">
-                <TextField
-                  label="หน่วยงาน"
-                  id="outlined-size-small"
-                  defaultValue=""
-                  size="small"
-                  value={hook.Position} onChange={(e) => hook.setPosition(e.target.value)}
-                />
+                <FormControl 
+                size='small' 
+                style={{width: '200px'}}>
+                  <InputLabel id="demo-simple-select-label">หน่วยงาน</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={หน่วยงาน2}
+                    label="หน่วยงาน"
+                    onChange={e => handleChange(e.target.value, setAge2)}
+                  >
+                    <MenuItem value="ศูนย์กิจการนานาชาติ">ศูนย์กิจการนานาชาติ</MenuItem>
+                    <MenuItem value="ศูนย์คอมพิวเตอร์">ศูนย์คอมพิวเตอร์</MenuItem>
+                    <MenuItem value="ศูนย์เครื่องมือวิทยาศาสตร์และเทคโนโลยี">ศูนย์เครื่องมือวิทยาศาสตร์และเทคโนโลยี</MenuItem>
+                    <MenuItem value="ศูนย์บริการการศึกษา">ศูนย์บริการการศึกษา</MenuItem>
+                    <MenuItem value="ศูนย์บรรณสารและสื่อการศึกษา">ศูนย์บรรณสารและสื่อการศึกษา</MenuItem>
+                    <MenuItem value="ศูนย์นวัตกรรมและเทคโนโลยีการศึกษา">ศูนย์นวัตกรรมและเทคโนโลยีการศึกษา</MenuItem>
+                    <MenuItem value="ศูนย์สหกิจศึกษาและพัฒนาอาชีพ">ศูนย์สหกิจศึกษาและพัฒนาอาชีพ</MenuItem>
+                  </Select>
+                </FormControl>
               </Grid>
             </Grid>
           </Box>
