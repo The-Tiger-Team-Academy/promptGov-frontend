@@ -18,10 +18,9 @@ export async function checkout(paymentDetails: PaymentStripe) {
       ],
       mode: 'payment',
       payment_method_types: ['card', 'promptpay'],
-      success_url: `${window.location.origin as any}/payments?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: window.location.origin as any
+      success_url: `${window.location.origin as any}/createDocuments/paperflow?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${window.location.origin as any}/createDocuments/paperflow?cancel=true`
     });
-
     return session.url
   }
 }

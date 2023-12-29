@@ -89,12 +89,7 @@ const useMessageRecord = (): messageRecord => {
 
       if (response.status === 200) {
         const fileUrl = URL.createObjectURL(response.data);
-        const link = document.createElement("a");
-        link.href = fileUrl;
-        link.setAttribute("download", "generated.docx");
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        localStorage.setItem("messageRecord", fileUrl);
       } else {
         console.error("Failed to generate document");
       }
@@ -104,6 +99,7 @@ const useMessageRecord = (): messageRecord => {
   };
 
   const goToPaymentPage = () => {
+    handleSend();
     router.push("/payment");
   }
 

@@ -2,8 +2,6 @@ import React from "react";
 import { Box, Button, Container, Grid, Paper, ThemeProvider, Typography, createTheme } from "@mui/material"
 import Image from 'next/image'
 import PaymentHook from "../../module/payment/hooks/payments.hook";
-import SuccessModel from "./components/successModal";
-import CancelModal from "./components/cancelModal";
 import HandleSuccessModal from "@/module/payment/hooks/handleSuccessModal";
 import HandleCancelModal from "@/module/payment/hooks/handleCancelModal";
 import EditIcon from '@mui/icons-material/Edit';
@@ -29,8 +27,6 @@ interface PaymentComponentProps {
 const PaymentPage = ({ open }: PaymentComponentProps) => {
     const payment = styles(open)
     const { handlePrizeClick } = PaymentHook();
-    const susscesMoadal = HandleSuccessModal();
-    const cancelModal = HandleCancelModal();
     return (
         <div style={{ backgroundColor: '#FAFAFA' }}>
             <ThemeProvider theme={theme} >
