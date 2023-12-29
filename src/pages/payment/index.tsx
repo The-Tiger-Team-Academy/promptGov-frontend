@@ -47,7 +47,7 @@ const PaymentPage = ({ open }: PaymentComponentProps) => {
                         </Grid>
                         <Container maxWidth="sm" sx={payment.ImageContainer}>
                             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                                <Button onClick={() => handlePrizeClick('price_1OSiSYEX8k2LI3RYYzbjlOAG')} component="button" variant="contained" sx={payment.ButtonPay}>
+                                <Button onClick={() => handlePrizeClick('price_1OSio8EX8k2LI3RY8b4UFGRG')} component="button" variant="contained" sx={payment.ButtonPay}>
                                     PAY ฿30
                                 </Button>
                             </Box>
