@@ -1,28 +1,29 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useRouter } from 'next/router';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useRouter } from "next/router";
 import signInWithGoogle from "@/module/auth/services/signInWithGoogle";
 
-
-
-
 const useCustomHook = () => {
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [img, setImage] = useState<string>('');
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [img, setImage] = useState<string>("");
   const router = useRouter();
+
+ 
 
   const postData = async () => {
     try {
-      const response = await axios.post(process.env.NEXT_PUBLIC_API_FASTAPI ?? '', {
-        name: name,
-        email: email,
-        img: img
-      });
-      console.log(response.data);
-      router.push('./createDocuments/paperflow');
+      const response = await axios.post(
+        // "http://127.0.0.1:8000/Users", //เส้นทดสอบ
+        `${process.env.NEXT_PUBLIC_BASEURL}/Users` ?? "",
+        {
+          name: name,
+          email: email,
+          img: img,
+        }
+      );
     } catch (error) {
-      console.error('Error while posting data:', error);
+      console.error("Error while posting data:", error);
     }
   };
 
@@ -30,12 +31,12 @@ const useCustomHook = () => {
     try {
       const result = await signInWithGoogle();
       if (result && result.user) {
-        router.push('./payment');
+        router.push("./createDocuments/paperflow");
         setName(result.user.displayName || "");
         setEmail(result.user.email || "");
         setImage(result.user.photoURL || "");
-        console.log(result);
-        alert("Login success");
+        localStorage.setItem('userImage', result.user.photoURL || "");
+        localStorage.setItem('userName', result.user.displayName || "");
       } else {
         console.log("No user data available");
       }
@@ -50,11 +51,9 @@ const useCustomHook = () => {
         await postData();
       }
     };
-
     postDataEffect();
 
-    return () => {
-    };
+    return () => {};
   }, [name, email, img, postData]);
 
   return { login, name, email, img };
