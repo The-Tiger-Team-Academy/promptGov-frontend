@@ -1,11 +1,8 @@
 import React from "react";
 import { Box, Button, Container, Grid, Paper, ThemeProvider, Typography, createTheme } from "@mui/material"
-import Image from 'next/image'
 import PaymentHook from "../../module/payment/hooks/payments.hook";
-import HandleSuccessModal from "@/module/payment/hooks/handleSuccessModal";
-import HandleCancelModal from "@/module/payment/hooks/handleCancelModal";
 import EditIcon from '@mui/icons-material/Edit';
-import styles from '@/pages/payment/payment.style'
+import styles from '@/module/payment/payment.style'
 
 
 
