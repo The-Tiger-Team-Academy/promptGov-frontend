@@ -50,13 +50,15 @@ const PaymentPage = ({ open }: PaymentComponentProps) => {
 
                             </Grid>
                             <Grid item xs={12} sm={6} md={4} sx={payment.Griditem}>
-                                <Button variant="contained" sx={payment.ButtonPay}>
-                                    PAY ฿30
-                                </Button>
                             </Grid>
                         </Grid>
                         <Container maxWidth="sm" sx={payment.ImageContainer}>
-                            <Box sx={payment.ImageBox}>
+                            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                                <Button onClick={() => handlePrizeClick('price_1OSXziAom1IgIvKKJz0U4vbQ')} component="button" variant="contained" sx={payment.ButtonPay}>
+                                    PAY ฿30
+                                </Button>
+                            </Box>
+                            {/* <Box sx={payment.ImageBox}>
                                 <Box sx={payment.ImageBorder}>
                                     <Image
                                         src="/img/test.webp"
@@ -66,9 +68,9 @@ const PaymentPage = ({ open }: PaymentComponentProps) => {
                                         layout="intrinsic"
                                     />
                                 </Box>
-                            </Box>
-                            <Typography align="center">เอกสารขอความอนุเคราะห์ขอยืมฟูกนอน</Typography>
-                            <Typography align="center">กิจกรรม The Tiger Team Academy Camp 2023</Typography>
+                            </Box> */}
+                            {/* <Typography align="center">เอกสารขอความอนุเคราะห์ขอยืมฟูกนอน</Typography>
+                            <Typography align="center">กิจกรรม The Tiger Team Academy Camp 2023</Typography> */}
                         </Container>
                     </Box>
                 </Container>
