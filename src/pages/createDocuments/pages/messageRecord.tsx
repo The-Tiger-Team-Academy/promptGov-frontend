@@ -424,7 +424,7 @@ const CreatePages = () => {
               ></Image>
             </Button>
           </Tooltip>
-          <Tooltip title="Download DOCX" onClick={hook.handleSend}>
+          <Tooltip title="Download DOCX" onClick={hook.goToPaymentPage}>
             <Button variant="outlined">
               <Image
                 src="/img/doc.png"
@@ -434,7 +434,7 @@ const CreatePages = () => {
               ></Image>
             </Button>
           </Tooltip>
-          <Tooltip title="Download PDF">
+          {/* <Tooltip title="Download PDF">
             <Button variant="outlined" color="error">
               <Image
                 src="/img/pdf.png"
@@ -443,7 +443,7 @@ const CreatePages = () => {
                 width={30}
               ></Image>
             </Button>
-          </Tooltip>
+          </Tooltip> */}
         </Box>
       </Container>
       <Dialog

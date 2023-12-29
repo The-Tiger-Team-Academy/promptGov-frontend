@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useRouter } from "next/router";
 import { useState } from "react";
 interface messageRecord {
   Nameuniversity: string;
@@ -36,9 +37,11 @@ interface messageRecord {
   setLevel: (Level: string) => void;
   setPosition: (Position: string) => void;
   handleSend: () => void;
+  goToPaymentPage: () => void;
 }
 
 const useMessageRecord = (): messageRecord => {
+  const router = useRouter();
   const [Nameuniversity, setNameuniversity] = useState("");
   const [Orgra, setOrgra] = useState("");
   const [Tel, setTel] = useState("");
@@ -100,6 +103,10 @@ const useMessageRecord = (): messageRecord => {
     }
   };
 
+  const goToPaymentPage = () => {
+    router.push("/payment");
+  }
+
   const messageRecord = {
     Nameuniversity,
     Orgra,
@@ -136,6 +143,7 @@ const useMessageRecord = (): messageRecord => {
     setLevel,
     setPosition,
     handleSend,
+    goToPaymentPage,
   };
   return messageRecord;
 };

@@ -165,11 +165,11 @@ const AppBarComponent = ({ open }: AppBarComponentProps) => {
               />
 
               {/* Payment */}
-              <CustomButton
+              {/* <CustomButton
                 onClick={() => NavigatToPages(router, "payment")}
                 icon={<AttachMoneyIcon />}
                 label="Payment"
-              />
+              /> */}
 
               {/* Create Document */}
               <CustomButton
@@ -193,13 +193,11 @@ const AppBarComponent = ({ open }: AppBarComponentProps) => {
             />
           </Typography>
           <Box sx={appBarStyle.Box_md}>
-            {/* Home */}
-            {/* Payment */}
-            <CustomButton
+            {/* <CustomButton
               onClick={() => NavigatToPages(router, "payment")}
               icon={false}
               label="Payment"
-            />
+            /> */}
 
             {/* Create Document */}
             <CustomButton
