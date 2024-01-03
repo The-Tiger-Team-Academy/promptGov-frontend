@@ -44,7 +44,6 @@ export default function LoginPage() {
                       onClick={login}
                       fullWidth
                       sx={style.buttonStyles}
-
                     >
                       Login with Google
                     </Button>

@@ -20,14 +20,16 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import MomentUtils from "@date-io/moment";
+import { MuiPickersUtilsProvider, DatePicker } from "material-ui-thai-datepickers";
 
-const CreatePages = () => {
+
+function CreatePages() {
   const hook = useMessageRecord();
   const { responsechat, generateDocument, chat, setChat } = useGenerate();
   const { handleSenddownload } = MessageRecordDownloadHook();
   const [isLoading, setIsLoading] = useState(false);
-  const { open, scroll, handleOpen, handleClose, descriptionElementRef } =
-    useScrollDialog();
+  const { open, scroll, handleOpen, handleClose, descriptionElementRef } = useScrollDialog();
 
   const geneRate = () => {
     generateDocument();
@@ -42,7 +44,7 @@ const CreatePages = () => {
   }, [responsechat]);
 
   const gettwoSet = (e: {
-    target: { value: React.SetStateAction<string> };
+    target: { value: React.SetStateAction<string>; };
   }) => {
     // TODO: เดี๋ยวมาแก้
     hook.setStory(e.target.value as string);
@@ -88,8 +90,7 @@ const CreatePages = () => {
                   defaultValue="มหาวิทยาลัยเทคโนโลยีสุรนารี"
                   size="small"
                   value={hook.Nameuniversity}
-                  onChange={(e) => hook.setNameuniversity(e.target.value)}
-                />
+                  onChange={(e) => hook.setNameuniversity(e.target.value)} />
               </Grid>
               <Grid
                 xs={4}
@@ -112,8 +113,7 @@ const CreatePages = () => {
                   defaultValue=""
                   size="small"
                   value={hook.Orgra}
-                  onChange={(e) => hook.setOrgra(e.target.value)}
-                />
+                  onChange={(e) => hook.setOrgra(e.target.value)} />
               </Grid>
               <Grid
                 xs={3}
@@ -129,8 +129,7 @@ const CreatePages = () => {
                   defaultValue=""
                   size="small"
                   value={hook.Tel}
-                  onChange={(e) => hook.setTel(e.target.value)}
-                />
+                  onChange={(e) => hook.setTel(e.target.value)} />
               </Grid>
               <Grid
                 xs={3}
@@ -146,8 +145,7 @@ const CreatePages = () => {
                   defaultValue=""
                   size="small"
                   value={hook.Sal}
-                  onChange={(e) => hook.setSal(e.target.value)}
-                />
+                  onChange={(e) => hook.setSal(e.target.value)} />
               </Grid>
               <Grid
                 xs={4}
@@ -163,8 +161,7 @@ const CreatePages = () => {
                   defaultValue=""
                   size="small"
                   value={hook.Number}
-                  onChange={(e) => hook.setNumber(e.target.value)}
-                />
+                  onChange={(e) => hook.setNumber(e.target.value)} />
               </Grid>
               <Grid
                 xs={1}
@@ -189,179 +186,142 @@ const CreatePages = () => {
                   justifyContent="center"
                   alignItems="center"
                 >
-                  <TextField
-                    label="วัน"
-                    id="outlined-size-small"
-                    defaultValue="12"
-                    fullWidth
-                    size="small"
-                    value={hook.Date}
-                    onChange={(e) => hook.setDate(e.target.value)}
-                  />
+                  <Grid>
+                    <MuiPickersUtilsProvider utils={MomentUtils} locale={'th'}>
+                      <DatePicker
+                        label="with B.E. yearOffset"
+                        format="dd/MM/YYYY"
+                        pickerHeaderFormat="ddd D MMM"
+                        yearOffset={543}
+                      />
+                    </MuiPickersUtilsProvider>
+                  </Grid>
                 </Grid>
                 <Grid
-                  xs={4}
+                  xs={12}
+                  sx={{ marginTop: "10px" }}
                   container
                   direction="column"
                   justifyContent="center"
                   alignItems="center"
                 >
                   <TextField
-                    label="เดือน"
-                    id="outlined-size-small"
-                    defaultValue="ธันวาคม"
-                    fullWidth
-                    size="small"
-                    value={hook.Month}
-                    onChange={(e) => hook.setMonth(e.target.value)}
-                  />
-                </Grid>
-                <Grid
-                  xs={4}
-                  container
-                  direction="column"
-                  justifyContent="center"
-                  alignItems="center"
-                >
-                  <TextField
-                    label="ปี"
-                    id="outlined-size-small"
-                    defaultValue="2566"
-                    fullWidth
-                    size="small"
-                    value={hook.Year}
-                    onChange={(e) => hook.setYear(e.target.value)}
-                  />
-                </Grid>
-              </Grid>
-              <Grid
-                xs={12}
-                sx={{ marginTop: "10px" }}
-                container
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <TextField
-                  label="เรื่อง"
-                  id="outlined-size-small"
-                  defaultValue=""
-                  fullWidth
-                  size="small"
-                  value={chat}
-                  onChange={gettwoSet}
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                sx={{
-                  marginTop: "10px",
-                  backgroundColor: "black",
-                  width: "100%",
-                  height: "1px",
-                }}
-                container
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-              ></Grid>
-              <Grid
-                xs={5}
-                sx={{ marginTop: "10px" }}
-                container
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <TextField
-                  label="เรียน"
-                  id="outlined-size-small"
-                  defaultValue=""
-                  fullWidth
-                  size="small"
-                  value={hook.Person}
-                  onChange={(e) => hook.setPerson(e.target.value)}
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                sx={{ marginTop: "10px" }}
-                container
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <TextField
-                  label="เนื้อหา"
-                  id="outlined-size-small"
-                  defaultValue=""
-                  fullWidth
-                  size="small"
-                  multiline
-                  rows={5}
-                  value={hook.P1}
-                  onChange={(e) => hook.setP1(e.target.value)}
-                  InputProps={{
-                    endAdornment: (
-                      <Tooltip title="Generate content">
-                        <IconButton aria-label="delete" onClick={geneRate}>
-                          {isLoading ? (
-                            <CircularProgress size={20} color="primary" />
-                          ) : (
-                            <AssistantIcon color="primary" />
-                          )}
-                        </IconButton>
-                      </Tooltip>
-                    ),
-                  }}
-                />
-              </Grid>
-              <Grid
-                xs={3}
-                container
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-              ></Grid>
-              <Grid
-                xs={6}
-                sx={{ marginTop: "10px" }}
-                container
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <p style={{ fontSize: "12px", fontWeight: "bold" }}>
-                  จึงเรียนมาเพื่อโปรดพิจารณาให้ความอนุเคราะห์
-                </p>
-              </Grid>
-              <Grid
-                xs={3}
-                container
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-              ></Grid>
-              <Grid
-                xs={12}
-                sx={{ marginTop: "10px", marginRight: "5px" }}
-                container
-                direction="column"
-                justifyContent="center"
-                alignItems="end"
-              >
-                <Box
-                  sx={{ bgcolor: "white", width: "150px", marginRight: "70px" }}
-                >
-                  <TextField
-                    label="ชื่อ-นามสกุล"
+                    label="เรื่อง"
                     id="outlined-size-small"
                     defaultValue=""
+                    fullWidth
                     size="small"
-                    value={hook.Licent}
-                    onChange={(e) => hook.setLicent(e.target.value)}
-                  />
-                </Box>
+                    value={chat}
+                    onChange={gettwoSet} />
+                </Grid>
+                <Grid
+                  xs={12}
+                  sx={{
+                    marginTop: "10px",
+                    backgroundColor: "black",
+                    width: "100%",
+                    height: "1px",
+                  }}
+                  container
+                  direction="column"
+                  justifyContent="center"
+                  alignItems="center"
+                ></Grid>
+                <Grid
+                  xs={5}
+                  sx={{ marginTop: "10px" }}
+                  container
+                  direction="column"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <TextField
+                    label="เรียน"
+                    id="outlined-size-small"
+                    defaultValue=""
+                    fullWidth
+                    size="small"
+                    value={hook.Person}
+                    onChange={(e) => hook.setPerson(e.target.value)} />
+                </Grid>
+                <Grid
+                  xs={12}
+                  sx={{ marginTop: "10px" }}
+                  container
+                  direction="column"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <TextField
+                    label="เนื้อหา"
+                    id="outlined-size-small"
+                    defaultValue=""
+                    fullWidth
+                    size="small"
+                    multiline
+                    rows={5}
+                    value={hook.P1}
+                    onChange={(e) => hook.setP1(e.target.value)}
+                    InputProps={{
+                      endAdornment: (
+                        <Tooltip title="Generate content">
+                          <IconButton aria-label="delete" onClick={geneRate}>
+                            {isLoading ? (
+                              <CircularProgress size={20} color="primary" />
+                            ) : (
+                              <AssistantIcon color="primary" />
+                            )}
+                          </IconButton>
+                        </Tooltip>
+                      ),
+                    }} />
+                </Grid>
+                <Grid
+                  xs={3}
+                  container
+                  direction="column"
+                  justifyContent="center"
+                  alignItems="center"
+                ></Grid>
+                <Grid
+                  xs={6}
+                  sx={{ marginTop: "10px" }}
+                  container
+                  direction="column"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <p style={{ fontSize: "12px", fontWeight: "bold" }}>
+                    จึงเรียนมาเพื่อโปรดพิจารณาให้ความอนุเคราะห์
+                  </p>
+                </Grid>
+                <Grid
+                  xs={3}
+                  container
+                  direction="column"
+                  justifyContent="center"
+                  alignItems="center"
+                ></Grid>
+                <Grid
+                  xs={12}
+                  sx={{ marginTop: "10px", marginRight: "5px" }}
+                  container
+                  direction="column"
+                  justifyContent="center"
+                  alignItems="end"
+                >
+                  <Box
+                    sx={{ bgcolor: "white", width: "150px", marginRight: "70px" }}
+                  >
+                    <TextField
+                      label="ชื่อ-นามสกุล"
+                      id="outlined-size-small"
+                      defaultValue=""
+                      size="small"
+                      value={hook.Licent}
+                      onChange={(e) => hook.setLicent(e.target.value)} />
+                  </Box>
+                </Grid>
               </Grid>
               <Grid
                 xs={12}
@@ -380,8 +340,7 @@ const CreatePages = () => {
                     defaultValue=""
                     size="small"
                     value={hook.Level}
-                    onChange={(e) => hook.setLevel(e.target.value)}
-                  />
+                    onChange={(e) => hook.setLevel(e.target.value)} />
                 </Box>
               </Grid>
               <Grid
@@ -398,8 +357,7 @@ const CreatePages = () => {
                   defaultValue=""
                   size="small"
                   value={hook.Position}
-                  onChange={(e) => hook.setPosition(e.target.value)}
-                />
+                  onChange={(e) => hook.setPosition(e.target.value)} />
               </Grid>
             </Grid>
           </Box>
@@ -477,6 +435,6 @@ const CreatePages = () => {
       </Dialog>
     </React.Fragment>
   );
-};
+}
 
 export default CreatePages;
