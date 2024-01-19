@@ -7,12 +7,11 @@ export default function Footer() {
   return (
     <Box
       sx={{
-        backgroundColor: "#6699FF",
+        backgroundColor: "#014D81",
         color: "white",
         height: "150px",
         display: "flex",
         alignItems: "center",
-        marginTop: "50px",
       }}
       component="footer"
     >
@@ -21,9 +20,8 @@ export default function Footer() {
           {"Copyright © "}
           <Link color="inherit" href="https://your-website.com/">
             PromtGov
-          </Link>{" "}
+          </Link>
           {new Date().getFullYear()}
-          {"."}
         </Typography>
       </Container>
     </Box>

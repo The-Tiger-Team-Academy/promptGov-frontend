@@ -10,8 +10,8 @@ const useGenerate = () => {
       const messageChar = chat;
 
       const response = await axios.post(
-        // "http://127.0.0.1:8000/gennrate_message_record",//เส้นทดสอบ
-         `${process.env.NEXT_PUBLIC_BASEURL}/gennrate_message_record` || "",
+        "http://127.0.0.1:8000/gennrate_message_record",//เส้นทดสอบ
+        //  `${process.env.NEXT_PUBLIC_BASEURL}/gennrate_message_record` || "",
         { content: messageChar },
         {
           headers: {

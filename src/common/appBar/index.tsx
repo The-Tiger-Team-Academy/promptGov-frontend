@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 // import { AppBar, Toolbar, IconButton } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
-import styles from './appbar.style';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
+import MenuIcon from "@mui/icons-material/Menu";
+import styles from "./appbar.style";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
 import { NextRouter, useRouter } from "next/router";
 import signOut from "../../module/auth/services/signOut";
 import HomeIcon from "@mui/icons-material/Home";
@@ -17,11 +17,8 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { MenuItem, Tooltip } from '@mui/material';
-
-
-
-
+import { MenuItem, Tooltip } from "@mui/material";
+import RestoreIcon from '@mui/icons-material/Restore';
 
 const NavigatToPages = (router: NextRouter, path: string) => {
   switch (path) {
@@ -32,7 +29,7 @@ const NavigatToPages = (router: NextRouter, path: string) => {
       router.push("/payment");
       break;
     case "createDocuments":
-      router.push("/createDocuments/paperflow");
+      router.push("/createDocuments");
       break;
     case "settings":
       router.push("/settings");
@@ -78,7 +75,7 @@ interface AppBarComponentProps {
 
 const AppBarComponent = ({ open }: AppBarComponentProps) => {
   const router = useRouter();
-  const appBarStyle = styles(open);
+  const appBarStyle = styles();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -86,6 +83,9 @@ const AppBarComponent = ({ open }: AppBarComponentProps) => {
     null
   );
 
+  const goHome = () => {
+    router.push("/createDocuments/paperflow");
+  };
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -107,29 +107,30 @@ const AppBarComponent = ({ open }: AppBarComponentProps) => {
     router.push("/");
   };
 
-  const [userImage, setUserImage] = useState('');
-  const [userName, setUserName] = useState('');
+  const [userImage, setUserImage] = useState("");
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
-    const savedImage = localStorage.getItem('userImage');
-    const savedName = localStorage.getItem('userName');
+    const savedImage = localStorage.getItem("userImage");
+    const savedName = localStorage.getItem("userName");
     if (savedImage && savedName) {
-      setUserImage(savedImage ?? '');
-      setUserName(savedName ?? '');
+      setUserImage(savedImage ?? "");
+      setUserName(savedName ?? "");
     }
   }, []);
 
   return (
-    <AppBar position="fixed" style={appBarStyle.appBarStyle}>
+    <AppBar position="relative" style={appBarStyle.appBarStyle}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box
-            component="img"
-            sx={appBarStyle.Logo_xs}
-            alt="PromptGov"
-            src="https://i.postimg.cc/k41vFCpP/Logo-Prompt-Gov.png"
-          />
-
+          <Tooltip title="" onClick={goHome}>
+            <Box
+              component="img"
+              sx={appBarStyle.Logo_xs}
+              alt="PromptGov"
+              src="https://i.postimg.cc/k41vFCpP/Logo-Prompt-Gov.png"
+            />
+          </Tooltip>
           <Box sx={appBarStyle.Box_xs}>
             <IconButton
               size="large"
@@ -177,6 +178,11 @@ const AppBarComponent = ({ open }: AppBarComponentProps) => {
                 icon={<AddCircleOutlineIcon />}
                 label="Create Document"
               />
+              {/* <CustomButton
+                onClick={() => NavigatToPages(router, "History")}
+                icon={<RestoreIcon />}
+                label="History"
+              /> */}
             </Menu>
           </Box>
           <Typography
@@ -205,6 +211,11 @@ const AppBarComponent = ({ open }: AppBarComponentProps) => {
               icon={false}
               label="Create Document"
             />
+            {/* <CustomButton
+              onClick={() => NavigatToPages(router, "History")}
+              icon={false}
+              label="History"
+            /> */}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title={userName}>

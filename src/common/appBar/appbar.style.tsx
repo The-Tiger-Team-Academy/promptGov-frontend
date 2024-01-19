@@ -1,12 +1,7 @@
 import appBarConstants from "./appBar.constants";
 
-
-
-const styles = (open: boolean) => ({
+const styles = () => ({
     appBarStyle: {
-        // marginLeft: open ? appBarConstants.drawerWidth : appBarConstants.minimizedWidth,
-        // width: open ? `calc(100% - ${appBarConstants.drawerWidth}px)` : `calc(100% - ${appBarConstants.minimizedWidth}px)`,
-        // transition: 'margin 0.3s ease, width 0.3s ease',
         margin: 0,
         backgroundColor: 'white',
         borderWidth: 0,
@@ -14,7 +9,8 @@ const styles = (open: boolean) => ({
         borderStyle: 'solid',
         backdropFilter: 'blur(8px)',
         boxShadow: '0px 4px 12px -4px rgba(0, 0, 0, 0.25);',
-        borderBottomWidth: 'thin'
+        borderBottomWidth: 'thin',
+        display: 'flex',
     },
     Logo_xs: {
         height: 27,

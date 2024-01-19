@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -32,11 +32,13 @@ const CreatePages = () => {
   const geneRate = () => {
     generateDocument();
     setIsLoading(true);
+    setShowLoadingCat(!showLoadingCat);
   };
 
   useEffect(() => {
     if (responsechat) {
       setIsLoading(false);
+      setShowLoadingCat(false);
       hook.setP1(responsechat);
     }
   }, [responsechat]);
@@ -44,19 +46,57 @@ const CreatePages = () => {
   const gettwoSet = (e: {
     target: { value: React.SetStateAction<string> };
   }) => {
-    // TODO: เดี๋ยวมาแก้
     hook.setStory(e.target.value as string);
     setChat(e.target.value);
+  };
+
+  const [showLoadingCat, setShowLoadingCat] = useState(false);
+  const LoadingCat = () => {
+      const audioRef = useRef<HTMLAudioElement>(null);
+
+      useEffect(() => {
+        // Play audio when the component mounts
+        if (audioRef.current) {
+          audioRef.current.play();
+        }
+    
+        // Return a cleanup function to stop and reset audio when the component unmounts
+        return () => {
+          if (audioRef.current) {
+            audioRef.current.pause();
+            audioRef.current.currentTime = 0;
+          }
+        };
+      }, []);
+  
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+          width: "100%",
+          position: "absolute",
+          backgroundColor:'white'
+        }}
+      >
+        <img
+          src="https://cdn.dribbble.com/users/566817/screenshots/2280275/media/39ebef761528920581bb98a35709676c.gif"
+          alt="Loading cat animation"
+          style={{ borderRadius: "10px", overflow: "hidden",backgroundColor:'white' }}
+        />
+        <audio ref={audioRef} src="/mp3/taratata-6264.mp3" loop />
+      </div>
+    );
   };
 
   return (
     <React.Fragment>
       <CssBaseline />
+      {showLoadingCat && <LoadingCat />}
       <Container
         maxWidth="sm"
-        sx={{
-          marginTop: "70px",
-        }}
       >
         <Box
           sx={{
@@ -424,7 +464,7 @@ const CreatePages = () => {
               ></Image>
             </Button>
           </Tooltip>
-          <Tooltip title="Download DOCX" onClick={hook.goToPaymentPage}>
+          <Tooltip title="Download DOCX" onClick={hook.previewpdfPage}>
             <Button variant="outlined">
               <Image
                 src="/img/doc.png"

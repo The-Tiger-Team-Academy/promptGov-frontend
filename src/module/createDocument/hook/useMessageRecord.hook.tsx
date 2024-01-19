@@ -37,7 +37,7 @@ interface messageRecord {
   setLevel: (Level: string) => void;
   setPosition: (Position: string) => void;
   handleSend: () => void;
-  goToPaymentPage: () => void;
+  previewpdfPage: () => void;
 }
 
 const useMessageRecord = (): messageRecord => {
@@ -63,8 +63,8 @@ const useMessageRecord = (): messageRecord => {
   const handleSend = async () => {
     try {
       const response = await axios.post(
-        // "http://127.0.0.1:8000/create_doc/messageRecord",//เส้นทดสอบ
-        `${process.env.NEXT_PUBLIC_BASEURL}/create_doc/messageRecord/` || "",
+        "http://127.0.0.1:8000/create_doc/messageRecord",//เส้นทดสอบ
+        // `${process.env.NEXT_PUBLIC_BASEURL}/create_doc/messageRecord/` || "",
         {
           NAMEUNIVERSITY: Nameuniversity,
           ORGRA: Orgra,
@@ -82,14 +82,10 @@ const useMessageRecord = (): messageRecord => {
           LEVEL: Level,
           POSITION: Position,
         },
-        {
-          responseType: "blob",
-        }
       );
-
       if (response.status === 200) {
-        const fileUrl = URL.createObjectURL(response.data);
-        localStorage.setItem("messageRecord", fileUrl);
+          localStorage.setItem('url_docx', response.data.url || "");
+          localStorage.setItem('url_pdf', response.data.url_pdf || "");
       } else {
         console.error("Failed to generate document");
       }
@@ -98,9 +94,9 @@ const useMessageRecord = (): messageRecord => {
     }
   };
 
-  const goToPaymentPage = () => {
+  const previewpdfPage = () => {
     handleSend();
-    router.push("/payment");
+    router.push("/previewPage");
   }
 
   const messageRecord = {
@@ -139,7 +135,7 @@ const useMessageRecord = (): messageRecord => {
     setLevel,
     setPosition,
     handleSend,
-    goToPaymentPage,
+    previewpdfPage,
   };
   return messageRecord;
 };
