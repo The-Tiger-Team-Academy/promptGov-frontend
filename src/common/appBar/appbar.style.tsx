@@ -2,7 +2,9 @@ import appBarConstants from "./appBar.constants";
 
 
 
+
 const styles = (open: boolean) => ({
+    
     appBarStyle: {
         // marginLeft: open ? appBarConstants.drawerWidth : appBarConstants.minimizedWidth,
         // width: open ? `calc(100% - ${appBarConstants.drawerWidth}px)` : `calc(100% - ${appBarConstants.minimizedWidth}px)`,
@@ -14,7 +16,8 @@ const styles = (open: boolean) => ({
         borderStyle: 'solid',
         backdropFilter: 'blur(8px)',
         boxShadow: '0px 4px 12px -4px rgba(0, 0, 0, 0.25);',
-        borderBottomWidth: 'thin'
+        borderBottomWidth: 'thin',
+        fontFamily: '"Kanit", sans-serif',
     },
     Logo_xs: {
         height: 27,
