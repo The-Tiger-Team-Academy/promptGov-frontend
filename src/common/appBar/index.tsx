@@ -20,6 +20,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { MenuItem, Tooltip } from "@mui/material";
 import RestoreIcon from '@mui/icons-material/Restore';
 
+
 const NavigatToPages = (router: NextRouter, path: string) => {
   switch (path) {
     case "home":
@@ -30,6 +31,9 @@ const NavigatToPages = (router: NextRouter, path: string) => {
       break;
     case "createDocuments":
       router.push("/createDocuments");
+      break;
+    case "history":
+      router.push("/history");
       break;
     case "settings":
       router.push("/settings");
@@ -173,7 +177,7 @@ const AppBarComponent = ({ open }: AppBarComponentProps) => {
               /> */}
 
               {/* Create Document */}
-              <CustomButton
+              <CustomButton 
                 onClick={() => NavigatToPages(router, "createDocuments")}
                 icon={<AddCircleOutlineIcon />}
                 label="Create Document"
@@ -211,11 +215,15 @@ const AppBarComponent = ({ open }: AppBarComponentProps) => {
               icon={false}
               label="Create Document"
             />
-            {/* <CustomButton
-              onClick={() => NavigatToPages(router, "History")}
-              icon={false}
-              label="History"
-            /> */}
+            <Box sx={{}}>
+              {/* ประวัติการสั่งซื้อ */}
+              <CustomButton
+                onClick={() => NavigatToPages(router, "history")}
+                icon={false}
+                label="ประวัติการสั่งซื้อ"
+              />
+            </Box>
+
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title={userName}>

@@ -10,7 +10,7 @@ const styles = () => ({
         backdropFilter: 'blur(8px)',
         boxShadow: '0px 4px 12px -4px rgba(0, 0, 0, 0.25);',
         borderBottomWidth: 'thin',
-        display: 'flex',
+        fontFamily: '"Kanit", sans-serif',
     },
     Logo_xs: {
         height: 27,
