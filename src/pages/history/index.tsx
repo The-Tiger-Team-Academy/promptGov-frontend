@@ -38,7 +38,7 @@ const columns: GridColDef[] = [
 const Index = () => {
   const { data } = useHistory();
   const rows: readonly any[] = data.map((item, index) => ({
-    ...item,
+    ...(typeof item === 'object' ? item : {}),
     id: index, // Ensure there is an 'id' field for DataGrid to work correctly
   }));
 
