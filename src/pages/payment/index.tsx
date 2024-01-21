@@ -51,19 +51,6 @@ const PaymentPage = ({ open }: PaymentComponentProps) => {
                                     PAY ฿30
                                 </Button>
                             </Box>
-                            {/* <Box sx={payment.ImageBox}>
-                                <Box sx={payment.ImageBorder}>
-                                    <Image
-                                        src="/img/test.webp"
-                                        width={500}
-                                        height={500}
-                                        alt="Picture of the author"
-                                        layout="intrinsic"
-                                    />
-                                </Box>
-                            </Box> */}
-                            {/* <Typography align="center">เอกสารขอความอนุเคราะห์ขอยืมฟูกนอน</Typography>
-                            <Typography align="center">กิจกรรม The Tiger Team Academy Camp 2023</Typography> */}
                         </Container>
                     </Box>
                 </Container>

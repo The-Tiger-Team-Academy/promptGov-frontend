@@ -1,69 +1,69 @@
-import { Container, Box } from "@mui/material"
-import * as React from 'react';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import styles from "./index.module.css"
+import { Container, Box, Button } from "@mui/material";
+import React from "react";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import styles from "./index.module.css";
+import useHistory from "../../module/history/hook/gethis.hook";
 
+const display = 1000;
+// TODO : should be move to a separate file
 const columns: GridColDef[] = [
-    {
-        field: 'document',
-        headerName: 'รายชื่อเอกสาร',
-        width: 1100,
-        editable: false,
-        renderCell: (params) => (
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <img src="/img/doc.png" alt="Doc" style={{ height: 30, width: 30 }} />
-                {params.value}
-            </Box>
-        ),
+  {
+    field: "document",
+    headerName: "รายชื่อเอกสาร",
+    width: display,
+    editable: false,
+    renderCell: (params) => {
+      // Define the handleClick function
+      const handleClick = () => {
+        const url = params.row.url; // Assuming 'url' is part of your row data
+        window.open(url, "_blank"); // Open the URL in a new tab
+      };
+
+      return (
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }} onClick={handleClick}>
+          <img
+            src="/img/doc.png"
+            alt="Doc"
+            style={{ height: 30, width: 30 }}
+            onClick={handleClick}
+          />
+          <span onClick={handleClick}>{params.value}</span>
+        </Box>
+      );
     },
-    
+  },
+
 ];
 
-const rows = [
-    { id: 1, document: 'เอกสารบันทึกข้อความ มหาวิทยาลัยเทคโนโลยีสุรนารี' },
-    { id: 2, document: 'เอกสารสําคัญ มหาวิทยาลัยเทคโนโลยีสุรนารี' },
-    { id: 3, document: 'เอกสารด่วน และสําคัญมหาวิทยาลัยเทคโนโลยีสุรนารี' },
-    { id: 4, document: 'เอกสารขอความอนุเคราะห์ มหาวิทยาลัยเทคโนโลยีสุรนารี' },
-    { id: 5, document: 'เอกสารราชการ มหาวิทยาลัยเทคโนโลยีสุรนารี' },
-    { id: 6, document: 'เอกสารเพื่อใช้สําหรับยืมอุปกรณ์ มหาวิทยาลัยเทคโนโลยีสุรนารี' },
-    { id: 7, document: 'เอกสารขอใช้ยานพาหนะออกนอกสถานที่ มหาวิทยาลัยเทคโนโลยีสุรนารี' },
-    { id: 8, document: 'เอกสารบันทึกข้อความ มหาวิทยาลัยเทคโนโลยีสุรนารี' },
-    { id: 9, document: 'เอกสารสําคัญ มหาวิทยาลัยเทคโนโลยีสุรนารี' },
-    { id: 10, document: 'เอกสารด่วน และสําคัญมหาวิทยาลัยเทคโนโลยีสุรนารี' },
-    { id: 11, document: 'เอกสารขอความอนุเคราะห์ มหาวิทยาลัยเทคโนโลยีสุรนารี' },
-    { id: 12, document: 'เอกสารราชการ มหาวิทยาลัยเทคโนโลยีสุรนารี' },
-    { id: 13, document: 'เอกสารเพื่อใช้สําหรับยืนอุปกรณ์ มหาวิทยาลัยเทคโนโลยีสุรนารี' },
-    { id: 14, document: 'เอกสารขอใช้ยานพาหนะออกนอกสถานที่ มหาวิทยาลัยเทคโนโลยีสุรนารี' },
-    { id: 15, document: 'เอกสารสําคัญ มหาวิทยาลัยเทคโนโลยีสุรนารี' },
-    { id: 16, document: 'เอกสารสําคัญ มหาวิทยาลัยเทคโนโลยีสุรนารี' },
-    { id: 17, document: 'เอกสารสําคัญ มหาวิทยาลัยเทคโนโลยีสุรนารี' },
-];
+const Index = () => {
+  const { data } = useHistory();
+  const rows: readonly any[] = data.map((item, index) => ({
+    ...item,
+    id: index, // Ensure there is an 'id' field for DataGrid to work correctly
+  }));
 
+  return (
+    <Container className={styles.font}>
+      <Box sx={{ marginTop: "px" }}>
+        <h1 className={styles.font}>ประวัติการสั่งซื้อ</h1>
+      </Box>
+      <Box sx={{ height: 600, width: "100%" }}>
+        <DataGrid
+          className={styles.font}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 100,
+              },
+            },
+          }}
+          pageSizeOptions={[20]}
+          rows={rows}
+        />
+      </Box>
+    </Container>
+  );
+};
 
-const index = () => {
-    return (
-        <Container className={styles.font}>
-            <Box sx={{ marginTop: "px" }} >
-                <h1 className={styles.font}>ประวัติการสั่งซื้อ</h1>
-            </Box>
-            <Box sx={{ height: 600, width: '100%' }} >
-                <DataGrid className={styles.font}
-                    rows={rows}
-                    columns={columns}
-                    initialState={{
-                        pagination: {
-                            paginationModel: {
-                                pageSize: 100,
-                            },
-                        },
-                    }}
-                    pageSizeOptions={[20]}
-        
-                />
-            </Box>
-        </Container>
-    )
-
-}
-
-export default index
+export default Index;

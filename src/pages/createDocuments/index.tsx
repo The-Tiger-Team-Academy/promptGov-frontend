@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import CancelModal from "./components/cancelModal";
 import SuccessModel from "./components/successModal";
 import Footer from "../../common/footer";
+import Urlmessagerecord from "@/module/payment/hooks/Urlmessagerecord";
 
 // TODO : This function should be moved to a separate file
 const NavigatToPages = (router: NextRouter, path: string) => {
@@ -30,14 +31,14 @@ const NavigatToPages = (router: NextRouter, path: string) => {
 const Paper = () => {
   const router = useRouter();
   const { session_id, cancel } = router.query;
-
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [showCancelDialog, setShowCancelDialog] = useState(false);
 
   useEffect(() => {
     if (session_id) {
+      Urlmessagerecord();
       setShowSuccessDialog(true);
-      const fileUrl = localStorage.getItem("messageRecord") || "";
+      const fileUrl = localStorage.getItem("url_docx") || "";
       const link = document.createElement("a");
       link.href = fileUrl;
       link.setAttribute("download", "generated.docx");

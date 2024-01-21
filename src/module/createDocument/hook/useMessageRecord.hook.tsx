@@ -63,8 +63,8 @@ const useMessageRecord = (): messageRecord => {
   const handleSend = async () => {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/create_doc/messageRecord",//เส้นทดสอบ
-        // `${process.env.NEXT_PUBLIC_BASEURL}/create_doc/messageRecord/` || "",
+        // "http://127.0.0.1:8000/create_doc/messageRecord",//เส้นทดสอบ
+        `${process.env.NEXT_PUBLIC_BASEURL}/create_doc/messageRecord/` || "",
         {
           NAMEUNIVERSITY: Nameuniversity,
           ORGRA: Orgra,
@@ -86,6 +86,7 @@ const useMessageRecord = (): messageRecord => {
       if (response.status === 200) {
           localStorage.setItem('url_docx', response.data.url || "");
           localStorage.setItem('url_pdf', response.data.url_pdf || "");
+          localStorage.setItem('nameDoc', Story || "")
       } else {
         console.error("Failed to generate document");
       }

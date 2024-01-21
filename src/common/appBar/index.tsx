@@ -9,17 +9,13 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import { NextRouter, useRouter } from "next/router";
 import signOut from "../../module/auth/services/signOut";
 import HomeIcon from "@mui/icons-material/Home";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { MenuItem, Tooltip } from "@mui/material";
-import RestoreIcon from '@mui/icons-material/Restore';
-
 
 const NavigatToPages = (router: NextRouter, path: string) => {
   switch (path) {
@@ -88,7 +84,7 @@ const AppBarComponent = ({ open }: AppBarComponentProps) => {
   );
 
   const goHome = () => {
-    router.push("/createDocuments/paperflow");
+    router.push("/createDocuments");
   };
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -168,25 +164,16 @@ const AppBarComponent = ({ open }: AppBarComponentProps) => {
                 icon={<HomeIcon />}
                 label="Home"
               />
-
-              {/* Payment */}
-              {/* <CustomButton
-                onClick={() => NavigatToPages(router, "payment")}
-                icon={<AttachMoneyIcon />}
-                label="Payment"
-              /> */}
-
-              {/* Create Document */}
-              <CustomButton 
+              <CustomButton
                 onClick={() => NavigatToPages(router, "createDocuments")}
                 icon={<AddCircleOutlineIcon />}
                 label="Create Document"
               />
-              {/* <CustomButton
-                onClick={() => NavigatToPages(router, "History")}
-                icon={<RestoreIcon />}
-                label="History"
-              /> */}
+              <CustomButton
+                onClick={() => NavigatToPages(router, "history")}
+                icon={false}
+                label="ประวัติการสั่งซื้อ"
+              />
             </Menu>
           </Box>
           <Typography
@@ -203,13 +190,6 @@ const AppBarComponent = ({ open }: AppBarComponentProps) => {
             />
           </Typography>
           <Box sx={appBarStyle.Box_md}>
-            {/* <CustomButton
-              onClick={() => NavigatToPages(router, "payment")}
-              icon={false}
-              label="Payment"
-            /> */}
-
-            {/* Create Document */}
             <CustomButton
               onClick={() => NavigatToPages(router, "createDocuments")}
               icon={false}
@@ -223,7 +203,6 @@ const AppBarComponent = ({ open }: AppBarComponentProps) => {
                 label="ประวัติการสั่งซื้อ"
               />
             </Box>
-
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title={userName}>

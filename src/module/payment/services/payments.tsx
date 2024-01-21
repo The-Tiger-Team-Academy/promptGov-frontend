@@ -1,6 +1,5 @@
   const stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_SCECRET_KEY);
 
-
   type PaymentStripe = {
     prize: string;
     quantity: number;
@@ -18,8 +17,8 @@
         ],
         mode: 'payment',
         payment_method_types: ['card', 'promptpay'],
-        success_url: `${window.location.origin as any}/createDocuments/paperflow?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${window.location.origin as any}/createDocuments/paperflow?cancel=true`
+        success_url: `${window.location.origin as any}/createDocuments/?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${window.location.origin as any}/createDocuments/?cancel=true`
       });
       return session.url
     }

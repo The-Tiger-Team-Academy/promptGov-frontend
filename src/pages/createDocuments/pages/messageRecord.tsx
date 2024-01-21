@@ -52,23 +52,23 @@ const CreatePages = () => {
 
   const [showLoadingCat, setShowLoadingCat] = useState(false);
   const LoadingCat = () => {
-      const audioRef = useRef<HTMLAudioElement>(null);
+    const audioRef = useRef<HTMLAudioElement>(null);
 
-      useEffect(() => {
-        // Play audio when the component mounts
+    useEffect(() => {
+      // Play audio when the component mounts
+      if (audioRef.current) {
+        audioRef.current.play();
+      }
+
+      // Return a cleanup function to stop and reset audio when the component unmounts
+      return () => {
         if (audioRef.current) {
-          audioRef.current.play();
+          audioRef.current.pause();
+          audioRef.current.currentTime = 0;
         }
-    
-        // Return a cleanup function to stop and reset audio when the component unmounts
-        return () => {
-          if (audioRef.current) {
-            audioRef.current.pause();
-            audioRef.current.currentTime = 0;
-          }
-        };
-      }, []);
-  
+      };
+    }, []);
+
     return (
       <div
         style={{
@@ -78,13 +78,17 @@ const CreatePages = () => {
           height: "100%",
           width: "100%",
           position: "absolute",
-          backgroundColor:'white'
+          backgroundColor: "white",
         }}
       >
         <img
           src="https://cdn.dribbble.com/users/566817/screenshots/2280275/media/39ebef761528920581bb98a35709676c.gif"
           alt="Loading cat animation"
-          style={{ borderRadius: "10px", overflow: "hidden",backgroundColor:'white' }}
+          style={{
+            borderRadius: "10px",
+            overflow: "hidden",
+            backgroundColor: "white",
+          }}
         />
         <audio ref={audioRef} src="/mp3/taratata-6264.mp3" loop />
       </div>
@@ -95,9 +99,7 @@ const CreatePages = () => {
     <React.Fragment>
       <CssBaseline />
       {showLoadingCat && <LoadingCat />}
-      <Container
-        maxWidth="sm"
-      >
+      <Container maxWidth="sm">
         <Box
           sx={{
             display: "flex",
