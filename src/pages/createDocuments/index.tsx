@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import CancelModal from "./components/cancelModal";
 import SuccessModel from "./components/successModal";
 import Footer from "../../common/footer";
-import Urlmessagerecord from "@/module/payment/hooks/Urlmessagerecord";
+import Urlmessagerecord from "@/module/createDocument/hook/Urlmessagerecord";
 
 // TODO : This function should be moved to a separate file
 const NavigatToPages = (router: NextRouter, path: string) => {
