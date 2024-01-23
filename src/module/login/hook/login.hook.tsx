@@ -11,7 +11,6 @@ const useCustomHook = () => {
   const [img, setImage] = useState<string>("");
   const router = useRouter();
 
-
   const postData = async () => {
     try {
       const response = await axios.post(
@@ -35,7 +34,7 @@ const useCustomHook = () => {
       const result = await signInWithGoogle();
       if (result && result.user) {
         router.push("./createDocuments");
-        localStorage.clear();
+        // localStorage.clear();
         setName(result.user.displayName || "");
         setEmail(result.user.email || "");
         setImage(result.user.photoURL || "");

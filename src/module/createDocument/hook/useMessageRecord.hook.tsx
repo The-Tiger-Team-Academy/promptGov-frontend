@@ -96,6 +96,7 @@ const useMessageRecord = (): messageRecord => {
   };
 
   const previewpdfPage = () => {
+    localStorage.removeItem('url_pdf');
     handleSend();
     router.push("/previewPage");
   }

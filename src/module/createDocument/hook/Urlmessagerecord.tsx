@@ -7,7 +7,7 @@ const nameDoc = localStorage.getItem("nameDoc")
   try {
     const response = await axios.post(
       // "http://127.0.0.1:8000/store_url", //เส้นทดสอบ
-      `${process.env.NEXT_PUBLIC_BASEURL}/Users` ?? "",
+      `${process.env.NEXT_PUBLIC_BASEURL}/store_url/` ?? "",
       {
         user_id: user_id,
         urls: [
