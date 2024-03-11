@@ -63,8 +63,8 @@ const useMessageRecord = (): messageRecord => {
   const handleSend = async () => {
     try {
       const response = await axios.post(
-        // "http://127.0.0.1:8000/create_doc/messageRecord",//เส้นทดสอบ
-        `${process.env.NEXT_PUBLIC_BASEURL}/create_doc/messageRecord/` || "",
+        "https://jubilant-goldfish-g449gqqw49r4cwv57-8000.app.github.dev/create_doc/messageRecord/",//เส้นทดสอบ
+        // `${process.env.NEXT_PUBLIC_BASEURL}/create_doc/messageRecord/` || "",
         {
           NAMEUNIVERSITY: Nameuniversity,
           ORGRA: Orgra,
